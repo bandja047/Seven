@@ -16,7 +16,7 @@ namespace SevenBusinessClient
         public FrmSaisieAchat(string action)
         {
             InitializeComponent();
-           
+
             this.action = action;
 
         }
@@ -24,7 +24,7 @@ namespace SevenBusinessClient
         public FrmSaisieAchat(string action, object _article)
         {
             InitializeComponent();
-           
+
             this.action = action;
 
 
@@ -37,11 +37,12 @@ namespace SevenBusinessClient
 
         private void LvAchatProduits_Resize(object sender, EventArgs e)
         {
-           
+
         }
 
-      
+        private void gbRecapAchat_Enter(object sender, EventArgs e)
+        {
 
-      
+        }
     }
 }

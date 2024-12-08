@@ -434,6 +434,7 @@
             gbRecapAchat.TabIndex = 4;
             gbRecapAchat.TabStop = false;
             gbRecapAchat.Text = "Reacapitulatif de L'achat";
+            gbRecapAchat.Enter += gbRecapAchat_Enter;
             // 
             // panel8
             // 

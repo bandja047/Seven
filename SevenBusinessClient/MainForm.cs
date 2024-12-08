@@ -15,6 +15,7 @@ namespace SevenBusinessClient
         public MainForm()
         {
             InitializeComponent();
+            
         }
         private void MnuArticle_Click(object sender, EventArgs e)
         {
@@ -53,5 +54,59 @@ namespace SevenBusinessClient
             frm.BringToFront();
             frm.Show();
         }
+
+        private void lvBenefice_DrawColumnHeader(object sender,
+       DrawListViewColumnHeaderEventArgs e)
+        {
+            int a = e.ColumnIndex;
+            using (StringFormat sf = new StringFormat())
+            {
+                // Store the column text alignment, letting it default
+                // to Left if it has not been set to Center or Right.
+                switch (e.Header.TextAlign)
+                {
+                    case HorizontalAlignment.Center:
+                        sf.Alignment = StringAlignment.Center;
+                        break;
+                    case HorizontalAlignment.Right:
+                        sf.Alignment = StringAlignment.Far;
+                        break;
+                }
+
+                // Draw the standard header background.
+                e.DrawBackground();
+
+                // Draw the header text.
+                using (Font headerFont =
+                            new Font("Helvetica", 10, FontStyle.Bold))
+                {
+                    e.Graphics.DrawString(e.Header.Text, headerFont,
+                        Brushes.Black, e.Bounds, sf);
+                }
+            }
+            return;
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

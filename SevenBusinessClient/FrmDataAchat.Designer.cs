@@ -122,6 +122,7 @@
             LvApprovisionnement.TabIndex = 6;
             LvApprovisionnement.UseCompatibleStateImageBehavior = false;
             LvApprovisionnement.View = View.Details;
+            LvApprovisionnement.SelectedIndexChanged += LvApprovisionnement_SelectedIndexChanged;
             LvApprovisionnement.Resize += lvArticle_Resize;
             // 
             // ColHeadReference

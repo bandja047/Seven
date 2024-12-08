@@ -40,7 +40,7 @@ namespace SevenBusinessClient
             _action = "Creation";
 
             FrmSaisieAchat frm = new FrmSaisieAchat(_action);
-            GLOBALS.LoadForm(frm,true);
+            GLOBALS.LoadForm(frm, true);
         }
 
         public void Modifier_Click(object sender, EventArgs e)
@@ -49,6 +49,11 @@ namespace SevenBusinessClient
 
             FrmSaisieAchat frm = new FrmSaisieAchat(_action, _article);
             GLOBALS.LoadForm(frm, true);
+        }
+
+        private void LvApprovisionnement_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
