@@ -36,5 +36,19 @@ namespace SevenBusinessClient
             frm.MdiParent = this;
             frm.Show();
         }
+
+        private void mnuClient_Click(object sender, EventArgs e)
+        {
+            FrmDataClients frm = new FrmDataClients();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void mnuFournisseur_Click(object sender, EventArgs e)
+        {
+            FrmDataFournisseurs frm = new FrmDataFournisseurs();
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }

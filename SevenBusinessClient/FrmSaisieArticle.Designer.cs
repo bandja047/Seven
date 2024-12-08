@@ -289,9 +289,9 @@
             label9.Font = new Font("Agency FB", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.Location = new Point(8, 0);
             label9.Name = "label9";
-            label9.Size = new Size(178, 31);
+            label9.Size = new Size(262, 31);
             label9.TabIndex = 0;
-            label9.Text = "LISTES DES ARTICLES";
+            label9.Text = "FICHE ENREGISTREMENT ARTICLE";
             label9.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // FrmSaisieArticle

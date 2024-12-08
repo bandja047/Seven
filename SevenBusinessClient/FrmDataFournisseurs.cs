@@ -20,12 +20,12 @@ namespace SevenBusinessClient
         }
         private void AdjustColumnsWidth()
         {
-            if (LvArticle.Columns.Count == 0) return;
+            if (LvFournisseur.Columns.Count == 0) return;
 
-            int totalWidth = LvArticle.ClientSize.Width;
-            int columnWidth = totalWidth / LvArticle.Columns.Count;
+            int totalWidth = LvFournisseur.ClientSize.Width;
+            int columnWidth = totalWidth / LvFournisseur.Columns.Count;
 
-            foreach (ColumnHeader column in LvArticle.Columns)
+            foreach (ColumnHeader column in LvFournisseur.Columns)
             {
 
                 column.Width = columnWidth;
@@ -39,7 +39,7 @@ namespace SevenBusinessClient
         {
             _action = "Creation";
 
-            FrmSaisieArticle frm = new FrmSaisieArticle(_action);
+            FrmSaisieFournisseur frm = new FrmSaisieFournisseur(_action);
             frm.ShowDialog();
         }
 
@@ -47,7 +47,7 @@ namespace SevenBusinessClient
         {
             _action = "Modification";
 
-            FrmSaisieArticle frm = new FrmSaisieArticle(_action, _article);
+            FrmSaisieFournisseur frm = new FrmSaisieFournisseur(_action, _article);
             frm.ShowDialog();
         }
     }

@@ -64,7 +64,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Padding = new Padding(8, 0, 0, 0);
-            panel1.Size = new Size(1014, 53);
+            panel1.Size = new Size(908, 53);
             panel1.TabIndex = 1;
             // 
             // BtnAjouter
@@ -74,7 +74,7 @@
             BtnAjouter.FlatStyle = FlatStyle.Flat;
             BtnAjouter.Font = new Font("Agency FB", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtnAjouter.ForeColor = Color.White;
-            BtnAjouter.Location = new Point(905, 59);
+            BtnAjouter.Location = new Point(799, 59);
             BtnAjouter.Name = "BtnAjouter";
             BtnAjouter.Size = new Size(97, 35);
             BtnAjouter.TabIndex = 3;
@@ -88,7 +88,7 @@
             button2.BackColor = Color.FromArgb(192, 0, 0);
             button2.FlatStyle = FlatStyle.Flat;
             button2.ForeColor = Color.White;
-            button2.Location = new Point(905, 141);
+            button2.Location = new Point(799, 141);
             button2.Name = "button2";
             button2.Size = new Size(97, 35);
             button2.TabIndex = 4;
@@ -102,7 +102,7 @@
             BtnModifier.FlatStyle = FlatStyle.Flat;
             BtnModifier.Font = new Font("Agency FB", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtnModifier.ForeColor = Color.White;
-            BtnModifier.Location = new Point(905, 100);
+            BtnModifier.Location = new Point(799, 100);
             BtnModifier.Name = "BtnModifier";
             BtnModifier.Size = new Size(97, 35);
             BtnModifier.TabIndex = 5;
@@ -117,7 +117,7 @@
             LvArticle.Columns.AddRange(new ColumnHeader[] { ColHeadReference, ColHeadDesignation, ColHeadDescription, ColHeadQuantite, ColHeadPrixVente, ColHeadPrixAchat, ColHeadUniteDeVente, ColHeadCategorie });
             LvArticle.Location = new Point(12, 59);
             LvArticle.Name = "LvArticle";
-            LvArticle.Size = new Size(887, 430);
+            LvArticle.Size = new Size(781, 430);
             LvArticle.TabIndex = 6;
             LvArticle.UseCompatibleStateImageBehavior = false;
             LvArticle.View = View.Details;
@@ -160,7 +160,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1014, 560);
+            ClientSize = new Size(908, 560);
             Controls.Add(LvArticle);
             Controls.Add(BtnModifier);
             Controls.Add(button2);
