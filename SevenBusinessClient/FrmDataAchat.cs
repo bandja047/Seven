@@ -20,12 +20,12 @@ namespace SevenBusinessClient
         }
         private void AdjustColumnsWidth()
         {
-            if (LvArticle.Columns.Count == 0) return;
+            if (LvApprovisionnement.Columns.Count == 0) return;
 
-            int totalWidth = LvArticle.ClientSize.Width;
-            int columnWidth = totalWidth / LvArticle.Columns.Count;
+            int totalWidth = LvApprovisionnement.ClientSize.Width;
+            int columnWidth = totalWidth / LvApprovisionnement.Columns.Count;
 
-            foreach (ColumnHeader column in LvArticle.Columns)
+            foreach (ColumnHeader column in LvApprovisionnement.Columns)
             {
 
                 column.Width = columnWidth;

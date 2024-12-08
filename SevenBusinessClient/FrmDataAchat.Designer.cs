@@ -33,15 +33,16 @@
             BtnAjouter = new Button();
             button2 = new Button();
             BtnModifier = new Button();
-            LvArticle = new ListView();
+            LvApprovisionnement = new ListView();
             ColHeadReference = new ColumnHeader();
-            ColHeadDesignation = new ColumnHeader();
-            ColHeadDescription = new ColumnHeader();
+            ColHeadProduits = new ColumnHeader();
+            ColHeadDate = new ColumnHeader();
             ColHeadQuantite = new ColumnHeader();
-            ColHeadPrixVente = new ColumnHeader();
             ColHeadPrixAchat = new ColumnHeader();
-            ColHeadUniteDeVente = new ColumnHeader();
-            ColHeadCategorie = new ColumnHeader();
+            ColHeadMontant = new ColumnHeader();
+            ColHeadFournisseur = new ColumnHeader();
+            ColHeadNumAppro = new ColumnHeader();
+            ColHeadFacture = new ColumnHeader();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -110,50 +111,54 @@
             BtnModifier.UseVisualStyleBackColor = false;
             BtnModifier.Click += Modifier_Click;
             // 
-            // LvArticle
+            // LvApprovisionnement
             // 
-            LvArticle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            LvArticle.BorderStyle = BorderStyle.FixedSingle;
-            LvArticle.Columns.AddRange(new ColumnHeader[] { ColHeadReference, ColHeadDesignation, ColHeadDescription, ColHeadQuantite, ColHeadPrixVente, ColHeadPrixAchat, ColHeadUniteDeVente, ColHeadCategorie });
-            LvArticle.Location = new Point(12, 59);
-            LvArticle.Name = "LvArticle";
-            LvArticle.Size = new Size(781, 430);
-            LvArticle.TabIndex = 6;
-            LvArticle.UseCompatibleStateImageBehavior = false;
-            LvArticle.View = View.Details;
-            LvArticle.Resize += lvArticle_Resize;
+            LvApprovisionnement.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            LvApprovisionnement.BorderStyle = BorderStyle.FixedSingle;
+            LvApprovisionnement.Columns.AddRange(new ColumnHeader[] { ColHeadReference, ColHeadProduits, ColHeadDate, ColHeadQuantite, ColHeadPrixAchat, ColHeadMontant, ColHeadFournisseur, ColHeadNumAppro, ColHeadFacture });
+            LvApprovisionnement.Location = new Point(12, 59);
+            LvApprovisionnement.Name = "LvApprovisionnement";
+            LvApprovisionnement.Size = new Size(781, 430);
+            LvApprovisionnement.TabIndex = 6;
+            LvApprovisionnement.UseCompatibleStateImageBehavior = false;
+            LvApprovisionnement.View = View.Details;
+            LvApprovisionnement.Resize += lvArticle_Resize;
             // 
             // ColHeadReference
             // 
-            ColHeadReference.Text = "Reference";
+            ColHeadReference.Text = "Reference Produits";
             // 
-            // ColHeadDesignation
+            // ColHeadProduits
             // 
-            ColHeadDesignation.Text = "Name";
+            ColHeadProduits.Text = "Produits";
             // 
-            // ColHeadDescription
+            // ColHeadDate
             // 
-            ColHeadDescription.Text = "Description";
+            ColHeadDate.Text = "Date";
             // 
             // ColHeadQuantite
             // 
             ColHeadQuantite.Text = "Quantite";
             // 
-            // ColHeadPrixVente
-            // 
-            ColHeadPrixVente.Text = "Prix Achat";
-            // 
             // ColHeadPrixAchat
             // 
             ColHeadPrixAchat.Text = "Prix Vente";
             // 
-            // ColHeadUniteDeVente
+            // ColHeadMontant
             // 
-            ColHeadUniteDeVente.Text = "Unite De Vente";
+            ColHeadMontant.Text = "Unite De Vente";
             // 
-            // ColHeadCategorie
+            // ColHeadFournisseur
             // 
-            ColHeadCategorie.Text = "Categorie";
+            ColHeadFournisseur.Text = "Fournisseur";
+            // 
+            // ColHeadNumAppro
+            // 
+            ColHeadNumAppro.Text = "Numero Approvisionnement";
+            // 
+            // ColHeadFacture
+            // 
+            ColHeadFacture.Text = "Facture";
             // 
             // FrmDataAchat
             // 
@@ -161,14 +166,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(908, 560);
-            Controls.Add(LvArticle);
+            Controls.Add(LvApprovisionnement);
             Controls.Add(BtnModifier);
             Controls.Add(button2);
             Controls.Add(BtnAjouter);
             Controls.Add(panel1);
             Name = "FrmDataAchat";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "Approvisionnement";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -181,14 +186,15 @@
         private Button BtnAjouter;
         private Button button2;
         private Button BtnModifier;
-        private ListView LvArticle;
+        private ListView LvApprovisionnement;
         private ColumnHeader ColHeadReference;
-        private ColumnHeader ColHeadDesignation;
-        private ColumnHeader ColHeadDescription;
+        private ColumnHeader ColHeadProduits;
+        private ColumnHeader ColHeadDate;
         private ColumnHeader ColHeadQuantite;
-        private ColumnHeader ColHeadPrixVente;
         private ColumnHeader ColHeadPrixAchat;
-        private ColumnHeader ColHeadUniteDeVente;
-        private ColumnHeader ColHeadCategorie;
+        private ColumnHeader ColHeadMontant;
+        private ColumnHeader ColHeadFournisseur;
+        private ColumnHeader ColHeadNumAppro;
+        private ColumnHeader ColHeadFacture;
     }
 }

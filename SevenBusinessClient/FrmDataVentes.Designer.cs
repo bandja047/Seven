@@ -33,16 +33,16 @@
             BtnAjouter = new Button();
             button2 = new Button();
             BtnModifier = new Button();
-            LvArticle = new ListView();
+            LvApprovisionnement = new ListView();
             ColHeadReference = new ColumnHeader();
-            ColHeadNom = new ColumnHeader();
-            ColHeadPrenom = new ColumnHeader();
-            ColHeadTelephone = new ColumnHeader();
-            ColHeadEmail = new ColumnHeader();
-            ColHeadPays = new ColumnHeader();
-            ColHeadVille = new ColumnHeader();
-            ColHeadQuartier = new ColumnHeader();
-            ColHeadCodePostal = new ColumnHeader();
+            ColHeadProduits = new ColumnHeader();
+            ColHeadDate = new ColumnHeader();
+            ColHeadQuantite = new ColumnHeader();
+            ColHeadPrixAchat = new ColumnHeader();
+            ColHeadMontant = new ColumnHeader();
+            ColHeadFournisseur = new ColumnHeader();
+            ColHeadNumAppro = new ColumnHeader();
+            ColHeadFacture = new ColumnHeader();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -111,54 +111,53 @@
             BtnModifier.UseVisualStyleBackColor = false;
             BtnModifier.Click += Modifier_Click;
             // 
-            // LvArticle
+            // LvApprovisionnement
             // 
-            LvArticle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            LvArticle.BorderStyle = BorderStyle.FixedSingle;
-            LvArticle.Columns.AddRange(new ColumnHeader[] { ColHeadReference, ColHeadNom, ColHeadPrenom, ColHeadTelephone, ColHeadEmail, ColHeadPays, ColHeadVille, ColHeadQuartier, ColHeadCodePostal });
-            LvArticle.Location = new Point(12, 59);
-            LvArticle.Name = "LvArticle";
-            LvArticle.Size = new Size(781, 430);
-            LvArticle.TabIndex = 6;
-            LvArticle.UseCompatibleStateImageBehavior = false;
-            LvArticle.View = View.Details;
-            LvArticle.Resize += lvArticle_Resize;
+            LvApprovisionnement.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            LvApprovisionnement.BorderStyle = BorderStyle.FixedSingle;
+            LvApprovisionnement.Columns.AddRange(new ColumnHeader[] { ColHeadReference, ColHeadProduits, ColHeadDate, ColHeadQuantite, ColHeadPrixAchat, ColHeadMontant, ColHeadFournisseur, ColHeadNumAppro, ColHeadFacture });
+            LvApprovisionnement.Location = new Point(12, 59);
+            LvApprovisionnement.Name = "LvApprovisionnement";
+            LvApprovisionnement.Size = new Size(781, 430);
+            LvApprovisionnement.TabIndex = 7;
+            LvApprovisionnement.UseCompatibleStateImageBehavior = false;
+            LvApprovisionnement.View = View.Details;
             // 
             // ColHeadReference
             // 
-            ColHeadReference.Text = "Reference";
+            ColHeadReference.Text = "Reference Produits";
             // 
-            // ColHeadNom
+            // ColHeadProduits
             // 
-            ColHeadNom.Text = "Nom";
+            ColHeadProduits.Text = "Produits";
             // 
-            // ColHeadPrenom
+            // ColHeadDate
             // 
-            ColHeadPrenom.Text = "Prenom";
+            ColHeadDate.Text = "Date";
             // 
-            // ColHeadTelephone
+            // ColHeadQuantite
             // 
-            ColHeadTelephone.Text = "Quantite";
+            ColHeadQuantite.Text = "Quantite";
             // 
-            // ColHeadEmail
+            // ColHeadPrixAchat
             // 
-            ColHeadEmail.Text = "Prix Achat";
+            ColHeadPrixAchat.Text = "Prix Vente";
             // 
-            // ColHeadPays
+            // ColHeadMontant
             // 
-            ColHeadPays.Text = "Prix Vente";
+            ColHeadMontant.Text = "Unite De Vente";
             // 
-            // ColHeadVille
+            // ColHeadFournisseur
             // 
-            ColHeadVille.Text = "Ville";
+            ColHeadFournisseur.Text = "Fournisseur";
             // 
-            // ColHeadQuartier
+            // ColHeadNumAppro
             // 
-            ColHeadQuartier.Text = "Quartier";
+            ColHeadNumAppro.Text = "Numero Approvisionnement";
             // 
-            // ColHeadCodePostal
+            // ColHeadFacture
             // 
-            ColHeadCodePostal.Text = "Code Postal";
+            ColHeadFacture.Text = "Facture";
             // 
             // FrmDataVentes
             // 
@@ -166,7 +165,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(908, 560);
-            Controls.Add(LvArticle);
+            Controls.Add(LvApprovisionnement);
             Controls.Add(BtnModifier);
             Controls.Add(button2);
             Controls.Add(BtnAjouter);
@@ -186,15 +185,15 @@
         private Button BtnAjouter;
         private Button button2;
         private Button BtnModifier;
-        private ListView LvArticle;
+        private ListView LvApprovisionnement;
         private ColumnHeader ColHeadReference;
-        private ColumnHeader ColHeadNom;
-        private ColumnHeader ColHeadPrenom;
-        private ColumnHeader ColHeadTelephone;
-        private ColumnHeader ColHeadEmail;
-        private ColumnHeader ColHeadPays;
-        private ColumnHeader ColHeadVille;
-        private ColumnHeader ColHeadQuartier;
-        private ColumnHeader ColHeadCodePostal;
+        private ColumnHeader ColHeadProduits;
+        private ColumnHeader ColHeadDate;
+        private ColumnHeader ColHeadQuantite;
+        private ColumnHeader ColHeadPrixAchat;
+        private ColumnHeader ColHeadMontant;
+        private ColumnHeader ColHeadFournisseur;
+        private ColumnHeader ColHeadNumAppro;
+        private ColumnHeader ColHeadFacture;
     }
 }
