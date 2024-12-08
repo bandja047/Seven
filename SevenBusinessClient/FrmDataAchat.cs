@@ -39,16 +39,16 @@ namespace SevenBusinessClient
         {
             _action = "Creation";
 
-            FrmSaisieArticle frm = new FrmSaisieArticle(_action);
-            frm.ShowDialog();
+            FrmSaisieAchat frm = new FrmSaisieAchat(_action);
+            GLOBALS.LoadForm(frm,true);
         }
 
         public void Modifier_Click(object sender, EventArgs e)
         {
             _action = "Modification";
 
-            FrmSaisieArticle frm = new FrmSaisieArticle(_action, _article);
-            frm.ShowDialog();
+            FrmSaisieAchat frm = new FrmSaisieAchat(_action, _article);
+            GLOBALS.LoadForm(frm, true);
         }
     }
 }

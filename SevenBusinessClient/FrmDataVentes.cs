@@ -20,12 +20,12 @@ namespace SevenBusinessClient
         }
         private void AdjustColumnsWidth()
         {
-            if (LvArticle.Columns.Count == 0) return;
+            if (LvVente.Columns.Count == 0) return;
 
-            int totalWidth = LvArticle.ClientSize.Width;
-            int columnWidth = totalWidth / LvArticle.Columns.Count;
+            int totalWidth = LvVente.ClientSize.Width;
+            int columnWidth = totalWidth / LvVente.Columns.Count;
 
-            foreach (ColumnHeader column in LvArticle.Columns)
+            foreach (ColumnHeader column in LvVente.Columns)
             {
 
                 column.Width = columnWidth;
@@ -39,16 +39,16 @@ namespace SevenBusinessClient
         {
             _action = "Creation";
 
-            FrmSaisieArticle frm = new FrmSaisieArticle(_action);
-            frm.ShowDialog();
+            FrmSaisieVente frm = new FrmSaisieVente(_action);
+            GLOBALS.LoadForm(frm, true);
         }
 
         public void Modifier_Click(object sender, EventArgs e)
         {
             _action = "Modification";
 
-            FrmSaisieArticle frm = new FrmSaisieArticle(_action, _article);
-            frm.ShowDialog();
+            FrmSaisieVente frm = new FrmSaisieVente(_action, _article);
+            GLOBALS.LoadForm(frm, true);
         }
     }
 }

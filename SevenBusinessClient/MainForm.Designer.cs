@@ -37,6 +37,7 @@
             mnuFournisseur = new ToolStripMenuItem();
             traitementToolStripMenuItem = new ToolStripMenuItem();
             MnuArticles = new ToolStripMenuItem();
+            panel1 = new Panel();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -45,7 +46,8 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { gestionToolStripMenuItem, traitementToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.Padding = new Padding(3, 2, 0, 2);
+            menuStrip1.Size = new Size(883, 24);
             menuStrip1.TabIndex = 1;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -59,35 +61,35 @@
             // MnuArticle
             // 
             MnuArticle.Name = "MnuArticle";
-            MnuArticle.Size = new Size(180, 22);
+            MnuArticle.Size = new Size(140, 22);
             MnuArticle.Text = "Articles";
             MnuArticle.Click += MnuArticle_Click;
             // 
             // MnuAchat
             // 
             MnuAchat.Name = "MnuAchat";
-            MnuAchat.Size = new Size(180, 22);
+            MnuAchat.Size = new Size(140, 22);
             MnuAchat.Text = "Achat";
             MnuAchat.Click += MnuAchat_Click;
             // 
             // MnuVentes
             // 
             MnuVentes.Name = "MnuVentes";
-            MnuVentes.Size = new Size(180, 22);
+            MnuVentes.Size = new Size(140, 22);
             MnuVentes.Text = "Ventes";
             MnuVentes.Click += MnuVentes_Click;
             // 
             // mnuClient
             // 
             mnuClient.Name = "mnuClient";
-            mnuClient.Size = new Size(180, 22);
+            mnuClient.Size = new Size(140, 22);
             mnuClient.Text = "Clients";
             mnuClient.Click += mnuClient_Click;
             // 
             // mnuFournisseur
             // 
             mnuFournisseur.Name = "mnuFournisseur";
-            mnuFournisseur.Size = new Size(180, 22);
+            mnuFournisseur.Size = new Size(140, 22);
             mnuFournisseur.Text = "Fournisseurs";
             mnuFournisseur.Click += mnuFournisseur_Click;
             // 
@@ -103,14 +105,28 @@
             MnuArticles.Size = new Size(180, 22);
             MnuArticles.Text = "Gestion Article";
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.White;
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(0, 24);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(883, 426);
+            panel1.TabIndex = 3;
+            // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(4F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.IndianRed;
+            ClientSize = new Size(883, 450);
+            Controls.Add(panel1);
             Controls.Add(menuStrip1);
+            Font = new Font("Agency FB", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
+            Margin = new Padding(2, 3, 2, 3);
             Name = "MainForm";
             Text = "Seven";
             WindowState = FormWindowState.Maximized;
@@ -131,5 +147,6 @@
         private ToolStripMenuItem MnuArticle;
         private ToolStripMenuItem mnuClient;
         private ToolStripMenuItem mnuFournisseur;
+        private Panel panel1;
     }
 }

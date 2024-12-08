@@ -114,7 +114,7 @@
             // LvApprovisionnement
             // 
             LvApprovisionnement.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            LvApprovisionnement.BorderStyle = BorderStyle.FixedSingle;
+            LvApprovisionnement.BorderStyle = BorderStyle.None;
             LvApprovisionnement.Columns.AddRange(new ColumnHeader[] { ColHeadReference, ColHeadProduits, ColHeadDate, ColHeadQuantite, ColHeadPrixAchat, ColHeadMontant, ColHeadFournisseur, ColHeadNumAppro, ColHeadFacture });
             LvApprovisionnement.Location = new Point(12, 59);
             LvApprovisionnement.Name = "LvApprovisionnement";
@@ -142,11 +142,11 @@
             // 
             // ColHeadPrixAchat
             // 
-            ColHeadPrixAchat.Text = "Prix Vente";
+            ColHeadPrixAchat.Text = "Prix Achat";
             // 
             // ColHeadMontant
             // 
-            ColHeadMontant.Text = "Unite De Vente";
+            ColHeadMontant.Text = "Montant";
             // 
             // ColHeadFournisseur
             // 

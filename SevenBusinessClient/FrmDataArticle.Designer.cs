@@ -113,7 +113,7 @@
             // LvArticle
             // 
             LvArticle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            LvArticle.BorderStyle = BorderStyle.FixedSingle;
+            LvArticle.BorderStyle = BorderStyle.None;
             LvArticle.Columns.AddRange(new ColumnHeader[] { ColHeadReference, ColHeadDesignation, ColHeadDescription, ColHeadQuantite, ColHeadPrixVente, ColHeadPrixAchat, ColHeadUniteDeVente, ColHeadCategorie });
             LvArticle.Location = new Point(12, 59);
             LvArticle.Name = "LvArticle";
@@ -168,7 +168,7 @@
             Controls.Add(panel1);
             Name = "FrmDataArticle";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "Articles";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);

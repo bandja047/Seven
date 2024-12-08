@@ -33,12 +33,12 @@
             BtnAjouter = new Button();
             button2 = new Button();
             BtnModifier = new Button();
-            LvApprovisionnement = new ListView();
+            LvVente = new ListView();
             ColHeadReference = new ColumnHeader();
             ColHeadProduits = new ColumnHeader();
             ColHeadDate = new ColumnHeader();
             ColHeadQuantite = new ColumnHeader();
-            ColHeadPrixAchat = new ColumnHeader();
+            ColHeadVente = new ColumnHeader();
             ColHeadMontant = new ColumnHeader();
             ColHeadFournisseur = new ColumnHeader();
             ColHeadNumAppro = new ColumnHeader();
@@ -53,9 +53,9 @@
             label1.Font = new Font("Agency FB", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(8, 0);
             label1.Name = "label1";
-            label1.Size = new Size(178, 31);
+            label1.Size = new Size(161, 31);
             label1.TabIndex = 0;
-            label1.Text = "LISTES DES ARTICLES";
+            label1.Text = "LISTES DES VENTES";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // panel1
@@ -111,17 +111,17 @@
             BtnModifier.UseVisualStyleBackColor = false;
             BtnModifier.Click += Modifier_Click;
             // 
-            // LvApprovisionnement
+            // LvVente
             // 
-            LvApprovisionnement.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            LvApprovisionnement.BorderStyle = BorderStyle.FixedSingle;
-            LvApprovisionnement.Columns.AddRange(new ColumnHeader[] { ColHeadReference, ColHeadProduits, ColHeadDate, ColHeadQuantite, ColHeadPrixAchat, ColHeadMontant, ColHeadFournisseur, ColHeadNumAppro, ColHeadFacture });
-            LvApprovisionnement.Location = new Point(12, 59);
-            LvApprovisionnement.Name = "LvApprovisionnement";
-            LvApprovisionnement.Size = new Size(781, 430);
-            LvApprovisionnement.TabIndex = 7;
-            LvApprovisionnement.UseCompatibleStateImageBehavior = false;
-            LvApprovisionnement.View = View.Details;
+            LvVente.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            LvVente.BorderStyle = BorderStyle.None;
+            LvVente.Columns.AddRange(new ColumnHeader[] { ColHeadReference, ColHeadProduits, ColHeadDate, ColHeadQuantite, ColHeadVente, ColHeadMontant, ColHeadFournisseur, ColHeadNumAppro, ColHeadFacture });
+            LvVente.Location = new Point(12, 59);
+            LvVente.Name = "LvVente";
+            LvVente.Size = new Size(781, 430);
+            LvVente.TabIndex = 7;
+            LvVente.UseCompatibleStateImageBehavior = false;
+            LvVente.View = View.Details;
             // 
             // ColHeadReference
             // 
@@ -139,13 +139,13 @@
             // 
             ColHeadQuantite.Text = "Quantite";
             // 
-            // ColHeadPrixAchat
+            // ColHeadVente
             // 
-            ColHeadPrixAchat.Text = "Prix Vente";
+            ColHeadVente.Text = "Prix Vente";
             // 
             // ColHeadMontant
             // 
-            ColHeadMontant.Text = "Unite De Vente";
+            ColHeadMontant.Text = "Montant";
             // 
             // ColHeadFournisseur
             // 
@@ -165,14 +165,14 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(908, 560);
-            Controls.Add(LvApprovisionnement);
+            Controls.Add(LvVente);
             Controls.Add(BtnModifier);
             Controls.Add(button2);
             Controls.Add(BtnAjouter);
             Controls.Add(panel1);
             Name = "FrmDataVentes";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "Ventes";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -185,12 +185,12 @@
         private Button BtnAjouter;
         private Button button2;
         private Button BtnModifier;
-        private ListView LvApprovisionnement;
+        private ListView LvVente;
         private ColumnHeader ColHeadReference;
         private ColumnHeader ColHeadProduits;
         private ColumnHeader ColHeadDate;
         private ColumnHeader ColHeadQuantite;
-        private ColumnHeader ColHeadPrixAchat;
+        private ColumnHeader ColHeadVente;
         private ColumnHeader ColHeadMontant;
         private ColumnHeader ColHeadFournisseur;
         private ColumnHeader ColHeadNumAppro;

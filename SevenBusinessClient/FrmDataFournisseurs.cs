@@ -40,7 +40,7 @@ namespace SevenBusinessClient
             _action = "Creation";
 
             FrmSaisieFournisseur frm = new FrmSaisieFournisseur(_action);
-            frm.ShowDialog();
+            GLOBALS.LoadForm(frm, true);
         }
 
         public void Modifier_Click(object sender, EventArgs e)
@@ -48,7 +48,9 @@ namespace SevenBusinessClient
             _action = "Modification";
 
             FrmSaisieFournisseur frm = new FrmSaisieFournisseur(_action, _article);
-            frm.ShowDialog();
+            GLOBALS.LoadForm(frm, true);
         }
+
+        
     }
 }

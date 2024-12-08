@@ -306,7 +306,7 @@
             Controls.Add(groupBox1);
             MaximizeBox = false;
             Name = "FrmSaisieArticle";
-            StartPosition = FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Saisie Article";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();

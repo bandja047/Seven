@@ -114,7 +114,7 @@
             // LvClient
             // 
             LvClient.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            LvClient.BorderStyle = BorderStyle.FixedSingle;
+            LvClient.BorderStyle = BorderStyle.None;
             LvClient.Columns.AddRange(new ColumnHeader[] { ColHeadReference, ColHeadNom, ColHeadPrenom, ColHeadTelephone, ColHeadEmail, ColHeadPays, ColHeadVille, ColHeadQuartier, ColHeadCodePostal });
             LvClient.Location = new Point(12, 59);
             LvClient.Name = "LvClient";

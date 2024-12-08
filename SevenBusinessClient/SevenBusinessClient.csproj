@@ -21,6 +21,9 @@
     <Compile Update="FrmDataVentes.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FrmSaisieVente.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FrmSaisieFournisseur.cs">
       <SubType>Form</SubType>
     </Compile>

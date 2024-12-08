@@ -114,7 +114,7 @@
             // LvFournisseur
             // 
             LvFournisseur.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            LvFournisseur.BorderStyle = BorderStyle.FixedSingle;
+            LvFournisseur.BorderStyle = BorderStyle.None;
             LvFournisseur.Columns.AddRange(new ColumnHeader[] { ColHeadReference, ColHeadNom, ColHeadPrenom, ColHeadTelephone, ColHeadEmail, ColHeadPays, ColHeadVille, ColHeadQuartier, ColHeadCodePostal });
             LvFournisseur.Location = new Point(12, 59);
             LvFournisseur.Name = "LvFournisseur";
