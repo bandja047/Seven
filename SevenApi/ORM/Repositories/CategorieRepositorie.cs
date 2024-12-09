@@ -24,6 +24,19 @@ namespace SevenApi.ORM.Repositories
             await base.AddAsync(entity);
         }
 
+        public override async Task<bool> UpdateAsync(Categorie entity)
+        {
+            var Item = await GetByIdAsync(entity.Id);
+            Item.UpdatedAt = DateTime.Now;
+            Item.DataVersion = entity.DataVersion + 1;
+            if (Item == null)
+            {
+                return false;
+            }
+
+            return await base.UpdateAsync(Item);
+        }
+
     }
    
 }

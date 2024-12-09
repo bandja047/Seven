@@ -35,7 +35,8 @@ namespace SevenApi.Controllers
         [HttpGet]
         public async Task<IActionResult> Getarticles()
         {
-            return StatusCode(StatusCodes.Status302Found, await _articleRepos.GetAllAsync());
+            var list = await _articleRepos.GetAllAsync();
+            return StatusCode(StatusCodes.Status200OK, list);
         }
 
         // GET: api/Articles/5
@@ -49,7 +50,7 @@ namespace SevenApi.Controllers
                 return StatusCode(StatusCodes.Status404NotFound, new { message = "An error occurred.", details = "Aucun n'article a trouver" });
             }
 
-            return StatusCode(StatusCodes.Status302Found, article);
+            return StatusCode(StatusCodes.Status200OK, article);
         }
 
         // PUT: api/Articles/5
@@ -64,17 +65,11 @@ namespace SevenApi.Controllers
                 return StatusCode(StatusCodes.Status406NotAcceptable, new { message = "An error occurred.", details = "" });
             }
 
-            var articleItem = await _articleRepos.GetByIdAsync(id);
-
-            if (articleItem == null)
-            {
-
-                return StatusCode(StatusCodes.Status404NotFound, new { message = "An error occurred.", details = "article non trouver" });
-            }
+            
 
 
 
-            articleItem = Mapper.Map<ArticleUpdateDto, Article>(article);       
+            var articleItem = Mapper.Map<ArticleUpdateDto, Article>(article);       
 
           
             articleItem.UpdatedAt = DateTime.Now;           
@@ -86,7 +81,10 @@ namespace SevenApi.Controllers
 
             try
             {
-               await _articleRepos.UpdateAsync(articleItem);
+                 var result =  await _articleRepos.UpdateAsync(articleItem);
+
+                if(!result)
+                    return StatusCode(StatusCodes.Status404NotFound, new { message = "An error occurred.", details = "article non trouver" });
             }
             catch (DbUpdateConcurrencyException)
             {

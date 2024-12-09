@@ -3,6 +3,8 @@
     public class ArticleUpdateDto
     {
         public int Id { get; set; } 
+
+        public string Reference { get; set; }
         public string Designation { get; set; }
         public string Description { get; set; }
         public double Quantite { get; set; }

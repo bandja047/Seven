@@ -45,7 +45,7 @@ namespace SevenBusinessClient
         {
             _action = "Creation";
 
-            FrmSaisieArticle frm = new FrmSaisieArticle(_action);
+            FrmSaisieArticle frm = new FrmSaisieArticle(_action,_httpClient);
             GLOBALS.LoadForm(frm, true);
         }
 
@@ -56,7 +56,7 @@ namespace SevenBusinessClient
             _article = LvArticle.SelectedItems[0].Tag as Article ?? new Article();
 
 
-            FrmSaisieArticle frm = new FrmSaisieArticle(_action, _article);
+            FrmSaisieArticle frm = new FrmSaisieArticle(_action, _article ,_httpClient);
             GLOBALS.LoadForm(frm, true);
         }
 
@@ -125,7 +125,7 @@ namespace SevenBusinessClient
             _article = LvArticle.SelectedItems[0].Tag as Article ?? new Article();
 
 
-            FrmSaisieArticle frm = new FrmSaisieArticle(_action, _article);
+            FrmSaisieArticle frm = new FrmSaisieArticle(_action, _article, _httpClient);
             GLOBALS.LoadForm(frm, true);
         }
 

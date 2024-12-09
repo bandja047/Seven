@@ -1,4 +1,5 @@
-﻿using SevenApi.DataTransfertObject;
+﻿using Newtonsoft.Json;
+using SevenApi.DataTransfertObject;
 using SevenApi.Models;
 using System;
 using System.Collections.Generic;
@@ -18,17 +19,19 @@ namespace SevenBusinessClient
     {
         private string action;
         private Article _article;
+        private HttpClient _httpClient;
 
-        public FrmSaisieArticle(string action)
+        public FrmSaisieArticle(string action, HttpClient httpClient)
         {
             InitializeComponent();
             this.action = action;
             btnAjouter.Text = "Ajouter";
             panel1.Visible = false;
             groupBox1.Location = new Point(12, 59);
+            _httpClient = httpClient;   
         }
 
-        public FrmSaisieArticle(string action, Article article)
+        public FrmSaisieArticle(string action, Article article,HttpClient httpClient)
         {
             InitializeComponent();
             this.action = action;
@@ -37,6 +40,7 @@ namespace SevenBusinessClient
             panel1.Enabled = false;
             groupBox1.Location = new Point(12, 118);
             _article = article;
+            _httpClient = httpClient;
 
 
         }
@@ -50,7 +54,7 @@ namespace SevenBusinessClient
         {
             FrmSaisieCategorie frm = new FrmSaisieCategorie("Creation");
             //frm.Parent = this;
-            frm.ShowDialog();
+            GLOBALS.LoadForm(frm,true);
         }
 
 
@@ -59,6 +63,58 @@ namespace SevenBusinessClient
             MessageBox.Show("je m'affiche au premier plan");
         }
 
+        private ArticleCreateDto BuildArticleToCreate()
+        {
+            var categorie = cmbCategorie.SelectedItem as Categorie;
+
+          
+                var articles = new ArticleCreateDto
+                {
+                    Designation = txtDesignation.Text,
+                    Description = txtDescription.Text,
+                    PrixAchat = double.Parse(txtPrixAchat.Text),
+                    PrixVente = double.Parse(txtPrixVente.Text),
+                    Quantite = double.Parse(txtQuantite.Text),
+                    UniteVente = txtUv.Text,
+
+                    Categorie = new CategorieUpdateDao
+                    {
+                        Id = categorie.Id,
+                        Reference = categorie.Reference,
+                        DataVersion = categorie.DataVersion,
+                        Name = categorie.Name
+
+                    }
+                };
+
+            
+
+                return articles;
+        }
+
+        private ArticleUpdateDto BuildArticleToUpdate()
+        {
+            var categorie = cmbCategorie.SelectedItem as Categorie;
+
+
+            var articles = new ArticleUpdateDto
+            {
+                Id=_article.Id,
+                Reference = txtReference.Text,
+                Designation = txtDesignation.Text,
+                Description = txtDescription.Text,
+                PrixAchat = double.Parse(txtPrixAchat.Text),
+                PrixVente = double.Parse(txtPrixVente.Text),
+                Quantite = double.Parse(txtQuantite.Text),
+                UniteVente = txtUv.Text,
+                CategorieId = categorie.Id,
+               
+            };
+
+
+
+            return articles;
+        }
         private async void button1_Click(object sender, EventArgs e)
         {
             try
@@ -72,26 +128,20 @@ namespace SevenBusinessClient
                 _httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
                 // Création de l'objet article
-                var articles = new ArticleCreateDto
-                {
-                    Designation = "IPAD",
-                    Description = "IPAD 12 GENERATION 25",
-                    PrixAchat = 500000,
-                    PrixVente = 8000000,
-                    Quantite = 2,
-                    UniteVente = "Pieces",
-                    Categorie = new CategorieUpdateDao
-                    {
-                        Id = 2,
-                        Reference = "",
-                        DataVersion = 1,
-                        Name = "",
-                        ParentCategorieId = null
-                    }
-                };
+            
 
-                // Appel HTTP POST
-                var response = await _httpClient.PostAsJsonAsync("articles", articles);
+                HttpResponseMessage response = null;  // Appel HTTP POST
+                if (action == "Creation")
+                {
+                    var articles = BuildArticleToCreate();
+                    response = await _httpClient.PostAsJsonAsync("articles", articles);
+                }
+               
+                else
+                {
+                    var articles = BuildArticleToUpdate();
+                    response = await _httpClient.PutAsJsonAsync($"articles/{_article.Id}",articles);
+                }
 
                 // Vérification de la réponse
                 if (response.IsSuccessStatusCode)
@@ -112,10 +162,51 @@ namespace SevenBusinessClient
             }
         }
 
+        private async void GetCategorieCompleted()
+        {
+            try
+            {
+               
+                _httpClient.DefaultRequestHeaders.Accept.Clear();
+
+                // Appel à l'API et désérialisation de la réponse
+                string response = await _httpClient.GetStringAsync("categories");
+
+                var categories = JsonConvert.DeserializeObject<List<Categorie>>(response) ?? new List<Categorie>();
+
+                // Chargement des données dans le ListView
+                    LoadComboBox(categories);
+            }
+            catch (HttpRequestException httpEx)
+            {
+                MessageBox.Show($"Erreur lors de la récupération des articles : {httpEx.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (JsonException jsonEx)
+            {
+                MessageBox.Show($"Erreur lors de l'analyse des données des articles : {jsonEx.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Une erreur inattendue est survenue : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void LoadComboBox(List<Categorie> list)
+        {
+         
+            cmbCategorie.DataSource = list;
+            cmbCategorie.DisplayMember = "Name";
+            cmbCategorie.ValueMember = "Id";
+
+           
+        }
         private void FrmSaisieArticle_Load(object sender, EventArgs e)
         {
+            GetCategorieCompleted();
+
             if(action == "Modification")
             {
+                
                 txtReference.Text = _article.Reference;
                 txtDescription.Text = _article.Description;
                 txtDesignation.Text = _article.Designation;

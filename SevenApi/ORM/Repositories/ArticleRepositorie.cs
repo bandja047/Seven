@@ -1,4 +1,5 @@
 ﻿using SevenApi.ContextDb;
+using SevenApi.Helpers;
 using SevenApi.Models;
 using SevenApi.NewFolder;
 
@@ -22,6 +23,21 @@ namespace SevenApi.ORM.Repositories
             entity.DataVersion = 1;
 
             await base.AddAsync(entity);
+        }
+
+        public override async Task<bool> UpdateAsync(Article entity)
+        {
+            var articleItem = await GetEntityAsNoTrackAsync(c=>c.Id == entity.Id);
+
+           
+            if (articleItem == null) { 
+                return false;
+            }
+            articleItem = Mapper.Map<Article, Article>(entity);
+            articleItem.UpdatedAt = DateTime.Now;
+            articleItem.DataVersion = entity.DataVersion + 1;
+
+            return await base.UpdateAsync(articleItem);
         }
     }
 }

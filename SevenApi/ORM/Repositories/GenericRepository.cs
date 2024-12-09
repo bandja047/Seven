@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SevenApi.ContextDb;
+using SevenApi.Models;
 using System.Linq.Expressions;
 
 namespace SevenApi.ORM.Repositories
@@ -32,6 +33,14 @@ namespace SevenApi.ORM.Repositories
 
         }
 
+        public async Task<TEntity> GetEntityAsNoTrackAsync(Expression<Func<TEntity,bool>> predicate)
+        {
+            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
+
+            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(predicate);
+
+        }
+
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await _dbSet.ToListAsync();
@@ -55,14 +64,14 @@ namespace SevenApi.ORM.Repositories
             return await _dbSet.FirstOrDefaultAsync(predicate);
         }
 
-        public async Task UpdateAsync(TEntity entity)
+        public virtual async Task<bool> UpdateAsync(TEntity entity)
         {
             if(entity==null) throw new ArgumentNullException(nameof(entity));
 
-            _dbSet.Update(entity);
+            _context.Entry(entity).State = EntityState.Modified;        
 
            
-                await _context.SaveChangesAsync();
+             return  await _context.SaveChangesAsync()>0;
         }
 
         public async Task<bool> DeleteAsync(Object id )

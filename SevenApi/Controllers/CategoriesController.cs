@@ -32,7 +32,7 @@ namespace SevenApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCategories()
         {
-            return StatusCode(StatusCodes.Status302Found, await _categorieRepos.GetAllAsync());
+            return StatusCode(StatusCodes.Status200OK, await _categorieRepos.GetAllAsync());
         }
 
         // GET: api/Categories/5
@@ -46,7 +46,7 @@ namespace SevenApi.Controllers
                 return StatusCode(StatusCodes.Status404NotFound, new { Message = "", Details = "Donnee non trouver" });
             }
 
-            return  StatusCode(StatusCodes.Status302Found, categorie); ;
+            return  StatusCode(StatusCodes.Status200OK, categorie); ;
         }
 
         // PUT: api/Categories/5
@@ -64,26 +64,22 @@ namespace SevenApi.Controllers
                 return StatusCode(StatusCodes.Status406NotAcceptable, new { Message = "", Details = "Invalid Id and parent id" });
             }
 
-            var categorieToUpdate = await _categorieRepos.FindOneAsync(x => x.Id == id);
-
-            if (categorieToUpdate == null) {
-
-                return StatusCode(StatusCodes.Status404NotFound, new { Message = "", Details = "Not Found" });
-            }
-
+         
             
             Categorie categorie1 = Mapper.Map<CategorieUpdateDao, Categorie>(categorie);
 
-            categorieToUpdate.UpdatedAt = DateTime.Now;
-            categorieToUpdate.DataVersion = categorie.DataVersion + 1;
-            categorieToUpdate.Name = categorie.Name;
-          //  categorieToUpdate.ParentCategorieId = categorie.ParentCategorieId;
+            
+          
+        
 
-            _context.Entry(categorieToUpdate).State = EntityState.Modified;
+          
 
             try
             {
-               await  _categorieRepos.UpdateAsync(categorieToUpdate);
+               var result = await  _categorieRepos.UpdateAsync(categorie1);
+
+                if(!result)
+                    return StatusCode(StatusCodes.Status404NotFound, new { Message = "", Details = "Not Found" });
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -97,7 +93,7 @@ namespace SevenApi.Controllers
                 }
             }
 
-            return StatusCode(StatusCodes.Status200OK, categorieToUpdate); 
+            return StatusCode(StatusCodes.Status200OK, categorie1); 
         }
 
         // POST: api/Categories

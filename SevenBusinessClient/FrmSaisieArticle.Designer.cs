@@ -37,7 +37,7 @@
             label4 = new Label();
             txtDescription = new RichTextBox();
             label6 = new Label();
-            comboBox1 = new ComboBox();
+            cmbCategorie = new ComboBox();
             groupBox1 = new GroupBox();
             BtnAddCategorie = new Button();
             label5 = new Label();
@@ -51,6 +51,7 @@
             label8 = new Label();
             panel1 = new Panel();
             panel2 = new Panel();
+            txtId = new TextBox();
             label9 = new Label();
             groupBox1.SuspendLayout();
             panel1.SuspendLayout();
@@ -136,13 +137,13 @@
             label6.TabIndex = 11;
             label6.Text = "Categorie";
             // 
-            // comboBox1
+            // cmbCategorie
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(123, 70);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(226, 23);
-            comboBox1.TabIndex = 12;
+            cmbCategorie.FormattingEnabled = true;
+            cmbCategorie.Location = new Point(123, 70);
+            cmbCategorie.Name = "cmbCategorie";
+            cmbCategorie.Size = new Size(226, 23);
+            cmbCategorie.TabIndex = 12;
             // 
             // groupBox1
             // 
@@ -153,7 +154,7 @@
             groupBox1.Controls.Add(txtUv);
             groupBox1.Controls.Add(txtDesignation);
             groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(comboBox1);
+            groupBox1.Controls.Add(cmbCategorie);
             groupBox1.Controls.Add(txtPrixVente);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
@@ -275,6 +276,7 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(txtId);
             panel2.Controls.Add(label9);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
@@ -282,6 +284,14 @@
             panel2.Padding = new Padding(8, 0, 0, 0);
             panel2.Size = new Size(811, 53);
             panel2.TabIndex = 20;
+            // 
+            // txtId
+            // 
+            txtId.Location = new Point(292, 8);
+            txtId.Name = "txtId";
+            txtId.Size = new Size(100, 23);
+            txtId.TabIndex = 21;
+            txtId.Visible = false;
             // 
             // label9
             // 
@@ -331,7 +341,7 @@
         private Label label4;
         private RichTextBox txtDescription;
         private Label label6;
-        private ComboBox comboBox1;
+        private ComboBox cmbCategorie;
         private GroupBox groupBox1;
         private Label label5;
         private TextBox txtQuantite;
@@ -346,5 +356,6 @@
         private Panel panel2;
         private Label label9;
         private Button BtnAddCategorie;
+        private TextBox txtId;
     }
 }
