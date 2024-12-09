@@ -119,6 +119,7 @@ namespace SevenBusinessClient
         {
             try
             {
+                btnAjouter.Cursor = Cursors.WaitCursor;
                 // Configuration de HttpClient
                 using HttpClient _httpClient = new HttpClient
                 {
@@ -147,18 +148,23 @@ namespace SevenBusinessClient
                 if (response.IsSuccessStatusCode)
                 {
                     var result = await response.Content.ReadAsStringAsync();
-                    MessageBox.Show($"Article ajouté avec succès : {result}", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ToastNotification.ShowToast("Succès", $"Article ajouté avec succès ",Color.LimeGreen, 3000);
+                    //MessageBox.Show($"Article ajouté avec succès : {result}", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     var error = await response.Content.ReadAsStringAsync();
+                    ToastNotification.ShowToast("Erreur", $"Erreur lors de l'ajout de l'article : {response.StatusCode}\nDétails : {error}",Color.Red,3000);
                     MessageBox.Show($"Erreur lors de l'ajout de l'article : {response.StatusCode}\nDétails : {error}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                btnAjouter.Cursor = Cursors.Default;
             }
             catch (Exception ex)
             {
+                btnAjouter.Cursor = Cursors.Default;
                 // Gestion des exceptions
-                MessageBox.Show($"Une exception s'est produite : {ex.Message}", "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ToastNotification.ShowToast("Exception", $"Une exception s'est produite : {ex.Message}", Color.Red, 3000);
+               // MessageBox.Show($"Une exception s'est produite : {ex.Message}", "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

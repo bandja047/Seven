@@ -44,5 +44,10 @@ namespace SevenBusinessClient
         {
 
         }
+
+        private void BtnAjouter_Click(object sender, EventArgs e)
+        {
+            ToastNotification.ShowToast("Succès", "Votre action a été réalisée avec succès !");
+        }
     }
 }

@@ -422,6 +422,7 @@
             BtnAjouter.TabIndex = 4;
             BtnAjouter.Text = "Enregistrer";
             BtnAjouter.UseVisualStyleBackColor = false;
+            BtnAjouter.Click += BtnAjouter_Click;
             // 
             // gbRecapAchat
             // 
