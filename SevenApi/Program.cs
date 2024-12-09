@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Seven.ContextDb;
+using SevenApi.ContextDb;
+using SevenApi.ORM.Repositories;
 using System.Configuration;
 using System.Text.Json.Serialization;
 
@@ -16,6 +17,9 @@ builder.Services.AddControllers()/*.AddJsonOptions(options =>
 //builder.Services.AddDbContext<SevenContext>(opt=> opt.UseInMemoryDatabase("Articles"));
 
 builder.Services.AddDbContext<SevenContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddTransient<ArticleRepositorie>();
+builder.Services.AddTransient<CategorieRepositorie>();
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

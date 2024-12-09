@@ -175,6 +175,7 @@
             Name = "FrmDataAchat";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Approvisionnement";
+            Load += FrmDataAchat_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);

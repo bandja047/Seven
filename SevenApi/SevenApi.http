@@ -1,4 +1,4 @@
-@SevenApi_HostAddress = http://localhost:5035
+@SevenApi_HostAddress = http://localhost:5016
 
 GET {{SevenApi_HostAddress}}/weatherforecast/
 Accept: application/json

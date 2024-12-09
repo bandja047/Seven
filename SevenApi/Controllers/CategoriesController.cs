@@ -6,44 +6,47 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Seven.ContextDb;
-using Seven.DataTransfertObject;
-using Seven.Helpers;
-using Seven.Models;
-using Seven.NewFolder;
+using SevenApi.ContextDb;
+using SevenApi.DataTransfertObject;
+using SevenApi.Helpers;
+using SevenApi.Models;
+using SevenApi.NewFolder;
+using SevenApi.ORM.Repositories;
 
-namespace Seven.Controllers
+namespace SevenApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriesController : ControllerBase
     {
         private readonly SevenContext _context;
+        private readonly CategorieRepositorie _categorieRepos;
 
-        public CategoriesController(SevenContext context)
+        public CategoriesController(SevenContext context, CategorieRepositorie categorieRepos)
         {
             _context = context;
+            _categorieRepos = categorieRepos;
         }
 
         // GET: api/Categories
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Categorie>>> GetCategories()
+        public async Task<IActionResult> GetCategories()
         {
-            return await _context.Categories.ToListAsync();
+            return StatusCode(StatusCodes.Status302Found, await _categorieRepos.GetAllAsync());
         }
 
         // GET: api/Categories/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Categorie>> GetCategorie(int id)
         {
-            var categorie = await _context.Categories.FindAsync(id);
+            var categorie = await _categorieRepos.GetByIdAsync(id);
 
             if (categorie == null)
             {
-                return NotFound();
+                return StatusCode(StatusCodes.Status404NotFound, new { Message = "", Details = "Donnee non trouver" });
             }
 
-            return categorie;
+            return  StatusCode(StatusCodes.Status302Found, categorie); ;
         }
 
         // PUT: api/Categories/5
@@ -53,19 +56,19 @@ namespace Seven.Controllers
         {
             if (id != categorie.Id)
             {
-                return BadRequest();
+                return StatusCode(StatusCodes.Status406NotAcceptable, new { Message = "", Details = "Invalid Id" });
             }
 
             if(id == categorie.ParentCategorieId)
             {
-                return BadRequest();
+                return StatusCode(StatusCodes.Status406NotAcceptable, new { Message = "", Details = "Invalid Id and parent id" });
             }
 
-            var categorieToUpdate = _context.Categories.FirstOrDefault(x => x.Id == id);
+            var categorieToUpdate = await _categorieRepos.FindOneAsync(x => x.Id == id);
 
-            if (categorieToUpdate == null) { 
-            
-                return NotFound();
+            if (categorieToUpdate == null) {
+
+                return StatusCode(StatusCodes.Status404NotFound, new { Message = "", Details = "Not Found" });
             }
 
             
@@ -74,19 +77,19 @@ namespace Seven.Controllers
             categorieToUpdate.UpdatedAt = DateTime.Now;
             categorieToUpdate.DataVersion = categorie.DataVersion + 1;
             categorieToUpdate.Name = categorie.Name;
-            categorieToUpdate.ParentCategorieId = categorie.ParentCategorieId;
+          //  categorieToUpdate.ParentCategorieId = categorie.ParentCategorieId;
 
             _context.Entry(categorieToUpdate).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+               await  _categorieRepos.UpdateAsync(categorieToUpdate);
             }
             catch (DbUpdateConcurrencyException)
             {
                 if (!CategorieExists(id))
                 {
-                    return NotFound();
+                    return StatusCode(StatusCodes.Status404NotFound, new { Message = "", Details = "Not Found" });
                 }
                 else
                 {
@@ -94,7 +97,7 @@ namespace Seven.Controllers
                 }
             }
 
-            return NoContent();
+            return StatusCode(StatusCodes.Status200OK, categorieToUpdate); 
         }
 
         // POST: api/Categories
@@ -102,25 +105,17 @@ namespace Seven.Controllers
         [HttpPost]
         public async Task<ActionResult<Categorie>> PostCategorie(CategorieCreateDao categorieDao)
         {
-            var id = _context.Categories.OrderByDescending(c => c.Id).FirstOrDefault()?.Id??0;
+            
 
             if (categorieDao.ParentCategorieId != null)
             {
-                if (!CategorieExists(categorieDao.ParentCategorieId)) 
-                    return BadRequest();
+                if (!CategorieExists(categorieDao.ParentCategorieId))
+                    return StatusCode(StatusCodes.Status404NotFound, new { Message = "", Details = "Not Found Parent Categorie" });
             }
 
             Categorie categorie =  Mapper.Map<CategorieCreateDao, Categorie>(categorieDao);
-            categorie.Reference = $"{id}{ReferenceGenerator.GenerateTimeStampedReference()}";
-            categorie.UpdatedAt = DateTime.Now;
-            categorie.CreatedAt = DateTime.Now;        
-
-         
-
-            _context.Categories.Add(categorie);
-           /* var entry =  _context.ChangeTracker.Entries<Categorie>().Where(x=>x.State== EntityState.Added).FirstOrDefault();
-            int id = entry.Entity.Id;*/
-            await _context.SaveChangesAsync();
+           
+            await _categorieRepos.AddAsync(categorie);
 
             return CreatedAtAction("GetCategorie", new { id = categorie.Id }, categorie);
         }
@@ -129,16 +124,22 @@ namespace Seven.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategorie(int id)
         {
-            var categorie = await _context.Categories.FindAsync(id);
-            if (categorie == null)
+            try
             {
-                return NotFound();
+                bool isRemove = await _categorieRepos.DeleteAsync(id);
+
+                if (isRemove)
+                {
+                    return StatusCode(StatusCodes.Status200OK);
+                }
+
+                return StatusCode(StatusCodes.Status304NotModified, new { message = "An error occurred.", details = "" });
             }
+            catch (Exception ex)
+            {
 
-            _context.Categories.Remove(categorie);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+                return StatusCode(StatusCodes.Status304NotModified, new { message = "An error occurred.", details = ex.Message });
+            }
         }
 
         private bool CategorieExists(int? id)

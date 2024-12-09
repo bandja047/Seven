@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using Seven.Models;
+using SevenApi.Models;
 
-namespace Seven.ContextDb
+namespace SevenApi.ContextDb
 {
     public class SevenContext : DbContext
     {

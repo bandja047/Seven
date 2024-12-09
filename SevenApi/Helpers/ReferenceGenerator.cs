@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Seven.NewFolder
+namespace SevenApi.NewFolder
 {
     public class ReferenceGenerator
     {

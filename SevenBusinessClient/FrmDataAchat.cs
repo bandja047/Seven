@@ -1,3 +1,7 @@
+using Newtonsoft.Json;
+using SevenApi.Models;
+using System.Net.Http;
+
 namespace SevenBusinessClient
 {
     public partial class FrmDataAchat : Form
@@ -55,5 +59,12 @@ namespace SevenBusinessClient
         {
 
         }
+
+        private async void FrmDataAchat_Load(object sender, EventArgs e)
+        {
+           
+        }
+
+      
     }
 }

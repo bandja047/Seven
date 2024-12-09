@@ -28,26 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
+            txtDesignation = new TextBox();
             label1 = new Label();
             label2 = new Label();
-            textBox2 = new TextBox();
+            txtPrixAchat = new TextBox();
             label3 = new Label();
-            textBox3 = new TextBox();
+            txtPrixVente = new TextBox();
             label4 = new Label();
-            richTextBox1 = new RichTextBox();
+            txtDescription = new RichTextBox();
             label6 = new Label();
             comboBox1 = new ComboBox();
             groupBox1 = new GroupBox();
             BtnAddCategorie = new Button();
             label5 = new Label();
-            textBox4 = new TextBox();
+            txtQuantite = new TextBox();
             label7 = new Label();
-            textBox5 = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
+            txtUv = new TextBox();
+            btnAjouter = new Button();
+            btnAnnuler = new Button();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            textBox6 = new TextBox();
+            txtReference = new TextBox();
             label8 = new Label();
             panel1 = new Panel();
             panel2 = new Panel();
@@ -57,12 +57,12 @@
             panel2.SuspendLayout();
             SuspendLayout();
             // 
-            // textBox1
+            // txtDesignation
             // 
-            textBox1.Location = new Point(125, 32);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(255, 23);
-            textBox1.TabIndex = 0;
+            txtDesignation.Location = new Point(125, 32);
+            txtDesignation.Name = "txtDesignation";
+            txtDesignation.Size = new Size(255, 23);
+            txtDesignation.TabIndex = 0;
             // 
             // label1
             // 
@@ -84,12 +84,12 @@
             label2.TabIndex = 3;
             label2.Text = "Prix Achat";
             // 
-            // textBox2
+            // txtPrixAchat
             // 
-            textBox2.Location = new Point(515, 74);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(255, 23);
-            textBox2.TabIndex = 2;
+            txtPrixAchat.Location = new Point(515, 74);
+            txtPrixAchat.Name = "txtPrixAchat";
+            txtPrixAchat.Size = new Size(255, 23);
+            txtPrixAchat.TabIndex = 2;
             // 
             // label3
             // 
@@ -101,12 +101,12 @@
             label3.TabIndex = 5;
             label3.Text = "Prix Vente";
             // 
-            // textBox3
+            // txtPrixVente
             // 
-            textBox3.Location = new Point(515, 32);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(255, 23);
-            textBox3.TabIndex = 4;
+            txtPrixVente.Location = new Point(515, 32);
+            txtPrixVente.Name = "txtPrixVente";
+            txtPrixVente.Size = new Size(255, 23);
+            txtPrixVente.TabIndex = 4;
             // 
             // label4
             // 
@@ -118,13 +118,13 @@
             label4.TabIndex = 7;
             label4.Text = "Description";
             // 
-            // richTextBox1
+            // txtDescription
             // 
-            richTextBox1.Location = new Point(123, 112);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(255, 138);
-            richTextBox1.TabIndex = 8;
-            richTextBox1.Text = "";
+            txtDescription.Location = new Point(123, 112);
+            txtDescription.Name = "txtDescription";
+            txtDescription.Size = new Size(255, 138);
+            txtDescription.TabIndex = 8;
+            txtDescription.Text = "";
             // 
             // label6
             // 
@@ -148,19 +148,19 @@
             // 
             groupBox1.Controls.Add(BtnAddCategorie);
             groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(textBox4);
+            groupBox1.Controls.Add(txtQuantite);
             groupBox1.Controls.Add(label7);
-            groupBox1.Controls.Add(textBox5);
-            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(txtUv);
+            groupBox1.Controls.Add(txtDesignation);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(comboBox1);
-            groupBox1.Controls.Add(textBox3);
+            groupBox1.Controls.Add(txtPrixVente);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(textBox2);
+            groupBox1.Controls.Add(txtPrixAchat);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(richTextBox1);
+            groupBox1.Controls.Add(txtDescription);
             groupBox1.FlatStyle = FlatStyle.Flat;
             groupBox1.Location = new Point(12, 118);
             groupBox1.Name = "groupBox1";
@@ -196,12 +196,12 @@
             label5.TabIndex = 16;
             label5.Text = "Quantite";
             // 
-            // textBox4
+            // txtQuantite
             // 
-            textBox4.Location = new Point(515, 121);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(255, 23);
-            textBox4.TabIndex = 15;
+            txtQuantite.Location = new Point(515, 121);
+            txtQuantite.Name = "txtQuantite";
+            txtQuantite.Size = new Size(255, 23);
+            txtQuantite.TabIndex = 15;
             // 
             // label7
             // 
@@ -213,45 +213,46 @@
             label7.TabIndex = 14;
             label7.Text = "Unite De Vente";
             // 
-            // textBox5
+            // txtUv
             // 
-            textBox5.Location = new Point(515, 163);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(255, 23);
-            textBox5.TabIndex = 13;
+            txtUv.Location = new Point(515, 163);
+            txtUv.Name = "txtUv";
+            txtUv.Size = new Size(255, 23);
+            txtUv.TabIndex = 13;
             // 
-            // button1
+            // btnAjouter
             // 
-            button1.BackColor = Color.MediumSeaGreen;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Agency FB", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(691, 431);
-            button1.Name = "button1";
-            button1.Size = new Size(97, 35);
-            button1.TabIndex = 17;
-            button1.Text = "Ajouter";
-            button1.UseVisualStyleBackColor = false;
+            btnAjouter.BackColor = Color.MediumSeaGreen;
+            btnAjouter.FlatStyle = FlatStyle.Flat;
+            btnAjouter.Font = new Font("Agency FB", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAjouter.ForeColor = Color.White;
+            btnAjouter.Location = new Point(691, 431);
+            btnAjouter.Name = "btnAjouter";
+            btnAjouter.Size = new Size(97, 35);
+            btnAjouter.TabIndex = 17;
+            btnAjouter.Text = "Ajouter";
+            btnAjouter.UseVisualStyleBackColor = false;
+            btnAjouter.Click += button1_Click;
             // 
-            // button2
+            // btnAnnuler
             // 
-            button2.BackColor = Color.Silver;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Agency FB", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(588, 431);
-            button2.Name = "button2";
-            button2.Size = new Size(97, 35);
-            button2.TabIndex = 18;
-            button2.Text = "Annuler";
-            button2.UseVisualStyleBackColor = false;
+            btnAnnuler.BackColor = Color.Silver;
+            btnAnnuler.FlatStyle = FlatStyle.Flat;
+            btnAnnuler.Font = new Font("Agency FB", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAnnuler.ForeColor = Color.White;
+            btnAnnuler.Location = new Point(588, 431);
+            btnAnnuler.Name = "btnAnnuler";
+            btnAnnuler.Size = new Size(97, 35);
+            btnAnnuler.TabIndex = 18;
+            btnAnnuler.Text = "Annuler";
+            btnAnnuler.UseVisualStyleBackColor = false;
             // 
-            // textBox6
+            // txtReference
             // 
-            textBox6.Location = new Point(125, 15);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(255, 23);
-            textBox6.TabIndex = 17;
+            txtReference.Location = new Point(125, 15);
+            txtReference.Name = "txtReference";
+            txtReference.Size = new Size(255, 23);
+            txtReference.TabIndex = 17;
             // 
             // label8
             // 
@@ -265,7 +266,7 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(textBox6);
+            panel1.Controls.Add(txtReference);
             panel1.Controls.Add(label8);
             panel1.Location = new Point(12, 59);
             panel1.Name = "panel1";
@@ -298,16 +299,18 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(811, 507);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnAnnuler);
+            Controls.Add(btnAjouter);
             Controls.Add(groupBox1);
             MaximizeBox = false;
             Name = "FrmSaisieArticle";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Saisie Article";
+            Load += FrmSaisieArticle_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             panel1.ResumeLayout(false);
@@ -319,25 +322,25 @@
 
         #endregion
 
-        private TextBox textBox1;
+        private TextBox txtDesignation;
         private Label label1;
         private Label label2;
-        private TextBox textBox2;
+        private TextBox txtPrixAchat;
         private Label label3;
-        private TextBox textBox3;
+        private TextBox txtPrixVente;
         private Label label4;
-        private RichTextBox richTextBox1;
+        private RichTextBox txtDescription;
         private Label label6;
         private ComboBox comboBox1;
         private GroupBox groupBox1;
         private Label label5;
-        private TextBox textBox4;
+        private TextBox txtQuantite;
         private Label label7;
-        private TextBox textBox5;
-        private Button button1;
-        private Button button2;
+        private TextBox txtUv;
+        private Button btnAjouter;
+        private Button btnAnnuler;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private TextBox textBox6;
+        private TextBox txtReference;
         private Label label8;
         private Panel panel1;
         private Panel panel2;

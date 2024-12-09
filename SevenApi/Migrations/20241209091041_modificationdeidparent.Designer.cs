@@ -5,27 +5,27 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Seven.ContextDb;
+using SevenApi.ContextDb;
 
 #nullable disable
 
-namespace Seven.Migrations
+namespace SevenApi.Migrations
 {
     [DbContext(typeof(SevenContext))]
-    [Migration("20241101152855_updatefieldarticleGkksq")]
-    partial class updatefieldarticleGkksq
+    [Migration("20241209091041_modificationdeidparent")]
+    partial class modificationdeidparent
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.10")
+                .HasAnnotation("ProductVersion", "9.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Seven.Models.Article", b =>
+            modelBuilder.Entity("SevenApi.Models.Article", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -46,7 +46,7 @@ namespace Seven.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Designation")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -75,7 +75,7 @@ namespace Seven.Migrations
                     b.ToTable("Articles");
                 });
 
-            modelBuilder.Entity("Seven.Models.Categorie", b =>
+            modelBuilder.Entity("SevenApi.Models.Categorie", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -93,9 +93,6 @@ namespace Seven.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ParentCategorieId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Reference")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -108,9 +105,9 @@ namespace Seven.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Seven.Models.Article", b =>
+            modelBuilder.Entity("SevenApi.Models.Article", b =>
                 {
-                    b.HasOne("Seven.Models.Categorie", "Categories")
+                    b.HasOne("SevenApi.Models.Categorie", "Categories")
                         .WithMany("Articles")
                         .HasForeignKey("CategorieId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -119,20 +116,9 @@ namespace Seven.Migrations
                     b.Navigation("Categories");
                 });
 
-            modelBuilder.Entity("Seven.Models.Categorie", b =>
-                {
-                    b.HasOne("Seven.Models.Categorie", "ParentCategorie")
-                        .WithMany("SousCategories")
-                        .HasForeignKey("ParentCategorieId");
-
-                    b.Navigation("ParentCategorie");
-                });
-
-            modelBuilder.Entity("Seven.Models.Categorie", b =>
+            modelBuilder.Entity("SevenApi.Models.Categorie", b =>
                 {
                     b.Navigation("Articles");
-
-                    b.Navigation("SousCategories");
                 });
 #pragma warning restore 612, 618
         }

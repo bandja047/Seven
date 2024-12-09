@@ -43,7 +43,6 @@
             traitementToolStripMenuItem = new ToolStripMenuItem();
             MnuArticles = new ToolStripMenuItem();
             panel1 = new Panel();
-            customProgressBar1 = new VerticalProgressBar1();
             dataGridView4 = new DataGridView();
             dataGridViewTextBoxColumn16 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn17 = new DataGridViewTextBoxColumn();
@@ -188,7 +187,6 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
-            panel1.Controls.Add(customProgressBar1);
             panel1.Controls.Add(dataGridView4);
             panel1.Controls.Add(dataGridView3);
             panel1.Controls.Add(dataGridView2);
@@ -203,19 +201,9 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 24);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1924, 578);
+            panel1.Size = new Size(1924, 724);
             panel1.TabIndex = 3;
             panel1.Paint += panel1_Paint;
-            // 
-            // customProgressBar1
-            // 
-            customProgressBar1.AccessibleRole = AccessibleRole.None;
-            customProgressBar1.BackColor = Color.Yellow;
-            customProgressBar1.Location = new Point(443, 349);
-            customProgressBar1.Name = "customProgressBar1";
-            customProgressBar1.Size = new Size(28, 150);
-            customProgressBar1.TabIndex = 3;
-            customProgressBar1.Value = 50;
             // 
             // dataGridView4
             // 
@@ -238,7 +226,7 @@
             dataGridView4.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn16, dataGridViewTextBoxColumn17, dataGridViewTextBoxColumn18, dataGridViewTextBoxColumn19, dataGridViewTextBoxColumn20 });
             dataGridView4.EnableHeadersVisualStyles = false;
             dataGridView4.GridColor = Color.White;
-            dataGridView4.Location = new Point(1577, 190);
+            dataGridView4.Location = new Point(1577, 181);
             dataGridView4.Name = "dataGridView4";
             dataGridView4.RowHeadersVisible = false;
             dataGridView4.Size = new Size(278, 209);
@@ -293,7 +281,7 @@
             dataGridView3.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn11, dataGridViewTextBoxColumn12, dataGridViewTextBoxColumn13, dataGridViewTextBoxColumn14, dataGridViewTextBoxColumn15 });
             dataGridView3.EnableHeadersVisualStyles = false;
             dataGridView3.GridColor = Color.White;
-            dataGridView3.Location = new Point(1260, 190);
+            dataGridView3.Location = new Point(1260, 181);
             dataGridView3.Name = "dataGridView3";
             dataGridView3.RowHeadersVisible = false;
             dataGridView3.Size = new Size(278, 209);
@@ -337,7 +325,7 @@
             dataGridView2.BorderStyle = BorderStyle.None;
             dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(255, 128, 0);
+            dataGridViewCellStyle3.BackColor = Color.Maroon;
             dataGridViewCellStyle3.Font = new Font("Agency FB", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle3.ForeColor = Color.White;
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
@@ -348,7 +336,7 @@
             dataGridView2.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7, dataGridViewTextBoxColumn8, dataGridViewTextBoxColumn9, dataGridViewTextBoxColumn10 });
             dataGridView2.EnableHeadersVisualStyles = false;
             dataGridView2.GridColor = Color.White;
-            dataGridView2.Location = new Point(943, 190);
+            dataGridView2.Location = new Point(943, 181);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersVisible = false;
             dataGridView2.Size = new Size(278, 209);
@@ -403,7 +391,7 @@
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5 });
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.GridColor = Color.White;
-            dataGridView1.Location = new Point(626, 190);
+            dataGridView1.Location = new Point(626, 181);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.Size = new Size(278, 209);
@@ -458,7 +446,7 @@
             DtgProduitsAchat.Columns.AddRange(new DataGridViewColumn[] { ColHeadProduit, ColHeadMontantV, ColHeadMontantA, ColHeadBenef });
             DtgProduitsAchat.EnableHeadersVisualStyles = false;
             DtgProduitsAchat.GridColor = Color.White;
-            DtgProduitsAchat.Location = new Point(309, 190);
+            DtgProduitsAchat.Location = new Point(309, 181);
             DtgProduitsAchat.Name = "DtgProduitsAchat";
             DtgProduitsAchat.RowHeadersVisible = false;
             DtgProduitsAchat.Size = new Size(278, 209);
@@ -506,9 +494,9 @@
             label14.ForeColor = SystemColors.Highlight;
             label14.Location = new Point(226, 82);
             label14.Name = "label14";
-            label14.Size = new Size(30, 18);
+            label14.Size = new Size(27, 18);
             label14.TabIndex = 2;
-            label14.Text = "50%";
+            label14.Text = "10%";
             // 
             // progressBar5
             // 
@@ -518,7 +506,7 @@
             progressBar5.Name = "progressBar5";
             progressBar5.Size = new Size(188, 13);
             progressBar5.TabIndex = 1;
-            progressBar5.Value = 50;
+            progressBar5.Value = 10;
             // 
             // label15
             // 
@@ -572,7 +560,7 @@
             label11.Name = "label11";
             label11.Size = new Size(30, 18);
             label11.TabIndex = 2;
-            label11.Text = "50%";
+            label11.Text = "25%";
             // 
             // progressBar4
             // 
@@ -583,7 +571,7 @@
             progressBar4.Name = "progressBar4";
             progressBar4.Size = new Size(188, 13);
             progressBar4.TabIndex = 1;
-            progressBar4.Value = 50;
+            progressBar4.Value = 25;
             // 
             // label12
             // 
@@ -632,23 +620,23 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Agency FB", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.ForeColor = Color.FromArgb(255, 128, 0);
+            label8.ForeColor = Color.Maroon;
             label8.Location = new Point(226, 82);
             label8.Name = "label8";
-            label8.Size = new Size(30, 18);
+            label8.Size = new Size(29, 18);
             label8.TabIndex = 2;
-            label8.Text = "50%";
+            label8.Text = "70%";
             // 
             // progressBar3
             // 
             progressBar3.AccessibleRole = AccessibleRole.None;
-            progressBar3.BackColor = Color.FromArgb(255, 128, 0);
-            progressBar3.ForeColor = Color.FromArgb(255, 128, 0);
+            progressBar3.BackColor = Color.Maroon;
+            progressBar3.ForeColor = Color.Maroon;
             progressBar3.Location = new Point(22, 87);
             progressBar3.Name = "progressBar3";
             progressBar3.Size = new Size(188, 13);
             progressBar3.TabIndex = 1;
-            progressBar3.Value = 50;
+            progressBar3.Value = 70;
             // 
             // label9
             // 
@@ -673,7 +661,7 @@
             // 
             // panel8
             // 
-            panel8.BackColor = Color.FromArgb(255, 128, 0);
+            panel8.BackColor = Color.Maroon;
             panel8.Dock = DockStyle.Left;
             panel8.Location = new Point(0, 0);
             panel8.Name = "panel8";
@@ -702,7 +690,7 @@
             label5.Name = "label5";
             label5.Size = new Size(30, 18);
             label5.TabIndex = 2;
-            label5.Text = "50%";
+            label5.Text = "30%";
             // 
             // progressBar2
             // 
@@ -713,7 +701,7 @@
             progressBar2.Name = "progressBar2";
             progressBar2.Size = new Size(188, 13);
             progressBar2.TabIndex = 1;
-            progressBar2.Value = 35;
+            progressBar2.Value = 30;
             // 
             // label6
             // 
@@ -851,7 +839,7 @@
             AutoScaleDimensions = new SizeF(4F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.IndianRed;
-            ClientSize = new Size(1924, 602);
+            ClientSize = new Size(1924, 748);
             Controls.Add(panel1);
             Controls.Add(menuStrip1);
             Font = new Font("Agency FB", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -964,6 +952,5 @@
         private DataGridViewTextBoxColumn ColHeadMontantV;
         private DataGridViewTextBoxColumn ColHeadMontantA;
         private DataGridViewTextBoxColumn ColHeadBenef;
-        private VerticalProgressBar1 customProgressBar1;
     }
 }

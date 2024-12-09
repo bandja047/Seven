@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SevenApi.ContextDb;
 
@@ -11,9 +12,11 @@ using SevenApi.ContextDb;
 namespace SevenApi.Migrations
 {
     [DbContext(typeof(SevenContext))]
-    partial class SevenContextModelSnapshot : ModelSnapshot
+    [Migration("20241209052545_initialCreate")]
+    partial class initialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,6 +93,9 @@ namespace SevenApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ParentCategorieId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Reference")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -115,7 +121,18 @@ namespace SevenApi.Migrations
 
             modelBuilder.Entity("SevenApi.Models.Categorie", b =>
                 {
+                    b.HasOne("SevenApi.Models.Categorie", "ParentCategorie")
+                        .WithMany("SousCategories")
+                        .HasForeignKey("ParentCategorieId");
+
+                    b.Navigation("ParentCategorie");
+                });
+
+            modelBuilder.Entity("SevenApi.Models.Categorie", b =>
+                {
                     b.Navigation("Articles");
+
+                    b.Navigation("SousCategories");
                 });
 #pragma warning restore 612, 618
         }

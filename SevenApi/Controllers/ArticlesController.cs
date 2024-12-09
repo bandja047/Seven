@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Seven.ContextDb;
-using Seven.DataTransfertObject;
-using Seven.Models;
-using Seven.NewFolder;
+using SevenApi.ContextDb;
+using SevenApi.DataTransfertObject;
+using SevenApi.Helpers;
+using SevenApi.Models;
+using SevenApi.NewFolder;
+using SevenApi.ORM.Repositories;
 
-namespace Seven.Controllers
+namespace SevenApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -18,30 +21,35 @@ namespace Seven.Controllers
     {
         private readonly SevenContext _context;
 
-        public ArticlesController(SevenContext context)
+        ArticleRepositorie _articleRepos;
+        CategorieRepositorie _categorieRepos;
+
+        public ArticlesController(SevenContext context, ArticleRepositorie article, CategorieRepositorie categorieR)
         {
             _context = context;
+            _articleRepos = article;
+            _categorieRepos = categorieR;
         }
 
         // GET: api/Articles
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Article>>> Getarticles()
+        public async Task<IActionResult> Getarticles()
         {
-            return await _context.Articles.ToListAsync();
+            return StatusCode(StatusCodes.Status302Found, await _articleRepos.GetAllAsync());
         }
 
         // GET: api/Articles/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Article>> GetArticle(int id)
+        public async Task<IActionResult> GetArticle(int id)
         {
-            var article = await _context.Articles.FindAsync(id);
+            var article = await _articleRepos.GetByIdAsync(id);
 
             if (article == null)
             {
-                return NotFound();
+                return StatusCode(StatusCodes.Status404NotFound, new { message = "An error occurred.", details = "Aucun n'article a trouver" });
             }
 
-            return article;
+            return StatusCode(StatusCodes.Status302Found, article);
         }
 
         // PUT: api/Articles/5
@@ -49,43 +57,42 @@ namespace Seven.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutArticle(int id, ArticleUpdateDto article)
         {
+
+
             if (id != article.Id)
             {
-                return BadRequest();
+                return StatusCode(StatusCodes.Status406NotAcceptable, new { message = "An error occurred.", details = "" });
             }
 
-            var articleItem = await _context.Articles.FindAsync(id);
-            if (articleItem == null) { 
-            
-                return NotFound();
+            var articleItem = await _articleRepos.GetByIdAsync(id);
+
+            if (articleItem == null)
+            {
+
+                return StatusCode(StatusCodes.Status404NotFound, new { message = "An error occurred.", details = "article non trouver" });
             }
 
 
-                
-                
-                articleItem. Name = article.Name;
-              
-                articleItem. UpdatedAt = DateTime.Now;
-                articleItem. Description = article.Description;
-                articleItem. PrixVente = article.PrixVente;
-                articleItem.  PrixAchat = article.PrixAchat;
-                articleItem. Quantite = article.Quantite;
-                articleItem. UniteVente = article.UniteVente;
-                articleItem. DataVersion = articleItem.DataVersion + 1 ;
-                articleItem.CategorieId = article.CategorieId;
+
+            articleItem = Mapper.Map<ArticleUpdateDto, Article>(article);       
+
+          
+            articleItem.UpdatedAt = DateTime.Now;           
+            articleItem.DataVersion = articleItem.DataVersion + 1;
+           
+
 
            
-            _context.Entry(articleItem).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+               await _articleRepos.UpdateAsync(articleItem);
             }
             catch (DbUpdateConcurrencyException)
             {
                 if (!ArticleExists(id))
                 {
-                    return NotFound();
+                    return StatusCode(StatusCodes.Status404NotFound, new { message = "An error occurred.", details = "" });
                 }
                 else
                 {
@@ -93,54 +100,88 @@ namespace Seven.Controllers
                 }
             }
 
-            return NoContent();
+            return StatusCode(StatusCodes.Status200OK,articleItem);
         }
 
         // POST: api/Articles
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Article>> PostArticle(ArticleCreateDto article)
+        public async Task<IActionResult> PostArticle(ArticleCreateDto article)
         {
-            var id = _context.Articles.OrderByDescending(c => c.Id).FirstOrDefault()?.Id??0;
-
-            var articleItem = new Article
+            if (article == null || article.Categorie == null)
             {
-               
-                Reference = $"{ReferenceGenerator.GenerateHashWithCounterReference(id)}",
-                Name = article.Name,
-                UpdatedAt = DateTime.Now,
-                CreatedAt = DateTime.Now,
-                Description = article.Description,
-                PrixVente = article.PrixVente,
-                PrixAchat = article.PrixAchat,
-                Quantite = article.Quantite,
-                UniteVente = article.UniteVente,
-                DataVersion = 1,
-                CategorieId = article.CategorieId,
-                
+                return BadRequest(new { message = "Invalid article or category data." });
+            }
 
-            };
+            await using var transaction = await _context.Database.BeginTransactionAsync();
 
-            _context.Articles.Add(articleItem);
-            await _context.SaveChangesAsync();
+            try
+            {
 
-            return CreatedAtAction(nameof(GetArticle), new { id = articleItem.Id }, articleItem);
+                // Vérifier et générer une référence pour l'article
+                var latestArticleId = await _articleRepos.MaxAsync(c => (int?)c.Id);
+
+                // Rechercher la catégorie
+                var categorie = (await _categorieRepos.FindOneAsync(c => c.Id == article.Categorie.Id));
+
+                if (categorie == null)
+                {
+                    // Créer une nouvelle catégorie si elle n'existe pas
+
+
+                    var newCategorie = Mapper.Map<CategorieUpdateDao, Categorie>(article.Categorie);
+                    await _categorieRepos.AddAsync(newCategorie);
+                    await _context.SaveChangesAsync(); // Sauvegarder pour générer l'ID
+
+                    categorie = newCategorie; // Mettre à jour la référence
+                }
+
+                // Créer un nouvel article
+                var newArticle = Mapper.Map<ArticleCreateDto, Article>(article);
+                newArticle.CategorieId = categorie.Id;
+
+
+
+                await _articleRepos.AddAsync(newArticle);
+                await _context.SaveChangesAsync(); // Sauvegarder pour persister l'article
+
+                // Commit de la transaction
+                await transaction.CommitAsync();
+
+                // Retourner l'article créé
+                return CreatedAtAction(nameof(GetArticle), new { id = newArticle.Id }, newArticle);
+            }
+            catch (Exception ex)
+            {
+                // Rollback de la transaction en cas d'erreur
+                await transaction.RollbackAsync();
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = "An error occurred.", details = ex.Message });
+            }
         }
+
 
         // DELETE: api/Articles/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteArticle(int id)
         {
-            var article = await _context.Articles.FindAsync(id);
-            if (article == null)
+            try
             {
-                return NotFound();
+                bool isRemove = await _articleRepos.DeleteAsync(id);
+
+                if (isRemove)
+                {
+                    return StatusCode(StatusCodes.Status200OK);
+                }
+
+                return  StatusCode(StatusCodes.Status304NotModified, new { message = "An error occurred.", details = "" });
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(StatusCodes.Status304NotModified, new { message = "An error occurred.", details = ex.Message });
             }
 
-            _context.Articles.Remove(article);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+           
         }
 
         private bool ArticleExists(int id)

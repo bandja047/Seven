@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,14 +13,16 @@ namespace SevenBusinessClient
 {
     public partial class MainForm : Form
     {
-        public MainForm()
+        HttpClient httpClient;
+        public MainForm(HttpClient client)
         {
             InitializeComponent();
-            
+            httpClient = client;
+            comboBox1.SelectedIndex = 0;
         }
         private void MnuArticle_Click(object sender, EventArgs e)
         {
-            FrmDataArticle frm = new FrmDataArticle();
+            FrmDataArticle frm = new FrmDataArticle(httpClient);
             LoadForm(frm);
         }
 
@@ -107,6 +110,9 @@ namespace SevenBusinessClient
 
         }
 
-        
+        private void pieChart1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -31,7 +31,7 @@
             label1 = new Label();
             panel1 = new Panel();
             BtnAjouter = new Button();
-            button2 = new Button();
+            BtnDelete = new Button();
             BtnModifier = new Button();
             LvArticle = new ListView();
             ColHeadReference = new ColumnHeader();
@@ -81,24 +81,29 @@
             BtnAjouter.Text = "Ajouter";
             BtnAjouter.UseVisualStyleBackColor = false;
             BtnAjouter.Click += Ajouter_Click;
+            BtnAjouter.MouseEnter += Btn_MouseEnter;
             // 
-            // button2
+            // BtnDelete
             // 
-            button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button2.BackColor = Color.FromArgb(192, 0, 0);
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(799, 141);
-            button2.Name = "button2";
-            button2.Size = new Size(97, 35);
-            button2.TabIndex = 4;
-            button2.Text = "Supprimer";
-            button2.UseVisualStyleBackColor = false;
+            BtnDelete.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            BtnDelete.BackColor = Color.FromArgb(192, 0, 0);
+            BtnDelete.Enabled = false;
+            BtnDelete.FlatStyle = FlatStyle.Flat;
+            BtnDelete.Font = new Font("Agency FB", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnDelete.ForeColor = Color.White;
+            BtnDelete.Location = new Point(799, 141);
+            BtnDelete.Name = "BtnDelete";
+            BtnDelete.Size = new Size(97, 35);
+            BtnDelete.TabIndex = 4;
+            BtnDelete.Text = "Supprimer";
+            BtnDelete.UseVisualStyleBackColor = false;
+            BtnDelete.MouseEnter += Btn_MouseEnter;
             // 
             // BtnModifier
             // 
             BtnModifier.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             BtnModifier.BackColor = Color.DodgerBlue;
+            BtnModifier.Enabled = false;
             BtnModifier.FlatStyle = FlatStyle.Flat;
             BtnModifier.Font = new Font("Agency FB", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtnModifier.ForeColor = Color.White;
@@ -109,18 +114,23 @@
             BtnModifier.Text = "Modifier";
             BtnModifier.UseVisualStyleBackColor = false;
             BtnModifier.Click += Modifier_Click;
+            BtnModifier.MouseEnter += Btn_MouseEnter;
             // 
             // LvArticle
             // 
             LvArticle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             LvArticle.BorderStyle = BorderStyle.None;
             LvArticle.Columns.AddRange(new ColumnHeader[] { ColHeadReference, ColHeadDesignation, ColHeadDescription, ColHeadQuantite, ColHeadPrixVente, ColHeadPrixAchat, ColHeadUniteDeVente, ColHeadCategorie });
+            LvArticle.ForeColor = Color.Black;
+            LvArticle.FullRowSelect = true;
             LvArticle.Location = new Point(12, 59);
             LvArticle.Name = "LvArticle";
             LvArticle.Size = new Size(781, 430);
             LvArticle.TabIndex = 6;
             LvArticle.UseCompatibleStateImageBehavior = false;
             LvArticle.View = View.Details;
+            LvArticle.Click += LvArticle_Click;
+            LvArticle.DoubleClick += LvArticle_DoubleClick;
             LvArticle.Resize += lvArticle_Resize;
             // 
             // ColHeadReference
@@ -163,12 +173,13 @@
             ClientSize = new Size(908, 560);
             Controls.Add(LvArticle);
             Controls.Add(BtnModifier);
-            Controls.Add(button2);
+            Controls.Add(BtnDelete);
             Controls.Add(BtnAjouter);
             Controls.Add(panel1);
             Name = "FrmDataArticle";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Articles";
+            Load += FrmDataArticle_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -179,7 +190,7 @@
         private Label label1;
         private Panel panel1;
         private Button BtnAjouter;
-        private Button button2;
+        private Button BtnDelete;
         private Button BtnModifier;
         private ListView LvArticle;
         private ColumnHeader ColHeadReference;
