@@ -1,21 +1,44 @@
 using Newtonsoft.Json;
 using SevenApi.Models;
+using SevenBusinessClient.Views.ArticleForm;
 
 namespace SevenBusinessClient
 {
-    public partial class FrmDataArticle : Form
+    public partial class DataArticleView : Form, IDataArticleView
     {
         private string _action = "Creation";
 
         private Article _article;
 
         HttpClient _httpClient;
-        public FrmDataArticle(HttpClient httpClient)
+
+        public Article Article { get => (Article)LvArticle.SelectedItems[0].Tag; set => value = LvArticle.SelectedItems[0].Tag; }
+
+        public event EventHandler AddEvent;
+        public event EventHandler EditEvent;
+        public event EventHandler DeleteEvent;
+        public event EventHandler FormLoadEvent;        
+        public event EventHandler ListViewDoubleClick;
+        public event EventHandler ListViewClick;
+
+        public DataArticleView(HttpClient httpClient)
         {
             InitializeComponent();
             AdjustColumnsWidth();
             _httpClient = httpClient;
-            //LvArticle.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
+            AssociatedAndRaiseEvent();
+        }
+
+        private void AssociatedAndRaiseEvent()
+        {
+            BtnAjouter.Click += delegate { AddEvent?.Invoke(this, EventArgs.Empty); };
+            BtnModifier.Click += delegate { EditEvent?.Invoke(this, EventArgs.Empty); };
+            BtnDelete.Click += delegate { DeleteEvent?.Invoke(this, EventArgs.Empty); };
+            this.Load += delegate { FormLoadEvent?.Invoke(this, EventArgs.Empty); };
+            LvArticle.Click += delegate { ListViewClick?.Invoke(this, EventArgs.Empty); };
+            LvArticle.DoubleClick += delegate { ListViewDoubleClick?. Invoke(this, EventArgs.Empty); };
+
         }
 
         private void lvArticle_Resize(object sender, EventArgs e)
@@ -45,7 +68,7 @@ namespace SevenBusinessClient
         {
             _action = "Creation";
 
-            FrmSaisieArticle frm = new FrmSaisieArticle(_action,_httpClient);
+            SaisieArticleView frm = new SaisieArticleView(_action,_httpClient);
             GLOBALS.LoadForm(frm, true);
         }
 
@@ -56,7 +79,7 @@ namespace SevenBusinessClient
             _article = LvArticle.SelectedItems[0].Tag as Article ?? new Article();
 
 
-            FrmSaisieArticle frm = new FrmSaisieArticle(_action, _article ,_httpClient);
+            SaisieArticleView frm = new SaisieArticleView(_action, _article ,_httpClient);
             GLOBALS.LoadForm(frm, true);
         }
 
@@ -125,7 +148,7 @@ namespace SevenBusinessClient
             _article = LvArticle.SelectedItems[0].Tag as Article ?? new Article();
 
 
-            FrmSaisieArticle frm = new FrmSaisieArticle(_action, _article, _httpClient);
+            SaisieArticleView frm = new SaisieArticleView(_action, _article, _httpClient);
             GLOBALS.LoadForm(frm, true);
         }
 
@@ -137,6 +160,22 @@ namespace SevenBusinessClient
             Article art = listView.SelectedItems[0].Tag as Article ?? new Article();
 
           
+        }
+
+        public void LoadListView(List<Article> source)
+        {
+            LvArticle.BeginUpdate();
+
+            foreach (Article item in source)
+            {
+                string[] vs = { item.Reference, item.Designation, item.Description, item.Quantite.ToString(), item.PrixVente.ToString(), item.PrixAchat.ToString(), item.UniteVente, item.CategorieId.ToString() };
+
+                ListViewItem lv = new ListViewItem(vs) { Tag = item };
+
+                LvArticle.Items.Add(lv);
+            }
+
+            LvArticle.EndUpdate();
         }
     }
 }

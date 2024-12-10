@@ -22,7 +22,7 @@ namespace SevenBusinessClient
         }
         private void MnuArticle_Click(object sender, EventArgs e)
         {
-            FrmDataArticle frm = new FrmDataArticle(httpClient);
+            DataArticleView frm = new DataArticleView(httpClient);
             LoadForm(frm);
         }
 

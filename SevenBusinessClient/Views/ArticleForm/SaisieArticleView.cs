@@ -15,13 +15,13 @@ using System.Windows.Forms;
 
 namespace SevenBusinessClient
 {
-    public partial class FrmSaisieArticle : Form
+    public partial class SaisieArticleView : Form
     {
         private string action;
         private Article _article;
         private HttpClient _httpClient;
 
-        public FrmSaisieArticle(string action, HttpClient httpClient)
+        public SaisieArticleView(string action, HttpClient httpClient)
         {
             InitializeComponent();
             this.action = action;
@@ -31,7 +31,7 @@ namespace SevenBusinessClient
             _httpClient = httpClient;   
         }
 
-        public FrmSaisieArticle(string action, Article article,HttpClient httpClient)
+        public SaisieArticleView(string action, Article article,HttpClient httpClient)
         {
             InitializeComponent();
             this.action = action;

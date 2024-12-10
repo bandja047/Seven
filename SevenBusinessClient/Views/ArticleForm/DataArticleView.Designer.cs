@@ -1,6 +1,6 @@
 ﻿namespace SevenBusinessClient
 {
-    partial class FrmDataArticle
+    partial class DataArticleView
     {
         /// <summary>
         ///  Required designer variable.
@@ -165,7 +165,7 @@
             // 
             ColHeadCategorie.Text = "Categorie";
             // 
-            // FrmDataArticle
+            // DataArticleView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -176,7 +176,7 @@
             Controls.Add(BtnDelete);
             Controls.Add(BtnAjouter);
             Controls.Add(panel1);
-            Name = "FrmDataArticle";
+            Name = "DataArticleView";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Articles";
             Load += FrmDataArticle_Load;

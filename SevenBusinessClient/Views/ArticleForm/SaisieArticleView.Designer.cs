@@ -1,6 +1,6 @@
 ﻿namespace SevenBusinessClient
 {
-    partial class FrmSaisieArticle
+    partial class SaisieArticleView
     {
         /// <summary>
         /// Required designer variable.
@@ -305,7 +305,7 @@
             label9.Text = "FICHE ENREGISTREMENT ARTICLE";
             label9.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // FrmSaisieArticle
+            // SaisieArticleView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -317,7 +317,7 @@
             Controls.Add(btnAjouter);
             Controls.Add(groupBox1);
             MaximizeBox = false;
-            Name = "FrmSaisieArticle";
+            Name = "SaisieArticleView";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Saisie Article";
             Load += FrmSaisieArticle_Load;

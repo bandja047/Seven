@@ -14,7 +14,7 @@ namespace SevenBusinessClient
             var serviceProvider = new ServiceCollection()
                 .AddSingleton<HttpClient>(new HttpClient { BaseAddress = new Uri("https://localhost:44332/api/") })
                 .AddSingleton<MainForm>()
-                .AddTransient<FrmDataArticle>()
+                .AddTransient<DataArticleView>()
                 .BuildServiceProvider();
 
             Application.EnableVisualStyles();
