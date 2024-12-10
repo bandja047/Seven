@@ -8,11 +8,13 @@ namespace SevenBusinessClient
     {
         private string _action = "Creation";
 
+
+
         private Article _article;
 
         HttpClient _httpClient;
 
-        public Article Article { get => (Article)LvArticle.SelectedItems[0].Tag; set => value = LvArticle.SelectedItems[0].Tag; }
+        public Article Article { get => _article; set => _article = value; }
 
         public event EventHandler AddEvent;
         public event EventHandler EditEvent;
@@ -21,11 +23,11 @@ namespace SevenBusinessClient
         public event EventHandler ListViewDoubleClick;
         public event EventHandler ListViewClick;
 
-        public DataArticleView(HttpClient httpClient)
+        public DataArticleView()
         {
             InitializeComponent();
             AdjustColumnsWidth();
-            _httpClient = httpClient;
+           // _httpClient = httpClient;
 
             AssociatedAndRaiseEvent();
         }
@@ -36,8 +38,19 @@ namespace SevenBusinessClient
             BtnModifier.Click += delegate { EditEvent?.Invoke(this, EventArgs.Empty); };
             BtnDelete.Click += delegate { DeleteEvent?.Invoke(this, EventArgs.Empty); };
             this.Load += delegate { FormLoadEvent?.Invoke(this, EventArgs.Empty); };
-            LvArticle.Click += delegate { ListViewClick?.Invoke(this, EventArgs.Empty); };
-            LvArticle.DoubleClick += delegate { ListViewDoubleClick?. Invoke(this, EventArgs.Empty); };
+           
+            LvArticle.Click += delegate {
+
+                BtnModifier.Enabled = true;
+                BtnDelete.Enabled = true;
+                Article = LvArticle.SelectedItems[0].Tag as Article ?? new Article();
+
+                ListViewClick?.Invoke(this, EventArgs.Empty);
+            };
+
+            LvArticle.DoubleClick += delegate {
+                Article art = LvArticle.SelectedItems[0].Tag as Article ?? new Article();
+                ListViewDoubleClick?. Invoke(this, EventArgs.Empty); };
 
         }
 
@@ -66,72 +79,72 @@ namespace SevenBusinessClient
 
         public void Ajouter_Click(object sender, EventArgs e)
         {
-            _action = "Creation";
+           /* _action = "Creation";
 
             SaisieArticleView frm = new SaisieArticleView(_action,_httpClient);
-            GLOBALS.LoadForm(frm, true);
+            GLOBALS.LoadForm(frm, true);*/
         }
 
         public void Modifier_Click(object sender, EventArgs e)
         {
-            _action = "Modification";
+            /*_action = "Modification";
 
             _article = LvArticle.SelectedItems[0].Tag as Article ?? new Article();
 
 
             SaisieArticleView frm = new SaisieArticleView(_action, _article ,_httpClient);
-            GLOBALS.LoadForm(frm, true);
+            GLOBALS.LoadForm(frm, true);*/
         }
 
         private async void FrmDataArticle_Load(object sender, EventArgs e)
         {
-            try
-            {
-                /* HttpClient _httpClient = new HttpClient
-                 {
-                     BaseAddress = new Uri("https://localhost:44332/api/"),
-                     Timeout = TimeSpan.FromSeconds(30) // Optionnel : définit un délai d'attente global
-                 };*/
-                // Utilisation de l'instance partagée de HttpClient
-                _httpClient.DefaultRequestHeaders.Accept.Clear();
+           //try
+           // {
+           //     /* HttpClient _httpClient = new HttpClient
+           //      {
+           //          BaseAddress = new Uri("https://localhost:44332/api/"),
+           //          Timeout = TimeSpan.FromSeconds(30) // Optionnel : définit un délai d'attente global
+           //      };*/
+           //     // Utilisation de l'instance partagée de HttpClient
+           //     _httpClient.DefaultRequestHeaders.Accept.Clear();
 
-                // Appel à l'API et désérialisation de la réponse
-                string response = await _httpClient.GetStringAsync("articles");
-                var articles = JsonConvert.DeserializeObject<List<Article>>(response) ?? new List<Article>();
+           //     // Appel à l'API et désérialisation de la réponse
+           //     string response = await _httpClient.GetStringAsync("articles");
+           //     var articles = JsonConvert.DeserializeObject<List<Article>>(response) ?? new List<Article>();
 
-                // Chargement des données dans le ListView
-                loadListView(articles);
-            }
-            catch (HttpRequestException httpEx)
-            {
-                MessageBox.Show($"Erreur lors de la récupération des articles : {httpEx.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (JsonException jsonEx)
-            {
-                MessageBox.Show($"Erreur lors de l'analyse des données des articles : {jsonEx.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Une erreur inattendue est survenue : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+           //     // Chargement des données dans le ListView
+           //     loadListView(articles);
+           // }
+           // catch (HttpRequestException httpEx)
+           // {
+           //     MessageBox.Show($"Erreur lors de la récupération des articles : {httpEx.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+           // }
+           // catch (JsonException jsonEx)
+           // {
+           //     MessageBox.Show($"Erreur lors de l'analyse des données des articles : {jsonEx.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+           // }
+           // catch (Exception ex)
+           // {
+           //     MessageBox.Show($"Une erreur inattendue est survenue : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+           // }
         }
 
 
 
         private void loadListView(List<Article> articles)
         {
-            LvArticle.BeginUpdate();
+            //LvArticle.BeginUpdate();
 
-            foreach (Article item in articles)
-            {
-                string[] vs = { item.Reference, item.Designation, item.Description, item.Quantite.ToString(), item.PrixVente.ToString(), item.PrixAchat.ToString(), item.UniteVente, item.CategorieId.ToString() };
+            //foreach (Article item in articles)
+            //{
+            //    string[] vs = { item.Reference, item.Designation, item.Description, item.Quantite.ToString(), item.PrixVente.ToString(), item.PrixAchat.ToString(), item.UniteVente, item.CategorieId.ToString() };
 
-                ListViewItem lv = new ListViewItem(vs) { Tag = item };
+            //    ListViewItem lv = new ListViewItem(vs) { Tag = item };
 
-                LvArticle.Items.Add(lv);
-            }
+            //    LvArticle.Items.Add(lv);
+            //}
 
-            LvArticle.EndUpdate();
+            //LvArticle.EndUpdate();
         }
 
         private void Btn_MouseEnter(object sender, EventArgs e)
@@ -143,21 +156,21 @@ namespace SevenBusinessClient
 
         private void LvArticle_DoubleClick(object sender, EventArgs e)
         {
-            _action = "Modification";
+            //_action = "Modification";
 
-            _article = LvArticle.SelectedItems[0].Tag as Article ?? new Article();
+            //_article = LvArticle.SelectedItems[0].Tag as Article ?? new Article();
 
 
-            SaisieArticleView frm = new SaisieArticleView(_action, _article, _httpClient);
-            GLOBALS.LoadForm(frm, true);
+            //SaisieArticleView frm = new SaisieArticleView(_action, _article, _httpClient);
+            //GLOBALS.LoadForm(frm, true);
         }
 
         private void LvArticle_Click(object sender, EventArgs e)
         {
-            BtnModifier.Enabled = true;
+           /* BtnModifier.Enabled = true;
             BtnDelete.Enabled = true;
             ListView listView = (ListView)sender;
-            Article art = listView.SelectedItems[0].Tag as Article ?? new Article();
+            Article art = listView.SelectedItems[0].Tag as Article ?? new Article();*/
 
           
         }

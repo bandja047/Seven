@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SevenBusinessClient.Presenters.Articles;
+using SevenBusinessClient.Views.ArticleForm;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,8 +24,9 @@ namespace SevenBusinessClient
         }
         private void MnuArticle_Click(object sender, EventArgs e)
         {
-            DataArticleView frm = new DataArticleView(httpClient);
-            LoadForm(frm);
+            IDataArticleView frm = new DataArticleView();
+            DataArticlePresenter presenter = new DataArticlePresenter(frm,httpClient);
+           
         }
 
         private void MnuAchat_Click(object sender, EventArgs e)

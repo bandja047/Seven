@@ -23,5 +23,6 @@ namespace SevenBusinessClient.Views.ArticleForm
         void LoadListView(List<Article> source);
        
         void Show();
+        void BringToFront();
     }
 }

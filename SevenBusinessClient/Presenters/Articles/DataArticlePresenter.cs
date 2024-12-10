@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SevenApi.Models;
+using SevenBusinessClient.Services;
 using SevenBusinessClient.Views.ArticleForm;
 using System;
 using System.Collections.Generic;
@@ -12,24 +13,26 @@ namespace SevenBusinessClient.Presenters.Articles
 {
     public class DataArticlePresenter
     {
-        private string _action;
+        private string _action ="";
         IDataArticleView _view;
         HttpClient _httpClient;
-        public DataArticlePresenter(IDataArticleView view, HttpClient httpClient)
+        ArticleService _service;
+        public DataArticlePresenter(IDataArticleView view, ArticleService service)
         {
             _view = view;
-            _view.ListViewClick += lv_Click;
+           // _view.ListViewClick += lv_Click;
             _view.ListViewDoubleClick += lv_DoubleClick;
             _view.EditEvent += EditEvent;
             _view.AddEvent += AddEvent;
             _view.DeleteEvent += DeleteEvent;
             _view.FormLoadEvent += Load;
-            _httpClient = httpClient;
+            _service = service;
 
 
-
+            _view.BringToFront();
             _view.Show();
         }
+
 
         private async void Load(object? sender, EventArgs e)
         {
@@ -79,18 +82,20 @@ namespace SevenBusinessClient.Presenters.Articles
 
         private void EditEvent(object? sender, EventArgs e)
         {
-            _action = "Modification";
-
-            _article = _view.LvArticle.SelectedItems[0].Tag as Article ?? new Article();
+            _action = "Modification";           
 
 
-            SaisieArticleView frm = new SaisieArticleView(_action, _article, _httpClient);
+            SaisieArticleView frm = new SaisieArticleView(_action, _view.Article, _httpClient);
             GLOBALS.LoadForm(frm, true);
         }
 
         private void lv_DoubleClick(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            _action = "Modification";
+
+
+            SaisieArticleView frm = new SaisieArticleView(_action, _view.Article, _httpClient);
+            GLOBALS.LoadForm(frm, true);
         }
 
         private void lv_Click(object? sender, EventArgs e)
