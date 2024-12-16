@@ -1,6 +1,6 @@
 ﻿namespace SevenBusinessClient
 {
-    partial class SaisieArticleView
+    partial class ArticleEntryView
     {
         /// <summary>
         /// Required designer variable.
@@ -169,7 +169,6 @@
             groupBox1.TabIndex = 13;
             groupBox1.TabStop = false;
             groupBox1.Text = "Information sur l'article";
-            groupBox1.Enter += groupBox1_Enter;
             // 
             // BtnAddCategorie
             // 
@@ -185,7 +184,6 @@
             BtnAddCategorie.Text = "+";
             BtnAddCategorie.UseCompatibleTextRendering = true;
             BtnAddCategorie.UseVisualStyleBackColor = false;
-            BtnAddCategorie.Click += BtnAddCategorie_Click;
             // 
             // label5
             // 
@@ -233,7 +231,6 @@
             btnAjouter.TabIndex = 17;
             btnAjouter.Text = "Ajouter";
             btnAjouter.UseVisualStyleBackColor = false;
-            btnAjouter.Click += button1_Click;
             // 
             // btnAnnuler
             // 
@@ -305,7 +302,7 @@
             label9.Text = "FICHE ENREGISTREMENT ARTICLE";
             label9.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // SaisieArticleView
+            // ArticleEntryView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -317,10 +314,9 @@
             Controls.Add(btnAjouter);
             Controls.Add(groupBox1);
             MaximizeBox = false;
-            Name = "SaisieArticleView";
+            Name = "ArticleEntryView";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Saisie Article";
-            Load += FrmSaisieArticle_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             panel1.ResumeLayout(false);

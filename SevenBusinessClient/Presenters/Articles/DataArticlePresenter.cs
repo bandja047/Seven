@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SevenApi.Models;
-using SevenBusinessClient.Services;
+using SevenBusinessClient.ApiService;
 using SevenBusinessClient.Views.ArticleForm;
 using System;
 using System.Collections.Generic;
@@ -11,13 +11,38 @@ using System.Threading.Tasks;
 
 namespace SevenBusinessClient.Presenters.Articles
 {
-    public class DataArticlePresenter
+    public class DataArticlePresenter : IDisposable
     {
         private string _action ="";
-        IDataArticleView _view;
+        public IDataArticleView _view;
         HttpClient _httpClient;
-        ArticleService _service;
-        public DataArticlePresenter(IDataArticleView view, ArticleService service)
+        RestApiService _service;
+       
+        public static DataArticlePresenter Instance;
+        private DataArticlePresenter(IDataArticleView view, HttpClient httpClient,RestApiService service)
+        {
+            _view = view;
+           // _view.ListViewClick += lv_Click;
+           
+            _httpClient = httpClient;
+            _service = service;
+
+            WireEvents();
+
+            /*_view.BringToFront();
+            _view.Show();*/
+        }
+
+        private void WireEvents()
+        {
+            _view.ListViewDoubleClick += lv_DoubleClick;
+            _view.EditEvent += EditEvent;
+            _view.AddEvent += AddEvent;
+            _view.DeleteEvent += DeleteEvent;
+            _view.FormLoadEvent += Load;
+        }
+
+        private DataArticlePresenter(IDataArticleView view, RestApiService service)
         {
             _view = view;
            // _view.ListViewClick += lv_Click;
@@ -26,6 +51,7 @@ namespace SevenBusinessClient.Presenters.Articles
             _view.AddEvent += AddEvent;
             _view.DeleteEvent += DeleteEvent;
             _view.FormLoadEvent += Load;
+          
             _service = service;
 
 
@@ -33,24 +59,13 @@ namespace SevenBusinessClient.Presenters.Articles
             _view.Show();
         }
 
-
+      
         private async void Load(object? sender, EventArgs e)
         {
             try
             {
-                /* HttpClient _httpClient = new HttpClient
-                 {
-                     BaseAddress = new Uri("https://localhost:44332/api/"),
-                     Timeout = TimeSpan.FromSeconds(30) // Optionnel : définit un délai d'attente global
-                 };*/
-                // Utilisation de l'instance partagée de HttpClient
-                _httpClient.DefaultRequestHeaders.Accept.Clear();
+               var articles = await _service.GetAllDataAsync<Article>("articles");
 
-                // Appel à l'API et désérialisation de la réponse
-                string response = await _httpClient.GetStringAsync("articles");
-                var articles = JsonConvert.DeserializeObject<List<Article>>(response) ?? new List<Article>();
-
-                // Chargement des données dans le ListView
                _view.LoadListView(articles);
             }
             catch (HttpRequestException httpEx)
@@ -76,17 +91,19 @@ namespace SevenBusinessClient.Presenters.Articles
         {
             _action = "Creation";
 
-            SaisieArticleView frm = new SaisieArticleView(_action, _httpClient);
-            GLOBALS.LoadForm(frm, true);
+
+            ArticleEntryView frm = new ArticleEntryView();
+
+            ArticleEntryPresenter.GetInstance(frm, null, _service);
         }
 
         private void EditEvent(object? sender, EventArgs e)
         {
-            _action = "Modification";           
+            _action = "Modification";
 
 
-            SaisieArticleView frm = new SaisieArticleView(_action, _view.Article, _httpClient);
-            GLOBALS.LoadForm(frm, true);
+            ArticleEntryView frm = new ArticleEntryView();
+            ArticleEntryPresenter.GetInstance(frm, _view.Article, _service);
         }
 
         private void lv_DoubleClick(object? sender, EventArgs e)
@@ -94,13 +111,20 @@ namespace SevenBusinessClient.Presenters.Articles
             _action = "Modification";
 
 
-            SaisieArticleView frm = new SaisieArticleView(_action, _view.Article, _httpClient);
-            GLOBALS.LoadForm(frm, true);
+            ArticleEntryView frm = new ArticleEntryView();
+            ArticleEntryPresenter.GetInstance(frm, _view.Article, _service); ;
         }
 
-        private void lv_Click(object? sender, EventArgs e)
+        public static DataArticlePresenter GetInstance(IDataArticleView view, RestApiService restApiService)
         {
-            throw new NotImplementedException();
+            Instance ??= new DataArticlePresenter(view, restApiService);
+            return Instance;
+
+        }
+
+        public void Dispose()
+        {
+            Instance?.Dispose();
         }
     }
 }
