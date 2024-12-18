@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SevenApi.Models
+namespace MotherStoreBusiness.Models
 {
     public class BaseModels
     {

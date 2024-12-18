@@ -1,4 +1,4 @@
-﻿namespace SevenBusinessClient
+﻿namespace MotherStoreBusiness
 {
     partial class ArticleEntryView
     {

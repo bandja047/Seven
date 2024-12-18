@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
-using SevenApi.DataTransfertObject;
-using SevenApi.Models;
-using SevenBusinessClient.ApiService;
-using SevenBusinessClient.Views.ArticleView;
+using MotherStoreBusiness.DataTransfertObject;
+using MotherStoreBusiness.Models;
+using MotherStoreBusiness.ApiService;
+using MotherStoreBusiness.Views.ArticleView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,11 +12,11 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SevenBusinessClient.Presenters.Articles
+namespace MotherStoreBusiness.Presenters.Articles
 {
     public class ArticleEntryPresenter
     {
-        public string Action = "Creation";
+        
         IArticleEntryView _view;
         RestApiService _service;
         Article _model;
@@ -29,12 +29,15 @@ namespace SevenBusinessClient.Presenters.Articles
             _view = view;
             _model = model;
 
+            _view.Action = "Creation";
+
              _bindingSource = new BindingSource();
              WireEvents();
              //_view.SetCategorieComboBox(_bindingSource);
 
-            if (model != null) { Action = "Modification"; }
+            if (model != null) { _view.Action = "Modification"; }
 
+            _view.TopMost = true;
             _view.BringToFront();
             _view.Show();
         
@@ -54,7 +57,7 @@ namespace SevenBusinessClient.Presenters.Articles
                 Quantite = double.Parse(_view.Quantite),
                 UniteVente = _view.UniteDeVente,
 
-                Categorie = new CategorieUpdateDao
+                Categorie = new CategorieUpdateDto
                 {
                     Id = categorie.Id,
                     Reference = categorie.Reference,
@@ -106,7 +109,7 @@ namespace SevenBusinessClient.Presenters.Articles
                 
 
                 bool response = true;  // Appel HTTP POST
-                if (Action == "Creation")
+                if (_view.Action == "Creation")
                 {
                     var articles = BuildArticleToCreate();
 
@@ -171,7 +174,7 @@ namespace SevenBusinessClient.Presenters.Articles
         {
             GetCategorieCompleted();
 
-            if (Action == "Modification")
+            if (_view.Action == "Modification")
             {
 
                 _view.Reference = _model.Reference;
@@ -186,14 +189,15 @@ namespace SevenBusinessClient.Presenters.Articles
 
         private void ShowSaisieCategorie(object? sender, EventArgs e)
         {
-            FrmSaisieCategorie frm = new FrmSaisieCategorie("Creation");
-            //frm.Parent = this;
-            GLOBALS.LoadForm(frm, true);
+
+            CategorieEntryPresenter frm = CategorieEntryPresenter.GetInstance(new CategorieEntryView(), null,_service);
+           
+            //GLOBALS.LoadForm(frm.View);
         }
 
         public static ArticleEntryPresenter GetInstance(IArticleEntryView view ,Article model,RestApiService restApiService)
         {
-            Instance ??= new ArticleEntryPresenter(view, model, restApiService);
+            Instance = new ArticleEntryPresenter(view, model, restApiService);
             return Instance;
         }
     }

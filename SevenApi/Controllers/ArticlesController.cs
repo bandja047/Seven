@@ -6,25 +6,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SevenApi.ContextDb;
-using SevenApi.DataTransfertObject;
-using SevenApi.Helpers;
-using SevenApi.Models;
-using SevenApi.NewFolder;
-using SevenApi.ORM.Repositories;
+using MotherStoreApi.ContextDb;
+using MotherStoreApi.DataTransfertObject;
+using MotherStoreApi.Helpers;
+using MotherStoreApi.Models;
+using MotherStoreApi.NewFolder;
+using MotherStoreApi.ORM.Repositories;
 
-namespace SevenApi.Controllers
+namespace MotherStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ArticlesController : ControllerBase
     {
-        private readonly SevenContext _context;
+        private readonly MotherStoreContext _context;
 
         ArticleRepositorie _articleRepos;
         CategorieRepositorie _categorieRepos;
 
-        public ArticlesController(SevenContext context, ArticleRepositorie article, CategorieRepositorie categorieR)
+        public ArticlesController(MotherStoreContext context, ArticleRepositorie article, CategorieRepositorie categorieR)
         {
             _context = context;
             _articleRepos = article;

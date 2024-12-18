@@ -3,7 +3,7 @@ using System;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace SevenBusinessClient.ApiService
+namespace MotherStoreBusiness.ApiService
 {
     public class RestApiService
     {

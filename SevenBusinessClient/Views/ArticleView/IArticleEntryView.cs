@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SevenBusinessClient.Views.ArticleView
+namespace MotherStoreBusiness.Views.ArticleView
 {
     public interface IArticleEntryView
     {
@@ -20,7 +20,9 @@ namespace SevenBusinessClient.Views.ArticleView
 
          string ActionName { get; set; }
 
-         event EventHandler SaveEvent;
+        public bool TopMost { get; set; }
+
+        event EventHandler SaveEvent;
          event EventHandler FormLoadEvent;
          event EventHandler ShowAddCategorie;
 

@@ -1,8 +1,8 @@
 using Newtonsoft.Json;
-using SevenApi.Models;
+using MotherStoreBusiness.Models;
 using System.Net.Http;
 
-namespace SevenBusinessClient
+namespace MotherStoreBusiness
 {
     public partial class FrmDataAchat : Form
     {

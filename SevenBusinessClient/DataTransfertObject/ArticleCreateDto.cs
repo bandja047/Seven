@@ -1,6 +1,6 @@
-﻿using SevenApi.Models;
+﻿using MotherStoreBusiness.Models;
 
-namespace SevenApi.DataTransfertObject
+namespace MotherStoreBusiness.DataTransfertObject
 {
     public class ArticleCreateDto
     {
@@ -12,7 +12,7 @@ namespace SevenApi.DataTransfertObject
         public double PrixAchat { get; set; }
         public double PrixVente { get; set; }
         public string UniteVente { get; set; }
-        public CategorieUpdateDao Categorie { get;  set; }
+        public CategorieUpdateDto Categorie { get;  set; }
 
 
     }

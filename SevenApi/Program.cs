@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using SevenApi.ContextDb;
-using SevenApi.ORM.Repositories;
+using MotherStoreApi.ContextDb;
+using MotherStoreApi.ORM.Repositories;
 using System.Configuration;
 using System.Text.Json.Serialization;
 
@@ -16,7 +16,7 @@ builder.Services.AddControllers()/*.AddJsonOptions(options =>
 
 //builder.Services.AddDbContext<SevenContext>(opt=> opt.UseInMemoryDatabase("Articles"));
 
-builder.Services.AddDbContext<SevenContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<MotherStoreContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddTransient<ArticleRepositorie>();
 builder.Services.AddTransient<CategorieRepositorie>();
 

@@ -1,4 +1,4 @@
-﻿namespace SevenBusinessClient
+﻿namespace MotherStoreBusiness
 {
     public partial class FrmSaisieFournisseur : Form
     {
@@ -31,7 +31,7 @@
 
         private void BtnAddCategorie_Click(object sender, EventArgs e)
         {
-            FrmSaisieCategorie frm = new FrmSaisieCategorie("Creation");
+            CategorieEntryView frm = new CategorieEntryView();
             //frm.Parent = this;
             frm.ShowDialog();
         }

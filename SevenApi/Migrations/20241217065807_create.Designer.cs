@@ -12,8 +12,8 @@ using MotherStoreApi.ContextDb;
 namespace MotherStoreApi.Migrations
 {
     [DbContext(typeof(MotherStoreContext))]
-    [Migration("20241209052545_initialCreate")]
-    partial class initialCreate
+    [Migration("20241217065807_create")]
+    partial class create
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace MotherStoreApi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("SevenApi.Models.Article", b =>
+            modelBuilder.Entity("MotherStoreApi.Models.Article", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -75,7 +75,7 @@ namespace MotherStoreApi.Migrations
                     b.ToTable("Articles");
                 });
 
-            modelBuilder.Entity("SevenApi.Models.Categorie", b =>
+            modelBuilder.Entity("MotherStoreApi.Models.Categorie", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -108,9 +108,9 @@ namespace MotherStoreApi.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("SevenApi.Models.Article", b =>
+            modelBuilder.Entity("MotherStoreApi.Models.Article", b =>
                 {
-                    b.HasOne("SevenApi.Models.Categorie", "Categories")
+                    b.HasOne("MotherStoreApi.Models.Categorie", "Categories")
                         .WithMany("Articles")
                         .HasForeignKey("CategorieId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -119,20 +119,9 @@ namespace MotherStoreApi.Migrations
                     b.Navigation("Categories");
                 });
 
-            modelBuilder.Entity("SevenApi.Models.Categorie", b =>
-                {
-                    b.HasOne("SevenApi.Models.Categorie", "ParentCategorie")
-                        .WithMany("SousCategories")
-                        .HasForeignKey("ParentCategorieId");
-
-                    b.Navigation("ParentCategorie");
-                });
-
-            modelBuilder.Entity("SevenApi.Models.Categorie", b =>
+            modelBuilder.Entity("MotherStoreApi.Models.Categorie", b =>
                 {
                     b.Navigation("Articles");
-
-                    b.Navigation("SousCategories");
                 });
 #pragma warning restore 612, 618
         }

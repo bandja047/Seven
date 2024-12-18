@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SevenBusinessClient
+namespace MotherStoreBusiness
 {
     public partial class FrmSaisieAchat : Form
     {

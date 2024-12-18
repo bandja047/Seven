@@ -1,9 +1,9 @@
-﻿using SevenApi.Models;
+﻿using MotherStoreApi.Models;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace SevenApi.Helpers
+namespace MotherStoreApi.Helpers
 {
     public class Mapper
     {

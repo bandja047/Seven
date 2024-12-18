@@ -37,7 +37,7 @@
     <Compile Update="FrmSaisieClient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FrmSaisieCategorie.cs">
+    <Compile Update="Views\ArticleView\CategorieEntryView.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

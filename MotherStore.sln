@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{2B965165-8B8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{F59229F3-B534-452D-B4D2-4B46E6C4E5B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SevenBusinessClient", "SevenBusinessClient\SevenBusinessClient.csproj", "{BADC1B1C-BDAF-4E98-B39D-33D73F8436D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotherStoreBusiness", "SevenBusinessClient\MotherStoreBusiness.csproj", "{BADC1B1C-BDAF-4E98-B39D-33D73F8436D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SevenApi", "SevenApi\SevenApi.csproj", "{8EB69979-1D24-4BD6-9671-AF1BE099FCB0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotherStoreApi", "SevenApi\MotherStoreApi.csproj", "{8EB69979-1D24-4BD6-9671-AF1BE099FCB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

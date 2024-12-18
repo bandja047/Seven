@@ -1,4 +1,4 @@
-﻿namespace SevenBusinessClient
+﻿namespace MotherStoreBusiness
 {
     partial class DataArticleView
     {
@@ -80,7 +80,6 @@
             BtnAjouter.TabIndex = 3;
             BtnAjouter.Text = "Ajouter";
             BtnAjouter.UseVisualStyleBackColor = false;
-            BtnAjouter.Click += Ajouter_Click;
             BtnAjouter.MouseEnter += Btn_MouseEnter;
             // 
             // BtnDelete
@@ -113,7 +112,6 @@
             BtnModifier.TabIndex = 5;
             BtnModifier.Text = "Modifier";
             BtnModifier.UseVisualStyleBackColor = false;
-            BtnModifier.Click += Modifier_Click;
             BtnModifier.MouseEnter += Btn_MouseEnter;
             // 
             // LvArticle
@@ -129,8 +127,6 @@
             LvArticle.TabIndex = 6;
             LvArticle.UseCompatibleStateImageBehavior = false;
             LvArticle.View = View.Details;
-            LvArticle.Click += LvArticle_Click;
-            LvArticle.DoubleClick += LvArticle_DoubleClick;
             LvArticle.Resize += lvArticle_Resize;
             // 
             // ColHeadReference
@@ -179,7 +175,6 @@
             Name = "DataArticleView";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Articles";
-            Load += FrmDataArticle_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
-using SevenApi.DataTransfertObject;
-using SevenApi.Models;
+using MotherStoreBusiness.DataTransfertObject;
+using MotherStoreBusiness.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace SevenBusinessClient
+namespace MotherStoreBusiness
 {
     public class NetWork
     {
@@ -30,7 +30,7 @@ namespace SevenBusinessClient
                    PrixVente = 8000000,
                    Quantite = 2,
                    UniteVente = "Pieces",
-                   Categorie = new CategorieUpdateDao { 
+                   Categorie = new CategorieUpdateDto { 
                         Id = 2
                    }
             

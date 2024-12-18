@@ -1,4 +1,4 @@
-﻿namespace SevenApi.DataTransfertObject
+﻿namespace MotherStoreApi.DataTransfertObject
 {
     public class ArticleUpdateDto
     {

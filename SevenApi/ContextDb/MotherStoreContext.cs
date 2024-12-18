@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using SevenApi.Models;
+using MotherStoreApi.Models;
 
-namespace SevenApi.ContextDb
+namespace MotherStoreApi.ContextDb
 {
-    public class SevenContext : DbContext
+    public class MotherStoreContext : DbContext
     {
-        public SevenContext(DbContextOptions<SevenContext> options) : base(options) { }
+        public MotherStoreContext(DbContextOptions<MotherStoreContext> options) : base(options) { }
 
         protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
         {

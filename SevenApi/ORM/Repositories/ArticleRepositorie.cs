@@ -1,13 +1,13 @@
-﻿using SevenApi.ContextDb;
-using SevenApi.Helpers;
-using SevenApi.Models;
-using SevenApi.NewFolder;
+﻿using MotherStoreApi.ContextDb;
+using MotherStoreApi.Helpers;
+using MotherStoreApi.Models;
+using MotherStoreApi.NewFolder;
 
-namespace SevenApi.ORM.Repositories
+namespace MotherStoreApi.ORM.Repositories
 {
     public class ArticleRepositorie : GenericRepository<Article>
     {
-        public ArticleRepositorie(SevenContext context) : base(context)
+        public ArticleRepositorie(MotherStoreContext context) : base(context)
         {
         }
 

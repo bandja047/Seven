@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SevenApi.ContextDb;
+using MotherStoreApi.ContextDb;
 
 #nullable disable
 
-namespace SevenApi.Migrations
+namespace MotherStoreApi.Migrations
 {
-    [DbContext(typeof(SevenContext))]
+    [DbContext(typeof(MotherStoreContext))]
     [Migration("20241209091041_modificationdeidparent")]
     partial class modificationdeidparent
     {

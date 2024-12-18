@@ -6,23 +6,23 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using SevenApi.ContextDb;
-using SevenApi.DataTransfertObject;
-using SevenApi.Helpers;
-using SevenApi.Models;
-using SevenApi.NewFolder;
-using SevenApi.ORM.Repositories;
+using MotherStoreApi.ContextDb;
+using MotherStoreApi.DataTransfertObject;
+using MotherStoreApi.Helpers;
+using MotherStoreApi.Models;
+using MotherStoreApi.NewFolder;
+using MotherStoreApi.ORM.Repositories;
 
-namespace SevenApi.Controllers
+namespace MotherStoreApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private readonly SevenContext _context;
+        private readonly MotherStoreContext _context;
         private readonly CategorieRepositorie _categorieRepos;
 
-        public CategoriesController(SevenContext context, CategorieRepositorie categorieRepos)
+        public CategoriesController(MotherStoreContext context, CategorieRepositorie categorieRepos)
         {
             _context = context;
             _categorieRepos = categorieRepos;

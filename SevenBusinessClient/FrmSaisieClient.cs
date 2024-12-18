@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SevenBusinessClient
+namespace MotherStoreBusiness
 {
     public partial class FrmSaisieClient : Form
     {
@@ -41,7 +41,7 @@ namespace SevenBusinessClient
 
         private void BtnAddCategorie_Click(object sender, EventArgs e)
         {
-            FrmSaisieCategorie frm = new FrmSaisieCategorie("Creation");
+            CategorieEntryView frm = new CategorieEntryView();
             //frm.Parent = this;
             frm.ShowDialog();
         }

@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 
-namespace SevenBusinessClient
+namespace MotherStoreBusiness
 {
     internal static class Program
     {

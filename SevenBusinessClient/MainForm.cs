@@ -1,7 +1,7 @@
-﻿using SevenBusinessClient.ApiService;
-using SevenBusinessClient.Presenters.Articles;
-using SevenBusinessClient.Views;
-using SevenBusinessClient.Views.ArticleForm;
+﻿using MotherStoreBusiness.ApiService;
+using MotherStoreBusiness.Presenters.Articles;
+using MotherStoreBusiness.Views;
+using MotherStoreBusiness.Views.ArticleForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SevenBusinessClient
+namespace MotherStoreBusiness
 {
     public partial class MainForm : Form
     {
@@ -26,32 +26,16 @@ namespace SevenBusinessClient
         }
         private void MnuArticle_Click(object sender, EventArgs e)
         {
-            // Vérifie si le présentateur singleton existe
-            if (DataArticlePresenter.Instance != null && DataArticlePresenter.Instance._view is Form existingView)
-            {
-                // Vérifie si la vue associée est déjà supprimée ou non
-
-                // Si la vue existe, affichez-la simplement
-                    IDataArticleView frm2 = new DataArticleView();
-                DataArticlePresenter.Instance._view = frm2;
-                LoadForm((DataArticleView)DataArticlePresenter.Instance._view);
-                return;
-                
-            }
+         
 
             // Si l'instance ou la vue n'existe pas, créez une nouvelle instance
             IDataArticleView frm = new DataArticleView();
             RestApiService service = new RestApiService(httpClient);
             var presenter = DataArticlePresenter.GetInstance(frm, service);
 
-            // Chargez et configurez la vue
-           // LoadForm((DataArticleView)presenter._view);
+            LoadForm((DataArticleView)presenter._view);
 
-            DataArticleView frm1 = (DataArticleView)presenter._view;
-            frm1.MdiParent = this.MdiParent;
-            frm1.TopMost = true;
-            frm1.BringToFront();
-            frm1.Show();
+          
         }
 
         private void MnuAchat_Click(object sender, EventArgs e)

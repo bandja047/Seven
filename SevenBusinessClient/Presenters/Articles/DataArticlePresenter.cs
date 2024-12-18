@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
-using SevenApi.Models;
-using SevenBusinessClient.ApiService;
-using SevenBusinessClient.Views.ArticleForm;
+using MotherStoreBusiness.Models;
+using MotherStoreBusiness.ApiService;
+using MotherStoreBusiness.Views.ArticleForm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SevenBusinessClient.Presenters.Articles
+namespace MotherStoreBusiness.Presenters.Articles
 {
     public class DataArticlePresenter : IDisposable
     {
@@ -112,12 +112,12 @@ namespace SevenBusinessClient.Presenters.Articles
 
 
             ArticleEntryView frm = new ArticleEntryView();
-            ArticleEntryPresenter.GetInstance(frm, _view.Article, _service); ;
+            ArticleEntryPresenter.GetInstance(frm, _view.Article, _service); 
         }
 
         public static DataArticlePresenter GetInstance(IDataArticleView view, RestApiService restApiService)
         {
-            Instance ??= new DataArticlePresenter(view, restApiService);
+            Instance = new DataArticlePresenter(view, restApiService);
             return Instance;
 
         }

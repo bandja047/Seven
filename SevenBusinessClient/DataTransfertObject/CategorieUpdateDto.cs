@@ -1,8 +1,8 @@
-﻿using SevenApi.Models;
+﻿using MotherStoreBusiness.Models;
 
-namespace SevenApi.DataTransfertObject
+namespace MotherStoreBusiness.DataTransfertObject
 {
-    public class CategorieUpdateDao
+    public class CategorieUpdateDto
     {
         public int Id { get; set; }
         public string Reference { get; set; }

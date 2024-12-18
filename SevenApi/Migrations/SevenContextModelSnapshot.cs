@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SevenApi.ContextDb;
+using MotherStoreApi.ContextDb;
 
 #nullable disable
 
-namespace SevenApi.Migrations
+namespace MotherStoreApi.Migrations
 {
-    [DbContext(typeof(SevenContext))]
+    [DbContext(typeof(MotherStoreContext))]
     partial class SevenContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -22,7 +22,7 @@ namespace SevenApi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("SevenApi.Models.Article", b =>
+            modelBuilder.Entity("MotherStoreApi.Models.Article", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -72,7 +72,7 @@ namespace SevenApi.Migrations
                     b.ToTable("Articles");
                 });
 
-            modelBuilder.Entity("SevenApi.Models.Categorie", b =>
+            modelBuilder.Entity("MotherStoreApi.Models.Categorie", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -90,6 +90,9 @@ namespace SevenApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ParentCategorieId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Reference")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -102,9 +105,9 @@ namespace SevenApi.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("SevenApi.Models.Article", b =>
+            modelBuilder.Entity("MotherStoreApi.Models.Article", b =>
                 {
-                    b.HasOne("SevenApi.Models.Categorie", "Categories")
+                    b.HasOne("MotherStoreApi.Models.Categorie", "Categories")
                         .WithMany("Articles")
                         .HasForeignKey("CategorieId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -113,7 +116,7 @@ namespace SevenApi.Migrations
                     b.Navigation("Categories");
                 });
 
-            modelBuilder.Entity("SevenApi.Models.Categorie", b =>
+            modelBuilder.Entity("MotherStoreApi.Models.Categorie", b =>
                 {
                     b.Navigation("Articles");
                 });

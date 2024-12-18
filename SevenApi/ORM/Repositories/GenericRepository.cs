@@ -1,16 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SevenApi.ContextDb;
-using SevenApi.Models;
+using MotherStoreApi.ContextDb;
+using MotherStoreApi.Models;
 using System.Linq.Expressions;
 
-namespace SevenApi.ORM.Repositories
+namespace MotherStoreApi.ORM.Repositories
 {
     public class GenericRepository<TEntity> where TEntity : class
     {
-        private readonly SevenContext _context;
+        private readonly MotherStoreContext _context;
         private readonly DbSet<TEntity> _dbSet;
 
-        public GenericRepository(SevenContext context)
+        public GenericRepository(MotherStoreContext context)
         {
              _context = context?? throw new ArgumentNullException(nameof(context));   
             _dbSet = _context.Set<TEntity>();

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace SevenApi.Models
+namespace MotherStoreApi.Models
 {
     public class Categorie : BaseModels
     {
@@ -14,7 +14,8 @@ namespace SevenApi.Models
       
         [Required]
         public string Name { get; set; }
-      //  public int? ParentCategorieId { get; set; }
+        
+        public int? ParentCategorieId { get; set; }
 
         [JsonIgnore]
        // public Categorie ParentCategorie { get; set; }

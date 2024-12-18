@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SevenApi.ContextDb;
-using SevenApi.Models;
-using SevenApi.NewFolder;
+using MotherStoreApi.ContextDb;
+using MotherStoreApi.Models;
+using MotherStoreApi.NewFolder;
 
-namespace SevenApi.ORM.Repositories
+namespace MotherStoreApi.ORM.Repositories
 {
     public class CategorieRepositorie : GenericRepository<Categorie>
     {
-        public CategorieRepositorie(SevenContext context) : base(context)
+        public CategorieRepositorie(MotherStoreContext context) : base(context)
         {
         }
 

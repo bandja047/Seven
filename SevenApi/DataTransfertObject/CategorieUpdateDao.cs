@@ -1,6 +1,6 @@
-﻿using SevenApi.Models;
+﻿using MotherStoreApi.Models;
 
-namespace SevenApi.DataTransfertObject
+namespace MotherStoreApi.DataTransfertObject
 {
     public class CategorieUpdateDao
     {
