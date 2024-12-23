@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MotherStoreApi.ContextDb;
+using MotherStoreApi.Helpers;
 using MotherStoreApi.Models;
 using MotherStoreApi.NewFolder;
 
@@ -26,13 +27,18 @@ namespace MotherStoreApi.ORM.Repositories
 
         public override async Task<bool> UpdateAsync(Categorie entity)
         {
-            var Item = await GetByIdAsync(entity.Id);
-            Item.UpdatedAt = DateTime.Now;
-            Item.DataVersion = entity.DataVersion + 1;
+            var Item = await GetEntityAsNoTrackAsync(x=>x.Id==entity.Id);
+
             if (Item == null)
             {
                 return false;
             }
+
+            Item = Mapper.Map<Categorie, Categorie>(entity);
+            
+            Item.UpdatedAt = DateTime.Now;
+            Item.DataVersion = entity.DataVersion + 1;
+           
 
             return await base.UpdateAsync(Item);
         }

@@ -4,17 +4,20 @@ using MotherStoreBusiness.Views.ArticleForm;
 
 namespace MotherStoreBusiness
 {
-    public partial class DataArticleView : Form, IDataArticleView
+    public partial class DataCategorieView : Form, IDataCategorieView
     {
-        private string _action = "Creation";
+     
 
 
 
-        private Article _article;
+        private Categorie _categorie;
+
+       
 
       
 
-        public Article Article { get => _article; set => _article = value; }
+        public Categorie Categorie { get => _categorie; set => _categorie = value; }
+       
 
         public event EventHandler AddEvent;
         public event EventHandler EditEvent;
@@ -23,7 +26,7 @@ namespace MotherStoreBusiness
         public event EventHandler ListViewDoubleClick;
         public event EventHandler ListViewClick;
 
-        public DataArticleView()
+        public DataCategorieView()
         {
             InitializeComponent();
             AdjustColumnsWidth();
@@ -39,17 +42,17 @@ namespace MotherStoreBusiness
             BtnDelete.Click += delegate { DeleteEvent?.Invoke(this, EventArgs.Empty); };
             this.Load += delegate { FormLoadEvent?.Invoke(this, EventArgs.Empty); };
            
-            LvArticle.Click += delegate {
+            LvCategorie.Click += delegate {
 
                 BtnModifier.Enabled = true;
                 BtnDelete.Enabled = true;
-                Article = LvArticle.SelectedItems[0].Tag as Article ?? new Article();
+                Categorie = LvCategorie.SelectedItems[0].Tag as Categorie ?? new Categorie();
 
                 ListViewClick?.Invoke(this, EventArgs.Empty);
             };
 
-            LvArticle.DoubleClick += delegate {
-                Article art = LvArticle.SelectedItems[0].Tag as Article ?? new Article();
+            LvCategorie.DoubleClick += delegate {
+                Article art = LvCategorie.SelectedItems[0].Tag as Article ?? new Article();
                 ListViewDoubleClick?. Invoke(this, EventArgs.Empty); };
 
         }
@@ -62,12 +65,12 @@ namespace MotherStoreBusiness
         }
         private void AdjustColumnsWidth()
         {
-            if (LvArticle.Columns.Count == 0) return;
+            if (LvCategorie.Columns.Count == 0) return;
 
-            int totalWidth = LvArticle.ClientSize.Width;
-            int columnWidth = totalWidth / LvArticle.Columns.Count;
+            int totalWidth = LvCategorie.ClientSize.Width;
+            int columnWidth = totalWidth / LvCategorie.Columns.Count;
 
-            foreach (ColumnHeader column in LvArticle.Columns)
+            foreach (ColumnHeader column in LvCategorie.Columns)
             {
 
                 column.Width = columnWidth;
@@ -88,20 +91,20 @@ namespace MotherStoreBusiness
       
        
 
-        public void LoadListView(List<Article> source)
+        public void LoadListView(List<Categorie> source)
         {
-            LvArticle.BeginUpdate();
+            LvCategorie.BeginUpdate();
 
-            foreach (Article item in source)
+            foreach (Categorie item in source)
             {
-                string[] vs = { item.Reference, item.Designation, item.Description, item.Quantite.ToString(), item.PrixVente.ToString(), item.PrixAchat.ToString(), item.UniteVente, item.Categories.Name.ToString() };
+                string[] vs = { item.Reference, item.Name, item.Description,item.ParentCategorieId?.ToString() ?? "" };
 
                 ListViewItem lv = new ListViewItem(vs) { Tag = item };
 
-                LvArticle.Items.Add(lv);
+                LvCategorie.Items.Add(lv);
             }
 
-            LvArticle.EndUpdate();
+            LvCategorie.EndUpdate();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace MotherStoreApi.DataTransfertObject
         public string Name { get; set; }      
         public int? ParentCategorieId { get; set; }
 
-        public string? Description { get; private set; }
+        public string Description { get;  set; }
        
     }
 }

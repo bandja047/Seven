@@ -1,7 +1,9 @@
-﻿using MotherStoreApi.ContextDb;
+﻿using Microsoft.EntityFrameworkCore;
+using MotherStoreApi.ContextDb;
 using MotherStoreApi.Helpers;
 using MotherStoreApi.Models;
 using MotherStoreApi.NewFolder;
+using System.Security.Cryptography.Xml;
 
 namespace MotherStoreApi.ORM.Repositories
 {
@@ -23,6 +25,29 @@ namespace MotherStoreApi.ORM.Repositories
             entity.DataVersion = 1;
 
             await base.AddAsync(entity);
+        }
+
+        public  async Task<List<Article>> GetWithCategoriesAsync(int id)
+        {
+
+            var categorie = await _dbSet.Where(x => x.Id == id)
+                .Include(y => y.Categories).
+                Select(a => Mapper.Map<Article, Article>(a)).ToListAsync();
+
+
+            return categorie;
+        }
+
+        public async Task<List<Article>> GetWithCategoriesAsync()
+        {
+            Article aert = new Article();
+
+            var categories = await _dbSet
+                .Include(y => y.Categories).
+                Select(a => Mapper.Map<Article,Article>(a)).ToListAsync();
+
+
+            return categories;
         }
 
         public override async Task<bool> UpdateAsync(Article entity)

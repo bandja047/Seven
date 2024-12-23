@@ -105,6 +105,7 @@
             label2 = new Label();
             label1 = new Label();
             panel3 = new Panel();
+            categoriesToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView4).BeginInit();
@@ -132,7 +133,7 @@
             // 
             // gestionToolStripMenuItem
             // 
-            gestionToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { MnuArticle, MnuAchat, MnuVentes, mnuClient, mnuFournisseur });
+            gestionToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { MnuArticle, categoriesToolStripMenuItem, MnuAchat, MnuVentes, mnuClient, mnuFournisseur });
             gestionToolStripMenuItem.Name = "gestionToolStripMenuItem";
             gestionToolStripMenuItem.Size = new Size(59, 20);
             gestionToolStripMenuItem.Text = "Gestion";
@@ -140,35 +141,35 @@
             // MnuArticle
             // 
             MnuArticle.Name = "MnuArticle";
-            MnuArticle.Size = new Size(140, 22);
+            MnuArticle.Size = new Size(180, 22);
             MnuArticle.Text = "Articles";
             MnuArticle.Click += MnuArticle_Click;
             // 
             // MnuAchat
             // 
             MnuAchat.Name = "MnuAchat";
-            MnuAchat.Size = new Size(140, 22);
+            MnuAchat.Size = new Size(180, 22);
             MnuAchat.Text = "Achat";
             MnuAchat.Click += MnuAchat_Click;
             // 
             // MnuVentes
             // 
             MnuVentes.Name = "MnuVentes";
-            MnuVentes.Size = new Size(140, 22);
+            MnuVentes.Size = new Size(180, 22);
             MnuVentes.Text = "Ventes";
             MnuVentes.Click += MnuVentes_Click;
             // 
             // mnuClient
             // 
             mnuClient.Name = "mnuClient";
-            mnuClient.Size = new Size(140, 22);
+            mnuClient.Size = new Size(180, 22);
             mnuClient.Text = "Clients";
             mnuClient.Click += mnuClient_Click;
             // 
             // mnuFournisseur
             // 
             mnuFournisseur.Name = "mnuFournisseur";
-            mnuFournisseur.Size = new Size(140, 22);
+            mnuFournisseur.Size = new Size(180, 22);
             mnuFournisseur.Text = "Fournisseurs";
             mnuFournisseur.Click += mnuFournisseur_Click;
             // 
@@ -834,6 +835,13 @@
             panel3.Size = new Size(5, 130);
             panel3.TabIndex = 1;
             // 
+            // categoriesToolStripMenuItem
+            // 
+            categoriesToolStripMenuItem.Name = "categoriesToolStripMenuItem";
+            categoriesToolStripMenuItem.Size = new Size(180, 22);
+            categoriesToolStripMenuItem.Text = "Categories";
+            categoriesToolStripMenuItem.Click += categoriesToolStripMenuItem_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(4F, 15F);
@@ -952,5 +960,6 @@
         private DataGridViewTextBoxColumn ColHeadMontantV;
         private DataGridViewTextBoxColumn ColHeadMontantA;
         private DataGridViewTextBoxColumn ColHeadBenef;
+        private ToolStripMenuItem categoriesToolStripMenuItem;
     }
 }

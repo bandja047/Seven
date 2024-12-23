@@ -7,8 +7,8 @@ namespace MotherStoreApi.ORM.Repositories
 {
     public class GenericRepository<TEntity> where TEntity : class
     {
-        private readonly MotherStoreContext _context;
-        private readonly DbSet<TEntity> _dbSet;
+        public readonly MotherStoreContext _context;
+        public readonly DbSet<TEntity> _dbSet;
 
         public GenericRepository(MotherStoreContext context)
         {
@@ -32,6 +32,8 @@ namespace MotherStoreApi.ORM.Repositories
             return await _dbSet.FindAsync(id);
 
         }
+
+        
 
         public async Task<TEntity> GetEntityAsNoTrackAsync(Expression<Func<TEntity,bool>> predicate)
         {

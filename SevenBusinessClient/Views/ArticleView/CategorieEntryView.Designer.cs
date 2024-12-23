@@ -217,7 +217,7 @@
             Controls.Add(btnSave);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "CategorieEntryView";
-            StartPosition = FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Saisie Categorie";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();

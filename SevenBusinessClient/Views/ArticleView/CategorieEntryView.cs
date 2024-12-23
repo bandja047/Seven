@@ -32,7 +32,8 @@ namespace MotherStoreBusiness
         {
             Name = txtName.Text,
             Reference = txtReference.Text,
-        }; set { txtName.Text = value.Name; txtReference.Text = value.Reference; } }
+            Description = txtDescription.Text,
+        }; set { txtName.Text = value.Name; txtReference.Text = value.Reference; txtDescription.Text = value.Description; } }
         public string Action { get => _action; set => _action = value; }
 
         public event EventHandler SaveEvent;

@@ -14,7 +14,10 @@ namespace MotherStoreBusiness.Models
       
         [Required]
         public string Name { get; set; }
-      //  public int? ParentCategorieId { get; set; }
+
+        public string Description { get; set; }
+
+        public int? ParentCategorieId { get; set; }
 
         [JsonIgnore]
        // public Categorie ParentCategorie { get; set; }

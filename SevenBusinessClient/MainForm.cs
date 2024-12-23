@@ -26,7 +26,7 @@ namespace MotherStoreBusiness
         }
         private void MnuArticle_Click(object sender, EventArgs e)
         {
-         
+
 
             // Si l'instance ou la vue n'existe pas, créez une nouvelle instance
             IDataArticleView frm = new DataArticleView();
@@ -35,7 +35,7 @@ namespace MotherStoreBusiness
 
             LoadForm((DataArticleView)presenter._view);
 
-          
+
         }
 
         private void MnuAchat_Click(object sender, EventArgs e)
@@ -62,7 +62,7 @@ namespace MotherStoreBusiness
             LoadForm(frm);
         }
 
-       
+
         private void LoadForm(Form frm)
         {
             frm.MdiParent = this.MdiParent;
@@ -126,6 +126,15 @@ namespace MotherStoreBusiness
         private void pieChart1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IDataCategorieView frm = new DataCategorieView();
+            RestApiService service = new RestApiService(httpClient);
+            var presenter = DataCategoriePresenter.GetInstance(frm, service);
+
+            LoadForm((DataCategorieView)presenter._view);
         }
     }
 }

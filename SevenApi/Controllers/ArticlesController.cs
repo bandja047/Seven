@@ -53,6 +53,32 @@ namespace MotherStore.Controllers
             return StatusCode(StatusCodes.Status200OK, article);
         }
 
+        [HttpGet("withCategories/{id}")]
+        public async Task<IActionResult> GetArticleWithCategories(int id)
+        {
+            var article = await _articleRepos.GetWithCategoriesAsync(id);
+
+            if (article == null)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new { message = "An error occurred.", details = "Aucun n'article a trouver" });
+            }
+
+            return StatusCode(StatusCodes.Status200OK, article);
+        }
+
+        [HttpGet("withCategories")]
+        public async Task<IActionResult> GetArticleWithCategories()
+        {
+            var article = await _articleRepos.GetWithCategoriesAsync();
+
+            if (article == null)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new { message = "An error occurred.", details = "Aucun n'article a trouver" });
+            }
+
+            return StatusCode(StatusCodes.Status200OK, article);
+        }
+
         // PUT: api/Articles/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

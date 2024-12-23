@@ -19,10 +19,14 @@ namespace MotherStoreBusiness.Presenters.Articles
         
         IArticleEntryView _view;
         RestApiService _service;
-        Article _model;
-        private static ArticleEntryPresenter Instance;
+        Article? _model;
+
+      
+
+        private static ArticleEntryPresenter? Instance;
+
         BindingSource _bindingSource;
-        public ArticleEntryPresenter(IArticleEntryView view,Article model,RestApiService service) {
+        public ArticleEntryPresenter(IArticleEntryView view,Article? model,RestApiService service) {
 
 
             _service = service;
@@ -81,7 +85,7 @@ namespace MotherStoreBusiness.Presenters.Articles
                 Id = _model.Id,
                 Reference = _view.Reference,
                 Designation = _view.Designation,
-                Description = _view.Designation,
+                Description = _view.Description,
                 PrixAchat = double.Parse(_view.PrixAchat),
                 PrixVente = double.Parse(_view.PrixVente),
                 Quantite = double.Parse(_view.Quantite),
@@ -156,6 +160,14 @@ namespace MotherStoreBusiness.Presenters.Articles
                 // Chargement des données dans le ListView
                 _bindingSource.DataSource = categories;
                 _view.SetCategorieComboBox(_bindingSource);
+
+                if (_view.Action == "Modification")
+                {
+                    var categorie = categories.FirstOrDefault(x => x.Id == _model?.CategorieId);
+                    _view.Categorie = categorie;
+                }
+                
+
             }
             catch (HttpRequestException httpEx)
             {
@@ -170,20 +182,24 @@ namespace MotherStoreBusiness.Presenters.Articles
                 MessageBox.Show($"Une erreur inattendue est survenue : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void Load(object? sender, EventArgs e)
+        private  void Load(object? sender, EventArgs e)
         {
-            GetCategorieCompleted();
+              GetCategorieCompleted();
 
+         
             if (_view.Action == "Modification")
             {
-
-                _view.Reference = _model.Reference;
-                _view.Description = _model.Description;
-                _view.Designation= _model.Designation;
-                _view.Quantite= _model.Quantite.ToString();
-                _view.PrixAchat= _model.PrixAchat.ToString();
-                _view.PrixVente= _model.PrixVente.ToString();
-                _view.UniteDeVente = _model.UniteVente;
+               
+                    _view.Reference = _model?.Reference ?? "";
+                    _view.Description = _model?.Description??"";
+                    _view.Designation = _model?.Designation??"";
+                    _view.Quantite = _model?.Quantite.ToString()??"0";
+                    _view.PrixAchat = _model?.PrixAchat.ToString()??"0";
+                    _view.PrixVente = _model?.PrixVente.ToString()??"0";
+                    _view.UniteDeVente = _model?.UniteVente??"";
+                
+                
+               
             }
         }
 
@@ -195,7 +211,7 @@ namespace MotherStoreBusiness.Presenters.Articles
             //GLOBALS.LoadForm(frm.View);
         }
 
-        public static ArticleEntryPresenter GetInstance(IArticleEntryView view ,Article model,RestApiService restApiService)
+        public static ArticleEntryPresenter GetInstance(IArticleEntryView view ,Article? model,RestApiService restApiService)
         {
             Instance = new ArticleEntryPresenter(view, model, restApiService);
             return Instance;

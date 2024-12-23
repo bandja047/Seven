@@ -40,6 +40,9 @@
     <Compile Update="Views\ArticleView\CategorieEntryView.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Views\ArticleView\DataCategorieView.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

@@ -8,18 +8,20 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using MotherStoreBusiness.Views.ArticleView;
 
 namespace MotherStoreBusiness.Presenters.Articles
 {
-    public class DataArticlePresenter : IDisposable
+    public class DataCategoriePresenter : IDisposable
     {
         private string _action ="";
-        public IDataArticleView _view;
-       
+        public IDataCategorieView _view;
+        public List<Categorie> Models { get; set; }
+
         RestApiService _service;
        
-        public static DataArticlePresenter? Instance;
-       
+        public static DataCategoriePresenter? Instance;
+      
 
         private void WireEvents()
         {
@@ -30,19 +32,15 @@ namespace MotherStoreBusiness.Presenters.Articles
             _view.FormLoadEvent += Load;
         }
 
-        private DataArticlePresenter(IDataArticleView view, RestApiService service)
+        private DataCategoriePresenter(IDataCategorieView view, RestApiService service)
         {
             _view = view;
-           // _view.ListViewClick += lv_Click;
-            _view.ListViewDoubleClick += lv_DoubleClick;
-            _view.EditEvent += EditEvent;
-            _view.AddEvent += AddEvent;
-            _view.DeleteEvent += DeleteEvent;
-            _view.FormLoadEvent += Load;
-          
+
+            Models = new List<Categorie>();
             _service = service;
 
-
+             WireEvents();
+            _view.TopMost = true;
             _view.BringToFront();
             _view.Show();
         }
@@ -52,9 +50,9 @@ namespace MotherStoreBusiness.Presenters.Articles
         {
             try
             {
-               var articles = await _service.GetAllDataAsync<Article>("articles/withCategories");
+               var categories = await _service.GetAllDataAsync<Categorie>("categories");
 
-               _view.LoadListView(articles);
+               _view.LoadListView(categories);
             }
             catch (HttpRequestException httpEx)
             {
@@ -77,12 +75,11 @@ namespace MotherStoreBusiness.Presenters.Articles
 
         private void AddEvent(object? sender, EventArgs e)
         {
-            
 
 
-            ArticleEntryView frm = new ArticleEntryView();
-
-            ArticleEntryPresenter.GetInstance(frm, null, _service);
+           
+            ICategorieEntryView frm = new CategorieEntryView();
+            CategorieEntryPresenter.GetInstance(frm, null, _service);
         }
 
         private void EditEvent(object? sender, EventArgs e)
@@ -90,8 +87,8 @@ namespace MotherStoreBusiness.Presenters.Articles
            
 
 
-            ArticleEntryView frm = new ArticleEntryView();
-            ArticleEntryPresenter.GetInstance(frm, _view.Article, _service);
+            ICategorieEntryView frm = new CategorieEntryView();
+            CategorieEntryPresenter.GetInstance(frm, _view.Categorie, _service);
         }
 
         private void lv_DoubleClick(object? sender, EventArgs e)
@@ -99,13 +96,13 @@ namespace MotherStoreBusiness.Presenters.Articles
            
 
 
-            ArticleEntryView frm = new ArticleEntryView();
-            ArticleEntryPresenter.GetInstance(frm, _view.Article, _service); 
+            ICategorieEntryView frm = new CategorieEntryView();
+            CategorieEntryPresenter.GetInstance(frm, _view.Categorie, _service);
         }
 
-        public static DataArticlePresenter GetInstance(IDataArticleView view, RestApiService restApiService)
+        public static DataCategoriePresenter GetInstance(IDataCategorieView view, RestApiService restApiService)
         {
-            Instance = new DataArticlePresenter(view, restApiService);
+            Instance = new DataCategoriePresenter(view, restApiService);
             return Instance;
 
         }

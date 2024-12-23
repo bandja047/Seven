@@ -15,12 +15,12 @@ namespace MotherStoreBusiness.Presenters.Articles
 {
     public class CategorieEntryPresenter
     {
-        public Categorie Model { get; set; }
+        public Categorie? Model { get; set; }
         public RestApiService Service { get; set; }
         public ICategorieEntryView View { get; set; }
         public static CategorieEntryPresenter Instance { get; private set; }
         BindingSource _bindingSource;
-        private CategorieEntryPresenter(ICategorieEntryView view,Categorie model,RestApiService service)
+        private CategorieEntryPresenter(ICategorieEntryView view,Categorie? model,RestApiService service)
         {
             Model = model;
             Service = service;
@@ -54,9 +54,11 @@ namespace MotherStoreBusiness.Presenters.Articles
             {
                 var categorie = new Categorie
                 {
-                    Name = Model.Name,
-                    Reference = Model.Reference,
-                    Id = Model.Id,
+                    Name = Model?.Name??"",
+                    Reference = Model?.Reference??"",
+                    Id = Model?.Id??1,
+                    ParentCategorieId = Model?.ParentCategorieId,
+                    Description = Model?.Description??""
                 };
 
                View.categorie = categorie;
@@ -67,12 +69,14 @@ namespace MotherStoreBusiness.Presenters.Articles
         {
              var parent = View.CategorieParent as Categorie;
 
+          
 
             var categorie = new CategorieCreateDto
             {
                 Name = View.categorie.Name,
-                ParentCategorieId = parent?.Id
-               
+                ParentCategorieId = parent?.Id != 0? parent?.Id : null,
+                Description = View.categorie.Description
+
             };
 
 
@@ -84,19 +88,22 @@ namespace MotherStoreBusiness.Presenters.Articles
         {
             var parent = View.CategorieParent as Categorie;
 
-            var articles = new CategorieUpdateDto
+
+
+            var categorie = new CategorieUpdateDto
             {
                 Name = View.categorie.Name,
-                Id = Model.Id,
-                ParentCategorieId = parent.Id,
+                Id = Model?.Id ?? 0,
+                ParentCategorieId = parent?.Id != 0 ? parent?.Id : null,
                 Reference = View.categorie.Reference,
-              
+                Description = View.categorie.Description
+
 
             };
 
 
 
-            return articles;
+            return categorie;
         }
 
         private async void GetCategorieCompleted()
@@ -106,9 +113,17 @@ namespace MotherStoreBusiness.Presenters.Articles
 
                 var categories = await Service.GetAllDataAsync<Categorie>("categories");
 
-                // Chargement des données dans le ListView
-                _bindingSource.DataSource = categories;
+                var cat = new Categorie { Id = 0, Name = "Choisissez la categorie parent" };
+                categories.Add(cat);
+                
+                _bindingSource.DataSource = categories.OrderBy(x=>x.Id);
+               
                  View.SetCategorieComboBox(_bindingSource);
+                if (View.Action == "Modification")
+                {
+                    var categorie = categories.FirstOrDefault(x=>x.Id == Model?.ParentCategorieId);
+                    View.CategorieParent = categorie ?? cat;
+                }
             }
             catch (HttpRequestException httpEx)
             {
@@ -127,21 +142,23 @@ namespace MotherStoreBusiness.Presenters.Articles
         {
             try
             {
-
+               
+                
 
 
                 bool response = true;  // Appel HTTP POST
                 if (View.Action == "Creation")
                 {
                     var categorie = BuilCategorieToCreate();
+                   
 
-                    response = await Service.PostDataAsync<CategorieCreateDto>("Categories", categorie);
+                    response = await Service.PostDataAsync<CategorieCreateDto>("categories", categorie);
                 }
 
                 else
                 {
-                    var categorie = BuildArticleToUpdate();
-                    response = await Service.PutDataAsync<CategorieUpdateDto>($"articles/{Model.Id}", categorie);
+                    var categorie = BuildArticleToUpdate();                    
+                    response = await Service.PutDataAsync<CategorieUpdateDto>($"categories/{Model.Id}", categorie);
                 }
 
                 // Vérification de la réponse
@@ -168,7 +185,7 @@ namespace MotherStoreBusiness.Presenters.Articles
             }
         }
 
-        public static CategorieEntryPresenter GetInstance(ICategorieEntryView view,Categorie model, RestApiService restApiService)
+        public static CategorieEntryPresenter GetInstance(ICategorieEntryView view,Categorie? model, RestApiService restApiService)
         {
             Instance = new CategorieEntryPresenter(view,model, restApiService);
             return Instance;
