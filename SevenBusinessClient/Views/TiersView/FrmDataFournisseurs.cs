@@ -1,4 +1,4 @@
-namespace MotherStoreBusiness
+namespace MotherStoreBusiness.Views.TiersView
 {
     public partial class FrmDataFournisseurs : Form
     {

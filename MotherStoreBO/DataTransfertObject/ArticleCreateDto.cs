@@ -1,6 +1,6 @@
-﻿using MotherStoreApi.Models;
+﻿using MotherStoreBO.Models;
 
-namespace MotherStoreApi.DataTransfertObject
+namespace MotherStoreBO.DataTransfertObject
 {
     public class ArticleCreateDto
     {
@@ -12,7 +12,7 @@ namespace MotherStoreApi.DataTransfertObject
         public double PrixAchat { get; set; }
         public double PrixVente { get; set; }
         public string UniteVente { get; set; }
-        public CategorieUpdateDao Categorie { get;  set; }
+        public CategorieUpdateDto Categorie { get;  set; }
 
 
     }

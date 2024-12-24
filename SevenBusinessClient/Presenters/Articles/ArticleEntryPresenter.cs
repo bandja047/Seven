@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
-using MotherStoreBusiness.DataTransfertObject;
-using MotherStoreBusiness.Models;
+using MotherStoreBO.DataTransfertObject;
+using MotherStoreBO.Models;
 using MotherStoreBusiness.ApiService;
 using MotherStoreBusiness.Views.ArticleView;
 using System;
@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace MotherStoreBusiness.Presenters.Articles
 {

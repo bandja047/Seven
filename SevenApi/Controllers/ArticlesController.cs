@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MotherStoreApi.ContextDb;
-using MotherStoreApi.DataTransfertObject;
+using MotherStoreBO.DataTransfertObject;
 using MotherStoreApi.Helpers;
-using MotherStoreApi.Models;
+using MotherStoreBO.Models;
 using MotherStoreApi.NewFolder;
 using MotherStoreApi.ORM.Repositories;
 
@@ -153,7 +153,7 @@ namespace MotherStore.Controllers
                     // Créer une nouvelle catégorie si elle n'existe pas
 
 
-                    var newCategorie = Mapper.Map<CategorieUpdateDao, Categorie>(article.Categorie);
+                    var newCategorie = Mapper.Map<CategorieUpdateDto, Categorie>(article.Categorie);
                     await _categorieRepos.AddAsync(newCategorie);
                     await _context.SaveChangesAsync(); // Sauvegarder pour générer l'ID
 

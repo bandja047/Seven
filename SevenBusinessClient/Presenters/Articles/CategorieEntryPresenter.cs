@@ -1,6 +1,6 @@
 ﻿using MotherStoreBusiness.ApiService;
-using MotherStoreBusiness.DataTransfertObject;
-using MotherStoreBusiness.Models;
+using MotherStoreBO.DataTransfertObject;
+using MotherStoreBO.Models;
 using MotherStoreBusiness.Views.ArticleForm;
 using MotherStoreBusiness.Views.ArticleView;
 using Newtonsoft.Json;

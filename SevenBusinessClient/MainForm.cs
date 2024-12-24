@@ -2,6 +2,7 @@
 using MotherStoreBusiness.Presenters.Articles;
 using MotherStoreBusiness.Views;
 using MotherStoreBusiness.Views.ArticleForm;
+using MotherStoreBusiness.Views.TiersView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using MotherStoreApi.ContextDb;
-using MotherStoreApi.DataTransfertObject;
+using MotherStoreBO.DataTransfertObject;
 using MotherStoreApi.Helpers;
-using MotherStoreApi.Models;
+using MotherStoreBO.Models;
 using MotherStoreApi.NewFolder;
 using MotherStoreApi.ORM.Repositories;
 
@@ -52,7 +52,7 @@ namespace MotherStoreApi.Controllers
         // PUT: api/Categories/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCategorie(int id, CategorieUpdateDao categorie)
+        public async Task<IActionResult> PutCategorie(int id, CategorieUpdateDto categorie)
         {
             if (id != categorie.Id)
             {
@@ -66,7 +66,7 @@ namespace MotherStoreApi.Controllers
 
          
             
-            Categorie categorie1 = Mapper.Map<CategorieUpdateDao, Categorie>(categorie);
+            Categorie categorie1 = Mapper.Map<CategorieUpdateDto, Categorie>(categorie);
 
             
           
@@ -99,7 +99,7 @@ namespace MotherStoreApi.Controllers
         // POST: api/Categories
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Categorie>> PostCategorie(CategorieCreateDao categorieDao)
+        public async Task<ActionResult<Categorie>> PostCategorie(CategorieCreateDto categorieDao)
         {
             
 
@@ -109,7 +109,7 @@ namespace MotherStoreApi.Controllers
                     return StatusCode(StatusCodes.Status404NotFound, new { Message = "", Details = "Not Found Parent Categorie" });
             }
 
-            Categorie categorie =  Mapper.Map<CategorieCreateDao, Categorie>(categorieDao);
+            Categorie categorie =  Mapper.Map<CategorieCreateDto, Categorie>(categorieDao);
            
             await _categorieRepos.AddAsync(categorie);
 

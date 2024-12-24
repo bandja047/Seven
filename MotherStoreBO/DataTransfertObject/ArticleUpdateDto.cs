@@ -1,4 +1,4 @@
-﻿namespace MotherStoreApi.DataTransfertObject
+﻿namespace MotherStoreBO.DataTransfertObject
 {
     public class ArticleUpdateDto
     {

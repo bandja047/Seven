@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MotherStoreApi.ContextDb;
-using MotherStoreApi.DataTransfertObject;
+using MotherStoreBO.DataTransfertObject;
 using MotherStoreApi.Helpers;
-using MotherStoreApi.Models;
+using MotherStoreBO.Models;
 using MotherStoreApi.NewFolder;
 using MotherStoreApi.ORM.Repositories;
 

@@ -1,4 +1,4 @@
-﻿using MotherStoreBusiness.Models;
+﻿using MotherStoreBO.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,5 +1,4 @@
-﻿using MotherStoreApi.Models;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -7,10 +6,7 @@ namespace MotherStoreApi.Helpers
 {
     public class Mapper
     {
-        public static void ConfigMappper(Action<Categorie> CAT)
-        {
-
-        }
+      
         public static TTarget Map<TSource, TTarget>(TSource source) where TTarget : new()
         {
             if (source == null)

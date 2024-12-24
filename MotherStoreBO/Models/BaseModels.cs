@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MotherStoreApi.Models
+namespace MotherStoreBO.Models
 {
     public class BaseModels
     {

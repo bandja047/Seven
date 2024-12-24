@@ -1,8 +1,8 @@
-﻿using MotherStoreApi.Models;
+﻿using MotherStoreBO.Models;
 
-namespace MotherStoreApi.DataTransfertObject
+namespace MotherStoreBO.DataTransfertObject
 {
-    public class CategorieUpdateDao
+    public class CategorieUpdateDto
     {
         public int Id { get; set; }
         public string Reference { get; set; }

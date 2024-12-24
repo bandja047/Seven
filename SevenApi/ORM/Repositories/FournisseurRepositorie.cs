@@ -1,5 +1,5 @@
 ﻿using MotherStoreApi.ContextDb;
-using MotherStoreApi.Models;
+using MotherStoreBO.Models;
 using MotherStoreApi.NewFolder;
 
 namespace MotherStoreApi.ORM.Repositories

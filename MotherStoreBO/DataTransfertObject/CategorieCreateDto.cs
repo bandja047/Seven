@@ -1,14 +1,13 @@
-﻿using MotherStoreBusiness.Models;
+﻿using MotherStoreBO.Models;
 
-namespace MotherStoreBusiness.DataTransfertObject
+namespace MotherStoreBO.DataTransfertObject
 {
     public class CategorieCreateDto
-    {
-        public string Name { get; set; }
+    {      
+        public string Name { get; set; }      
         public int? ParentCategorieId { get; set; }
 
-   
         public string Description { get;  set; }
-
+       
     }
 }

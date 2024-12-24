@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
-using MotherStoreBusiness.Models;
 using MotherStoreBusiness.Views.ArticleForm;
+using MotherStoreBO.Models;
 
 namespace MotherStoreBusiness
 {

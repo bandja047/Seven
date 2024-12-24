@@ -1,4 +1,4 @@
-﻿namespace MotherStoreApi.Models
+﻿namespace MotherStoreBO.Models
 {
     public class Client:Tiers
     {

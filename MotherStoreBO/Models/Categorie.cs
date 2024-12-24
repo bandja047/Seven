@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace MotherStoreBusiness.Models
+namespace MotherStoreBO.Models
 {
     public class Categorie : BaseModels
     {
@@ -16,8 +16,10 @@ namespace MotherStoreBusiness.Models
         public string Name { get; set; }
 
         public string Description { get; set; }
-
+        
         public int? ParentCategorieId { get; set; }
+
+        
 
        // [JsonIgnore]
         public Categorie ParentCategorie { get; set; }

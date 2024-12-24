@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MotherStoreApi.ContextDb;
 using MotherStoreApi.Helpers;
-using MotherStoreApi.Models;
+using MotherStoreBO.Models;
 using MotherStoreApi.NewFolder;
 
 namespace MotherStoreApi.ORM.Repositories

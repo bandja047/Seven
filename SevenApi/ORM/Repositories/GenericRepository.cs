@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MotherStoreApi.ContextDb;
-using MotherStoreApi.Models;
+using MotherStoreBO.Models;
 using System.Linq.Expressions;
 
 namespace MotherStoreApi.ORM.Repositories

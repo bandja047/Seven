@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using MotherStoreApi.Models;
+using MotherStoreBO.Models;
 
 namespace MotherStoreApi.ContextDb
 {

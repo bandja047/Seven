@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MotherStoreApi.Models
+namespace MotherStoreBO.Models
 {
     public class Article : BaseModels
     {

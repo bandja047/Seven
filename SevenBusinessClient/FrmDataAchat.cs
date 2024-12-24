@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-using MotherStoreBusiness.Models;
+using MotherStoreBO.Models;
 using System.Net.Http;
 
 namespace MotherStoreBusiness

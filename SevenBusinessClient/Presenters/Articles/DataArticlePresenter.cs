@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using MotherStoreBusiness.Models;
+using MotherStoreBO.Models;
 using MotherStoreBusiness.ApiService;
 using MotherStoreBusiness.Views.ArticleForm;
 using System;

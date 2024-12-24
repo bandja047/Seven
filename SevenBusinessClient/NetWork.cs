@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
-using MotherStoreBusiness.DataTransfertObject;
-using MotherStoreBusiness.Models;
+using MotherStoreBO.DataTransfertObject;
+using MotherStoreBO.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

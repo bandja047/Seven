@@ -25,7 +25,7 @@ namespace MotherStoreApi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MotherStoreApi.Models.Article", b =>
+            modelBuilder.Entity("MotherStoreBO.Models.Article", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -75,7 +75,7 @@ namespace MotherStoreApi.Migrations
                     b.ToTable("Articles");
                 });
 
-            modelBuilder.Entity("MotherStoreApi.Models.Categorie", b =>
+            modelBuilder.Entity("MotherStoreBO.Models.Categorie", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -108,9 +108,9 @@ namespace MotherStoreApi.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("MotherStoreApi.Models.Article", b =>
+            modelBuilder.Entity("MotherStoreBO.Models.Article", b =>
                 {
-                    b.HasOne("MotherStoreApi.Models.Categorie", "Categories")
+                    b.HasOne("MotherStoreBO.Models.Categorie", "Categories")
                         .WithMany("Articles")
                         .HasForeignKey("CategorieId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -119,7 +119,7 @@ namespace MotherStoreApi.Migrations
                     b.Navigation("Categories");
                 });
 
-            modelBuilder.Entity("MotherStoreApi.Models.Categorie", b =>
+            modelBuilder.Entity("MotherStoreBO.Models.Categorie", b =>
                 {
                     b.Navigation("Articles");
                 });
