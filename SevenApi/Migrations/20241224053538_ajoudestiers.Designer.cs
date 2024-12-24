@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MotherStoreApi.ContextDb;
 
@@ -11,9 +12,11 @@ using MotherStoreApi.ContextDb;
 namespace MotherStoreApi.Migrations
 {
     [DbContext(typeof(MotherStoreContext))]
-    partial class SevenContextModelSnapshot : ModelSnapshot
+    [Migration("20241224053538_ajoudestiers")]
+    partial class ajoudestiers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,7 +112,7 @@ namespace MotherStoreApi.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("MotherStoreApi.Models.Client", b =>
+            modelBuilder.Entity("MotherStoreApi.Models.Tiers", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -125,77 +128,6 @@ namespace MotherStoreApi.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("DataVersion")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("LimiteDeCredit")
-                        .HasColumnType("real");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Pays")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Prenom")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProgrammeFidelite")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Quartier")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Reference")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telephone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Ville")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Clients");
-                });
-
-            modelBuilder.Entity("MotherStoreApi.Models.Fournisseur", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CodePostale")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DataVersion")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DealaiLivraison")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -239,7 +171,7 @@ namespace MotherStoreApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Fournisseurs");
+                    b.ToTable("Tiers");
                 });
 
             modelBuilder.Entity("MotherStoreApi.Models.Article", b =>

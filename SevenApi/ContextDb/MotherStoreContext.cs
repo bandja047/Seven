@@ -17,6 +17,10 @@ namespace MotherStoreApi.ContextDb
         {
            
         }
+
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<Fournisseur> Fournisseurs { get; set; }
+       // public DbSet<Tiers> Tiers { get; set; } = null;
         public DbSet<Article> Articles { get; set; } = null;
         public DbSet<Categorie> Categories { get; set; } = null;
     }

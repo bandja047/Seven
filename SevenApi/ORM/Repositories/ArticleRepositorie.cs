@@ -40,7 +40,7 @@ namespace MotherStoreApi.ORM.Repositories
 
         public async Task<List<Article>> GetWithCategoriesAsync()
         {
-            Article aert = new Article();
+           
 
             var categories = await _dbSet
                 .Include(y => y.Categories).

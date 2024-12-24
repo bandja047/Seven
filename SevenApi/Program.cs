@@ -8,11 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 // Add services to the container.
 
-builder.Services.AddControllers()/*.AddJsonOptions(options =>
+builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
     options.JsonSerializerOptions.WriteIndented = true; // Optional
-})*/;
+});
 
 //builder.Services.AddDbContext<SevenContext>(opt=> opt.UseInMemoryDatabase("Articles"));
 

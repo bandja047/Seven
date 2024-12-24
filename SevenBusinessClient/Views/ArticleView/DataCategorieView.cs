@@ -97,7 +97,7 @@ namespace MotherStoreBusiness
 
             foreach (Categorie item in source)
             {
-                string[] vs = { item.Reference, item.Name, item.Description,item.ParentCategorieId?.ToString() ?? "" };
+                string[] vs = { item.Reference, item.Name, item.Description,item.ParentCategorie?.Name ?? "" };
 
                 ListViewItem lv = new ListViewItem(vs) { Tag = item };
 

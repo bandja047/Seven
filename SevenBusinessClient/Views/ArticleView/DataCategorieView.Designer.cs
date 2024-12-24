@@ -139,7 +139,7 @@
             // 
             // ColHeadParent
             // 
-            ColHeadParent.Text = "Quantite";
+            ColHeadParent.Text = "Parent";
             // 
             // DataCategorieView
             // 

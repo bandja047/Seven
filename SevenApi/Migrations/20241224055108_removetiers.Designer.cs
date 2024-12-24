@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MotherStoreApi.ContextDb;
 
@@ -11,9 +12,11 @@ using MotherStoreApi.ContextDb;
 namespace MotherStoreApi.Migrations
 {
     [DbContext(typeof(MotherStoreContext))]
-    partial class SevenContextModelSnapshot : ModelSnapshot
+    [Migration("20241224055108_removetiers")]
+    partial class removetiers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

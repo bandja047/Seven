@@ -21,8 +21,8 @@ namespace MotherStoreApi.Models
 
         
 
-        [JsonIgnore]
-       // public Categorie ParentCategorie { get; set; }
+       // [JsonIgnore]
+        public Categorie ParentCategorie { get; set; }
         //public List<Categorie> SousCategories { get; set; }
         public List<Article> Articles { get; set; }
     }

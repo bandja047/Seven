@@ -76,6 +76,12 @@ namespace MotherStoreApi.ORM.Repositories
              return  await _context.SaveChangesAsync()>0;
         }
 
+        public bool Exists(Expression<Func<TEntity, bool>> predicate)
+        {
+           
+            return _dbSet.Any(predicate);
+        }
+
         public async Task<bool> DeleteAsync(Object id )
         {
             if (id == null) throw new ArgumentNullException(nameof(id));

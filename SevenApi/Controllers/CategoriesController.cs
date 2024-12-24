@@ -31,8 +31,8 @@ namespace MotherStoreApi.Controllers
         // GET: api/Categories
         [HttpGet]
         public async Task<IActionResult> GetCategories()
-        {
-            return StatusCode(StatusCodes.Status200OK, await _categorieRepos.GetAllAsync());
+        {   List <Categorie> categories = (List<Categorie>)await _categorieRepos.GetAllAsync();
+            return StatusCode(StatusCodes.Status200OK, categories);
         }
 
         // GET: api/Categories/5
