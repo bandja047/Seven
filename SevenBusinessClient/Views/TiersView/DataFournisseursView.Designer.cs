@@ -1,6 +1,6 @@
 ﻿namespace MotherStoreBusiness.Views.TiersView
 {
-    partial class FrmDataFournisseurs
+    partial class DataFournisseursView
     {
         /// <summary>
         ///  Required designer variable.
@@ -31,7 +31,7 @@
             label1 = new Label();
             panel1 = new Panel();
             BtnAjouter = new Button();
-            button2 = new Button();
+            BtnSupprimer = new Button();
             BtnModifier = new Button();
             LvFournisseur = new ListView();
             ColHeadReference = new ColumnHeader();
@@ -81,25 +81,27 @@
             BtnAjouter.TabIndex = 3;
             BtnAjouter.Text = "Ajouter";
             BtnAjouter.UseVisualStyleBackColor = false;
-            BtnAjouter.Click += Ajouter_Click;
             // 
-            // button2
+            // BtnSupprimer
             // 
-            button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button2.BackColor = Color.FromArgb(192, 0, 0);
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(799, 141);
-            button2.Name = "button2";
-            button2.Size = new Size(97, 35);
-            button2.TabIndex = 4;
-            button2.Text = "Supprimer";
-            button2.UseVisualStyleBackColor = false;
+            BtnSupprimer.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            BtnSupprimer.BackColor = Color.FromArgb(192, 0, 0);
+            BtnSupprimer.Enabled = false;
+            BtnSupprimer.FlatStyle = FlatStyle.Flat;
+            BtnSupprimer.ForeColor = Color.White;
+            BtnSupprimer.Location = new Point(799, 141);
+            BtnSupprimer.Name = "BtnSupprimer";
+            BtnSupprimer.Size = new Size(97, 35);
+            BtnSupprimer.TabIndex = 4;
+            BtnSupprimer.Text = "Supprimer";
+            BtnSupprimer.UseVisualStyleBackColor = false;
+            BtnSupprimer.MouseEnter += Btn_MouseEnter;
             // 
             // BtnModifier
             // 
             BtnModifier.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             BtnModifier.BackColor = Color.DodgerBlue;
+            BtnModifier.Enabled = false;
             BtnModifier.FlatStyle = FlatStyle.Flat;
             BtnModifier.Font = new Font("Agency FB", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BtnModifier.ForeColor = Color.White;
@@ -109,7 +111,7 @@
             BtnModifier.TabIndex = 5;
             BtnModifier.Text = "Modifier";
             BtnModifier.UseVisualStyleBackColor = false;
-            BtnModifier.Click += Modifier_Click;
+            BtnModifier.MouseEnter += Btn_MouseEnter;
             // 
             // LvFournisseur
             // 
@@ -159,7 +161,7 @@
             // 
             ColHeadCodePostal.Text = "Code Postal";
             // 
-            // FrmDataFournisseurs
+            // DataFournisseursView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -167,10 +169,10 @@
             ClientSize = new Size(908, 560);
             Controls.Add(LvFournisseur);
             Controls.Add(BtnModifier);
-            Controls.Add(button2);
+            Controls.Add(BtnSupprimer);
             Controls.Add(BtnAjouter);
             Controls.Add(panel1);
-            Name = "FrmDataFournisseurs";
+            Name = "DataFournisseursView";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Fournisseur";
             panel1.ResumeLayout(false);
@@ -183,7 +185,7 @@
         private Label label1;
         private Panel panel1;
         private Button BtnAjouter;
-        private Button button2;
+        private Button BtnSupprimer;
         private Button BtnModifier;
         private ListView LvFournisseur;
         private ColumnHeader ColHeadReference;

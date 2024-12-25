@@ -34,7 +34,7 @@
     <Compile Update="FrmSaisieVente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FrmSaisieFournisseur.cs">
+    <Compile Update="Views\TiersView\FournisseurEntryView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FrmSaisieClient.cs">
@@ -46,7 +46,7 @@
     <Compile Update="Views\ArticleView\DataCategorieView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Views\TiersView\FrmDataFournisseurs.cs">
+    <Compile Update="Views\TiersView\DataFournisseursView.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

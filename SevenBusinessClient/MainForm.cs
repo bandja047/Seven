@@ -1,5 +1,6 @@
 ﻿using MotherStoreBusiness.ApiService;
 using MotherStoreBusiness.Presenters.Articles;
+using MotherStoreBusiness.Presenters.Tiers;
 using MotherStoreBusiness.Views;
 using MotherStoreBusiness.Views.ArticleForm;
 using MotherStoreBusiness.Views.TiersView;
@@ -59,8 +60,14 @@ namespace MotherStoreBusiness
 
         private void mnuFournisseur_Click(object sender, EventArgs e)
         {
-            FrmDataFournisseurs frm = new FrmDataFournisseurs();
-            LoadForm(frm);
+            IDataFournisseurView frm = new DataFournisseursView();
+            RestApiService service = new RestApiService(httpClient);
+
+
+            frm.MdiParent = this.MdiParent;
+            var presenter = DataFournisseurPresenter.GetInstance(frm,null, service);
+
+          
         }
 
 

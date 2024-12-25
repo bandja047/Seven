@@ -1,6 +1,6 @@
-﻿namespace MotherStoreBusiness
+﻿namespace MotherStoreBusiness.Views.TiersView
 {
-    partial class FrmSaisieFournisseur
+    partial class FournisseurEntryView
     {
         /// <summary>
         /// Required designer variable.
@@ -28,30 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
+            txtNom = new TextBox();
             label1 = new Label();
             label6 = new Label();
             groupBox1 = new GroupBox();
             txtPrenom = new TextBox();
-            button1 = new Button();
+            btnSave = new Button();
             button2 = new Button();
-            textBox6 = new TextBox();
+            txtReference = new TextBox();
             label8 = new Label();
             panel1 = new Panel();
             panel2 = new Panel();
             label9 = new Label();
             groupBox2 = new GroupBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            txtTelephone = new TextBox();
+            txtEmail = new TextBox();
             label2 = new Label();
             label3 = new Label();
             groupBox3 = new GroupBox();
-            textBox7 = new TextBox();
-            textBox8 = new TextBox();
+            txtCodePostale = new TextBox();
+            txtQuartier = new TextBox();
             label7 = new Label();
             label10 = new Label();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
+            txtVille = new TextBox();
+            txtPays = new TextBox();
             label4 = new Label();
             label5 = new Label();
             groupBox1.SuspendLayout();
@@ -61,12 +61,12 @@
             groupBox3.SuspendLayout();
             SuspendLayout();
             // 
-            // textBox1
+            // txtNom
             // 
-            textBox1.Location = new Point(125, 32);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(255, 23);
-            textBox1.TabIndex = 0;
+            txtNom.Location = new Point(125, 32);
+            txtNom.Name = "txtNom";
+            txtNom.Size = new Size(255, 23);
+            txtNom.TabIndex = 0;
             // 
             // label1
             // 
@@ -91,7 +91,7 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(txtPrenom);
-            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(txtNom);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(label6);
             groupBox1.FlatStyle = FlatStyle.Flat;
@@ -101,7 +101,6 @@
             groupBox1.TabIndex = 13;
             groupBox1.TabStop = false;
             groupBox1.Text = "Information generale";
-            groupBox1.Enter += groupBox1_Enter;
             // 
             // txtPrenom
             // 
@@ -110,18 +109,18 @@
             txtPrenom.Size = new Size(255, 23);
             txtPrenom.TabIndex = 17;
             // 
-            // button1
+            // btnSave
             // 
-            button1.BackColor = Color.MediumSeaGreen;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Agency FB", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(702, 385);
-            button1.Name = "button1";
-            button1.Size = new Size(97, 35);
-            button1.TabIndex = 17;
-            button1.Text = "Ajouter";
-            button1.UseVisualStyleBackColor = false;
+            btnSave.BackColor = Color.MediumSeaGreen;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.Font = new Font("Agency FB", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSave.ForeColor = Color.White;
+            btnSave.Location = new Point(702, 385);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(97, 35);
+            btnSave.TabIndex = 17;
+            btnSave.Text = "Ajouter";
+            btnSave.UseVisualStyleBackColor = false;
             // 
             // button2
             // 
@@ -136,12 +135,12 @@
             button2.Text = "Annuler";
             button2.UseVisualStyleBackColor = false;
             // 
-            // textBox6
+            // txtReference
             // 
-            textBox6.Location = new Point(125, 15);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(255, 23);
-            textBox6.TabIndex = 17;
+            txtReference.Location = new Point(125, 15);
+            txtReference.Name = "txtReference";
+            txtReference.Size = new Size(255, 23);
+            txtReference.TabIndex = 17;
             // 
             // label8
             // 
@@ -155,7 +154,7 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(textBox6);
+            panel1.Controls.Add(txtReference);
             panel1.Controls.Add(label8);
             panel1.Location = new Point(12, 59);
             panel1.Name = "panel1";
@@ -186,8 +185,8 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(textBox2);
-            groupBox2.Controls.Add(textBox3);
+            groupBox2.Controls.Add(txtTelephone);
+            groupBox2.Controls.Add(txtEmail);
             groupBox2.Controls.Add(label2);
             groupBox2.Controls.Add(label3);
             groupBox2.FlatStyle = FlatStyle.Flat;
@@ -198,19 +197,19 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Contacts";
             // 
-            // textBox2
+            // txtTelephone
             // 
-            textBox2.Location = new Point(123, 65);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(203, 23);
-            textBox2.TabIndex = 17;
+            txtTelephone.Location = new Point(123, 65);
+            txtTelephone.Name = "txtTelephone";
+            txtTelephone.Size = new Size(203, 23);
+            txtTelephone.TabIndex = 17;
             // 
-            // textBox3
+            // txtEmail
             // 
-            textBox3.Location = new Point(123, 27);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(203, 23);
-            textBox3.TabIndex = 0;
+            txtEmail.Location = new Point(123, 27);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(203, 23);
+            txtEmail.TabIndex = 0;
             // 
             // label2
             // 
@@ -234,12 +233,12 @@
             // 
             // groupBox3
             // 
-            groupBox3.Controls.Add(textBox7);
-            groupBox3.Controls.Add(textBox8);
+            groupBox3.Controls.Add(txtCodePostale);
+            groupBox3.Controls.Add(txtQuartier);
             groupBox3.Controls.Add(label7);
             groupBox3.Controls.Add(label10);
-            groupBox3.Controls.Add(textBox4);
-            groupBox3.Controls.Add(textBox5);
+            groupBox3.Controls.Add(txtVille);
+            groupBox3.Controls.Add(txtPays);
             groupBox3.Controls.Add(label4);
             groupBox3.Controls.Add(label5);
             groupBox3.FlatStyle = FlatStyle.Flat;
@@ -250,19 +249,19 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Information generale";
             // 
-            // textBox7
+            // txtCodePostale
             // 
-            textBox7.Location = new Point(555, 65);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(201, 23);
-            textBox7.TabIndex = 21;
+            txtCodePostale.Location = new Point(555, 65);
+            txtCodePostale.Name = "txtCodePostale";
+            txtCodePostale.Size = new Size(201, 23);
+            txtCodePostale.TabIndex = 21;
             // 
-            // textBox8
+            // txtQuartier
             // 
-            textBox8.Location = new Point(555, 32);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(203, 23);
-            textBox8.TabIndex = 18;
+            txtQuartier.Location = new Point(555, 32);
+            txtQuartier.Name = "txtQuartier";
+            txtQuartier.Size = new Size(203, 23);
+            txtQuartier.TabIndex = 18;
             // 
             // label7
             // 
@@ -284,19 +283,19 @@
             label10.TabIndex = 20;
             label10.Text = "Code Postal";
             // 
-            // textBox4
+            // txtVille
             // 
-            textBox4.Location = new Point(125, 65);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(253, 23);
-            textBox4.TabIndex = 17;
+            txtVille.Location = new Point(125, 65);
+            txtVille.Name = "txtVille";
+            txtVille.Size = new Size(253, 23);
+            txtVille.TabIndex = 17;
             // 
-            // textBox5
+            // txtPays
             // 
-            textBox5.Location = new Point(125, 32);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(255, 23);
-            textBox5.TabIndex = 0;
+            txtPays.Location = new Point(125, 32);
+            txtPays.Name = "txtPays";
+            txtPays.Size = new Size(255, 23);
+            txtPays.TabIndex = 0;
             // 
             // label4
             // 
@@ -318,7 +317,7 @@
             label5.TabIndex = 11;
             label5.Text = "Ville";
             // 
-            // FrmSaisieFournisseur
+            // FournisseurEntryView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -328,10 +327,10 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnSave);
             Controls.Add(groupBox1);
             MaximizeBox = false;
-            Name = "FrmSaisieFournisseur";
+            Name = "FournisseurEntryView";
             StartPosition = FormStartPosition.CenterParent;
             Text = "FICHE ENREGISTREMENT FOURNISSEURS";
             groupBox1.ResumeLayout(false);
@@ -349,30 +348,30 @@
 
         #endregion
 
-        private TextBox textBox1;
+        private TextBox txtNom;
         private Label label1;
         private Label label6;
         private GroupBox groupBox1;
-        private Button button1;
+        private Button btnSave;
         private Button button2;
-        private TextBox textBox6;
+        private TextBox txtReference;
         private Label label8;
         private Panel panel1;
         private Panel panel2;
         private Label label9;
         private TextBox txtPrenom;
         private GroupBox groupBox2;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox txtTelephone;
+        private TextBox txtEmail;
         private Label label2;
         private Label label3;
         private GroupBox groupBox3;
-        private TextBox textBox7;
-        private TextBox textBox8;
+        private TextBox txtCodePostale;
+        private TextBox txtQuartier;
         private Label label7;
         private Label label10;
-        private TextBox textBox4;
-        private TextBox textBox5;
+        private TextBox txtVille;
+        private TextBox txtPays;
         private Label label4;
         private Label label5;
     }
