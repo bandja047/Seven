@@ -20,6 +20,7 @@ builder.Services.AddDbContext<MotherStoreContext>(opt => opt.UseSqlServer(config
 builder.Services.AddTransient<ArticleRepositorie>();
 builder.Services.AddTransient<CategorieRepositorie>();
 builder.Services.AddTransient<FournisseurRepositorie>();
+builder.Services.AddTransient<ClientRepositorie>();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

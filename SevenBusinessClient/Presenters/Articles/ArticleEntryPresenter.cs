@@ -34,13 +34,13 @@ namespace MotherStoreBusiness.Presenters.Articles
             _view = view;
             _model = model;
 
-            _view.Action = "Creation";
+            _view.Action = Helpers.FormState.Creation;
 
              _bindingSource = new BindingSource();
              WireEvents();
              //_view.SetCategorieComboBox(_bindingSource);
 
-            if (model != null) { _view.Action = "Modification"; }
+            if (model != null) { _view.Action = Helpers.FormState.Modification; }
 
             _view.TopMost = true;
             _view.BringToFront();
@@ -114,7 +114,7 @@ namespace MotherStoreBusiness.Presenters.Articles
                 
 
                 bool response = true;  // Appel HTTP POST
-                if (_view.Action == "Creation")
+                if (_view.Action == Helpers.FormState.Creation)
                 {
                     var articles = BuildArticleToCreate();
 
@@ -162,7 +162,7 @@ namespace MotherStoreBusiness.Presenters.Articles
                 _bindingSource.DataSource = categories;
                 _view.SetCategorieComboBox(_bindingSource);
 
-                if (_view.Action == "Modification")
+                if (_view.Action == Helpers.FormState.Modification)
                 {
                     var categorie = categories.FirstOrDefault(x => x.Id == _model?.CategorieId);
                     _view.Categorie = categorie;
@@ -188,7 +188,7 @@ namespace MotherStoreBusiness.Presenters.Articles
               GetCategorieCompleted();
 
          
-            if (_view.Action == "Modification")
+            if (_view.Action == Helpers.FormState.Modification)
             {
                
                     _view.Reference = _model?.Reference ?? "";

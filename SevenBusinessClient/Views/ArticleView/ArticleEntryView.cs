@@ -13,12 +13,13 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MotherStoreBusiness.Helpers;
 
 namespace MotherStoreBusiness
 {
     public partial class ArticleEntryView : Form, IArticleEntryView
     {
-        private string _action;
+        private FormState _action;
         private Article _article;
         private HttpClient _httpClient;
        
@@ -34,9 +35,8 @@ namespace MotherStoreBusiness
         public string PrixVente { get => txtPrixVente.Text; set => txtPrixVente.Text = value; }
         public string PrixAchat { get => txtPrixAchat.Text; set => txtPrixAchat.Text = value; }
         public string Quantite { get => txtQuantite.Text; set => txtQuantite.Text = value; }
-        public string UniteDeVente { get => txtUv.Text; set => txtUv.Text = value; }
-        public string Action { get => _action; set => _action = value; }
-        public string ActionName { get => _action; set => _action = value; }
+        public string UniteDeVente { get => txtUv.Text; set => txtUv.Text = value; }       
+        public FormState Action { get => _action; set => _action = value; }
 
         
         public ArticleEntryView()
@@ -55,7 +55,7 @@ namespace MotherStoreBusiness
             };
             Load += delegate {
                 
-                if(Action == "Creation")
+                if(Action == FormState.Creation)
                 {
                     btnAjouter.Text = "Ajouter";
                     panel1.Visible = false;

@@ -1,6 +1,7 @@
 ﻿using MotherStoreApi.ContextDb;
 using MotherStoreBO.Models;
 using MotherStoreApi.NewFolder;
+using MotherStoreApi.Helpers;
 
 namespace MotherStoreApi.ORM.Repositories
 {
@@ -23,6 +24,24 @@ namespace MotherStoreApi.ORM.Repositories
             entity.DataVersion = 1;
 
             await base.AddAsync(entity);
+        }
+
+        public override async Task<bool> UpdateAsync(Client entity)
+        {
+            var Item = await GetEntityAsNoTrackAsync(x => x.Id == entity.Id);
+
+            if (Item == null)
+            {
+                return false;
+            }
+
+            Item = Mapper.Map<Client, Client>(entity);
+
+            Item.UpdatedAt = DateTime.Now;
+            Item.DataVersion = entity.DataVersion + 1;
+
+
+            return await base.UpdateAsync(Item);
         }
     }
 }

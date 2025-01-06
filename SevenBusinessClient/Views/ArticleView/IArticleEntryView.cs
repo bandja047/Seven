@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MotherStoreBusiness.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace MotherStoreBusiness.Views.ArticleView
 {
     public interface IArticleEntryView
     {
-         string Action { get; set; }
+         FormState Action { get; set; }
          string Reference { get; set; }
          string Designation { get; set; }
          object Categorie { get; set; }
@@ -18,7 +19,7 @@ namespace MotherStoreBusiness.Views.ArticleView
          string Quantite { get; set; }
          string UniteDeVente { get; set; }
 
-         string ActionName { get; set; }
+     
 
         public bool TopMost { get; set; }
 

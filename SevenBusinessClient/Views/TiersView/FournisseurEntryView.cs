@@ -1,10 +1,11 @@
 ﻿using MotherStoreBO.Models;
+using MotherStoreBusiness.Helpers;
 
 namespace MotherStoreBusiness.Views.TiersView
 {
     public partial class FournisseurEntryView : Form,IFournisseurEntryView
     {
-        private string _action;
+        private FormState _action;
 
         public FournisseurEntryView()
         {
@@ -17,6 +18,7 @@ namespace MotherStoreBusiness.Views.TiersView
 
         public Fournisseur Fournisseur { get => new Fournisseur
         {
+            Reference = txtReference.Text,
             Name = txtNom.Text,
             Prenom = txtPrenom.Text,
             Telephone = txtTelephone.Text,
@@ -26,7 +28,7 @@ namespace MotherStoreBusiness.Views.TiersView
             CodePostale = txtCodePostale.Text,
             Pays = txtPays.Text,
         }; set {
-
+               txtReference.Text = value.Reference;
                 txtNom.Text = value.Name;
                 txtPrenom.Text = value.Prenom;
                 txtTelephone.Text = value.Telephone;
@@ -38,7 +40,7 @@ namespace MotherStoreBusiness.Views.TiersView
 
             } }
 
-        public string Action { get => _action; set { _action = value; } }
+        public FormState Action { get => _action; set { _action = value; } }
 
         public event EventHandler SaveEvent;
         public event EventHandler FormLoadEvent;
@@ -48,7 +50,7 @@ namespace MotherStoreBusiness.Views.TiersView
             btnSave.Click += delegate { SaveEvent?.Invoke(this, EventArgs.Empty); };
             Load += delegate {
 
-                if (Action == "Modifier")
+                if (Action == FormState.Modification)
                 {
 
                     btnSave.Text = "Modifier";

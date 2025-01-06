@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MotherStoreBusiness.Helpers;
 
 namespace MotherStoreBusiness.Presenters.Articles
 {
@@ -27,10 +28,10 @@ namespace MotherStoreBusiness.Presenters.Articles
             View = view;
 
             _bindingSource = new BindingSource();
-            view.Action = "Creation";
+            view.Action = FormState.Creation;
 
             if (model != null) {
-                view.Action = "Modification";
+                view.Action = FormState.Modification;
             }
 
             WireEvent();
@@ -50,7 +51,7 @@ namespace MotherStoreBusiness.Presenters.Articles
         {
             GetCategorieCompleted();
 
-            if(View.Action == "Modification")
+            if(View.Action == FormState.Modification)
             {
                 var categorie = new Categorie
                 {
@@ -119,7 +120,7 @@ namespace MotherStoreBusiness.Presenters.Articles
                 _bindingSource.DataSource = categories.OrderBy(x=>x.Id);
                
                  View.SetCategorieComboBox(_bindingSource);
-                if (View.Action == "Modification")
+                if (View.Action == FormState.Modification)
                 {
                     var categorie = categories.FirstOrDefault(x=>x.Id == Model?.ParentCategorieId);
                     View.CategorieParent = categorie ?? cat;
@@ -147,7 +148,7 @@ namespace MotherStoreBusiness.Presenters.Articles
 
 
                 bool response = true;  // Appel HTTP POST
-                if (View.Action == "Creation")
+                if (View.Action == FormState.Creation)
                 {
                     var categorie = BuilCategorieToCreate();
                    

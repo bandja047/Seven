@@ -1,4 +1,6 @@
-﻿namespace MotherStoreBusiness.Views.TiersView
+﻿using MotherStoreBO.Models;
+
+namespace MotherStoreBusiness.Views.TiersView
 {
     partial class DataFournisseursView
     {
@@ -118,6 +120,7 @@
             LvFournisseur.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             LvFournisseur.BorderStyle = BorderStyle.None;
             LvFournisseur.Columns.AddRange(new ColumnHeader[] { ColHeadReference, ColHeadNom, ColHeadPrenom, ColHeadTelephone, ColHeadEmail, ColHeadPays, ColHeadVille, ColHeadQuartier, ColHeadCodePostal });
+            LvFournisseur.FullRowSelect = true;
             LvFournisseur.Location = new Point(12, 59);
             LvFournisseur.Name = "LvFournisseur";
             LvFournisseur.Size = new Size(781, 430);

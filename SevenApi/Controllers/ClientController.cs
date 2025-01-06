@@ -119,7 +119,7 @@ namespace MotherStore.Controllers
 
                 await _clientRepositorie.AddAsync(Client);
 
-                return CreatedAtAction("GetCategorie", new { id = Client.Id }, Client);
+                return CreatedAtAction("GetClient", new { id = Client.Id }, Client);
             }
             catch (Exception ex)
             {

@@ -12,7 +12,7 @@
         public string Ville { get; set; }
         public string Quartier { get; set; }
         public string CodePostale { get; set; }
-        public string Type { get; set; }
-        public int DealaiLivraison { get; set; }
+        public string? Type { get; set; }
+        public int? DealaiLivraison { get; set; }
     }
 }

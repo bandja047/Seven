@@ -1,4 +1,5 @@
 ﻿using MotherStoreBO.Models;
+using MotherStoreBusiness.Helpers;
 using MotherStoreBusiness.Views.ArticleView;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace MotherStoreBusiness
 {
     public partial class CategorieEntryView : Form, ICategorieEntryView
     {
-        private string _action;
+        private FormState _action;
 
 
 
@@ -34,7 +35,7 @@ namespace MotherStoreBusiness
             Reference = txtReference.Text,
             Description = txtDescription.Text,
         }; set { txtName.Text = value.Name; txtReference.Text = value.Reference; txtDescription.Text = value.Description; } }
-        public string Action { get => _action; set => _action = value; }
+        public FormState Action { get => _action; set => _action = value; }
 
         public event EventHandler SaveEvent;
         public event EventHandler FormLoadEvent;
@@ -45,7 +46,7 @@ namespace MotherStoreBusiness
             btnSave.Click += delegate { SaveEvent?.Invoke(this, EventArgs.Empty); };
             Load += delegate
             {
-                if (Action == "Modifier")
+                if (Action == FormState.Modification)
                 {
 
                     btnSave.Text = "Modifier";

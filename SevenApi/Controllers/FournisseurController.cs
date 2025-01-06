@@ -119,7 +119,7 @@ namespace MotherStore.Controllers
 
                 await _fournisseurRepositorie.AddAsync(fournisseur);
 
-                return CreatedAtAction("GetCategorie", new { id = fournisseur.Id }, fournisseur);
+                return CreatedAtAction("GetFournisseur", new { id = fournisseur.Id }, fournisseur);
             }
             catch (Exception ex)
             {

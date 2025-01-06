@@ -54,8 +54,12 @@ namespace MotherStoreBusiness
 
         private void mnuClient_Click(object sender, EventArgs e)
         {
-            FrmDataClients frm = new FrmDataClients();
-            LoadForm(frm);
+            IDataClientView frm = new DataClientView();
+            RestApiService service = new RestApiService(httpClient);
+
+
+            frm.MdiParent = this.MdiParent;
+            var presenter = DataClientPresenter.GetInstance(frm, null, service);
         }
 
         private void mnuFournisseur_Click(object sender, EventArgs e)

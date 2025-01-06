@@ -12,15 +12,15 @@ using System.Threading.Tasks;
 
 namespace MotherStoreBusiness.Presenters.Tiers
 {
-    public class FournisseurEntryPresenter
+    public class ClientEntryPresenter
     {
-        private IFournisseurEntryView View { get; set; }
-        public Fournisseur? Models { get; set; }
+        private IClientEntryView View { get; set; }
+        public Client? Models { get; set; }
         public RestApiService Service { get; set; }
 
-        private static FournisseurEntryPresenter Instance { get; set; }
+        private static ClientEntryPresenter Instance { get; set; }
 
-        public FournisseurEntryPresenter(IFournisseurEntryView view, Fournisseur? models, RestApiService service)
+        public ClientEntryPresenter(IClientEntryView view, Client? models, RestApiService service)
         {
             View = view;
             Models = models;
@@ -35,8 +35,8 @@ namespace MotherStoreBusiness.Presenters.Tiers
 
             WireEvents();
 
-            //View.TopMost = true;
-           // View.BringToFront();
+            View.TopMost = true;
+            View.BringToFront();
 
             View.Show();
 
@@ -55,30 +55,30 @@ namespace MotherStoreBusiness.Presenters.Tiers
 
             if (View.Action == FormState.Modification)
             {
-                Fournisseur fournisseur = new Fournisseur();
-                fournisseur.Reference = Models?.Reference ?? "";
-                fournisseur.Name = Models?.Name ?? "";
-                fournisseur.Prenom =Models?.Prenom ?? "";
-                fournisseur.Telephone = Models?.Telephone ?? "";
-                fournisseur.Email = Models?.Email ?? "";
-                fournisseur.Pays = Models?.Pays ?? "";
-                fournisseur.Quartier = Models?.Quartier ?? "";
-                fournisseur.Ville = Models?.Pays ?? "";
-                fournisseur.CodePostale = Models?.Quartier ?? "";
+                Client client = new Client();
+                client.Reference = Models?.Reference ?? "";
+                client.Name = Models?.Name ?? "";
+                client.Prenom =Models?.Prenom ?? "";
+                client.Telephone = Models?.Telephone ?? "";
+                client.Email = Models?.Email ?? "";
+                client.Pays = Models?.Pays ?? "";
+                client.Quartier = Models?.Quartier ?? "";
+                client.Ville = Models?.Pays ?? "";
+                client.CodePostale = Models?.Quartier ?? "";
 
-                View.Fournisseur = fournisseur;
+                View.Client = client;
 
 
 
             }
         }
-        private FournisseurCreateDto BuildModelsToCreate()
+        private ClientCreateDto BuildModelsToCreate()
         {
-            var f = View.Fournisseur;
+            var f = View.Client;
 
 
 
-            var fournisseur = new FournisseurCreateDto
+            var Client = new ClientCreateDto
             {
                
                 Name = f.Name,
@@ -89,31 +89,32 @@ namespace MotherStoreBusiness.Presenters.Tiers
                 Ville = f.Ville,
                 CodePostale = f.CodePostale,
                 Quartier = f.Quartier,
-                DealaiLivraison = 2,
-                Type = "fournisseur",
+                LimiteDeCredit= f.LimiteDeCredit,
+                ProgrammeFidelite = f.ProgrammeFidelite,
+                Type = "Client",
 
             };
 
 
 
-            return fournisseur;
+            return Client;
 
 
 
             
         }
 
-        private FournisseurUpdateDto BuildModelsToUpdate()
+        private ClientUpdateDto BuildModelsToUpdate()
         {
 
 
-            var f = View.Fournisseur;
+            var f = View.Client;
 
 
 
-            var fournisseur = new FournisseurUpdateDto
+            var Client = new ClientUpdateDto
             {
-                Id=Models?.Id??0,
+                Id = Models?.Id??0,
                 Reference = f.Reference,
                 Name = f.Name,
                 Prenom = f.Prenom,
@@ -123,19 +124,15 @@ namespace MotherStoreBusiness.Presenters.Tiers
                 Ville = f.Ville,
                 CodePostale = f.CodePostale,
                 Quartier = f.Quartier,
-                DealaiLivraison = 2,
-                Type = "fournisseur",
+                LimiteDeCredit = f.LimiteDeCredit,
+                ProgrammeFidelite = f.ProgrammeFidelite,
+                Type = "Client",
 
             };
 
 
 
-            return fournisseur;
-
-
-
-
-           
+            return Client;
         }
         private async void SaveEvent(object? sender, EventArgs e)
         {
@@ -147,15 +144,15 @@ namespace MotherStoreBusiness.Presenters.Tiers
                 bool response = true;  // Appel HTTP POST
                 if (View.Action == FormState.Creation)
                 {
-                    var fournisseur = BuildModelsToCreate();
+                    var Client = BuildModelsToCreate();
 
-                    response = await Service.PostDataAsync<FournisseurCreateDto>("fournisseur", fournisseur);
+                    response = await Service.PostDataAsync<ClientCreateDto>("Client", Client);
                 }
 
                 else
                 {
-                    var fournisseur = BuildModelsToUpdate();
-                    response = await Service.PutDataAsync<FournisseurUpdateDto>($"fournisseur/{Models.Id}", fournisseur);
+                    var Client = BuildModelsToUpdate();
+                    response = await Service.PutDataAsync<ClientUpdateDto>($"Client/{Models.Id}", Client);
                 }
 
                 // Vérification de la réponse
@@ -182,9 +179,9 @@ namespace MotherStoreBusiness.Presenters.Tiers
             }
         }
 
-        public static FournisseurEntryPresenter GetInstance(IFournisseurEntryView view, Fournisseur? models, RestApiService service)
+        public static ClientEntryPresenter GetInstance(IClientEntryView view, Client? models, RestApiService service)
         {
-            Instance = new FournisseurEntryPresenter(view, models, service);
+            Instance = new ClientEntryPresenter(view, models, service);
             return Instance;
         }
     }

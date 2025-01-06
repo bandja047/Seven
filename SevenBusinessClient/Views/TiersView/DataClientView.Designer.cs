@@ -1,6 +1,8 @@
-﻿namespace MotherStoreBusiness
+﻿using MotherStoreBO.Models;
+
+namespace MotherStoreBusiness.Views.TiersView
 {
-    partial class FrmDataClients
+    partial class DataClientView
     {
         /// <summary>
         ///  Required designer variable.
@@ -32,7 +34,7 @@
             panel1 = new Panel();
             BtnAjouter = new Button();
             button2 = new Button();
-            BtnModifier = new Button();
+            BtnSupprimer = new Button();
             LvClient = new ListView();
             ColHeadReference = new ColumnHeader();
             ColHeadNom = new ColumnHeader();
@@ -81,7 +83,6 @@
             BtnAjouter.TabIndex = 3;
             BtnAjouter.Text = "Ajouter";
             BtnAjouter.UseVisualStyleBackColor = false;
-            BtnAjouter.Click += Ajouter_Click;
             // 
             // button2
             // 
@@ -96,26 +97,26 @@
             button2.Text = "Supprimer";
             button2.UseVisualStyleBackColor = false;
             // 
-            // BtnModifier
+            // BtnSupprimer
             // 
-            BtnModifier.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            BtnModifier.BackColor = Color.DodgerBlue;
-            BtnModifier.FlatStyle = FlatStyle.Flat;
-            BtnModifier.Font = new Font("Agency FB", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BtnModifier.ForeColor = Color.White;
-            BtnModifier.Location = new Point(799, 100);
-            BtnModifier.Name = "BtnModifier";
-            BtnModifier.Size = new Size(97, 35);
-            BtnModifier.TabIndex = 5;
-            BtnModifier.Text = "Modifier";
-            BtnModifier.UseVisualStyleBackColor = false;
-            BtnModifier.Click += Modifier_Click;
+            BtnSupprimer.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            BtnSupprimer.BackColor = Color.DodgerBlue;
+            BtnSupprimer.FlatStyle = FlatStyle.Flat;
+            BtnSupprimer.Font = new Font("Agency FB", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnSupprimer.ForeColor = Color.White;
+            BtnSupprimer.Location = new Point(799, 100);
+            BtnSupprimer.Name = "BtnSupprimer";
+            BtnSupprimer.Size = new Size(97, 35);
+            BtnSupprimer.TabIndex = 5;
+            BtnSupprimer.Text = "Modifier";
+            BtnSupprimer.UseVisualStyleBackColor = false;
             // 
             // LvClient
             // 
             LvClient.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             LvClient.BorderStyle = BorderStyle.None;
             LvClient.Columns.AddRange(new ColumnHeader[] { ColHeadReference, ColHeadNom, ColHeadPrenom, ColHeadTelephone, ColHeadEmail, ColHeadPays, ColHeadVille, ColHeadQuartier, ColHeadCodePostal });
+            LvClient.FullRowSelect = true;
             LvClient.Location = new Point(12, 59);
             LvClient.Name = "LvClient";
             LvClient.Size = new Size(781, 430);
@@ -159,18 +160,18 @@
             // 
             ColHeadCodePostal.Text = "Code Postal";
             // 
-            // FrmDataClients
+            // DataClientView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(908, 560);
             Controls.Add(LvClient);
-            Controls.Add(BtnModifier);
+            Controls.Add(BtnSupprimer);
             Controls.Add(button2);
             Controls.Add(BtnAjouter);
             Controls.Add(panel1);
-            Name = "FrmDataClients";
+            Name = "DataClientView";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Client";
             panel1.ResumeLayout(false);
@@ -184,7 +185,7 @@
         private Panel panel1;
         private Button BtnAjouter;
         private Button button2;
-        private Button BtnModifier;
+        private Button BtnSupprimer;
         private ListView LvClient;
         private ColumnHeader ColHeadReference;
         private ColumnHeader ColHeadNom;

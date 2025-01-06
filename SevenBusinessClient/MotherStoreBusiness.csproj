@@ -25,7 +25,7 @@
     <Compile Update="FrmDataAchat.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FrmDataClients.cs">
+    <Compile Update="Views\TiersView\DataClientView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FrmDataVentes.cs">
@@ -37,7 +37,7 @@
     <Compile Update="Views\TiersView\FournisseurEntryView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FrmSaisieClient.cs">
+    <Compile Update="Views\TiersView\ClientEntryView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Views\ArticleView\CategorieEntryView.cs">

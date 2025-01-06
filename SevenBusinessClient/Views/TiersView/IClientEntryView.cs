@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace MotherStoreBusiness.Views.TiersView
 {
-    public interface IFournisseurEntryView
+    public interface IClientEntryView
     {
-        Fournisseur Fournisseur { get; set; }
+        Client Client { get; set; }
 
         event EventHandler SaveEvent;
         event EventHandler FormLoadEvent;

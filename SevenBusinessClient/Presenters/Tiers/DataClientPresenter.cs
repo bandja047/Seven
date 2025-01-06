@@ -11,15 +11,15 @@ using System.Threading.Tasks;
 
 namespace MotherStoreBusiness.Presenters.Tiers
 {
-    public class DataFournisseurPresenter
+    public class DataClientPresenter
     {
-        private IDataFournisseurView View { get; set; }
-        public Fournisseur  Models { get; set; }
+        private IDataClientView View { get; set; }
+        public Client  Models { get; set; }
         public RestApiService  Service { get; set; }
 
-        private static DataFournisseurPresenter Instance {get;set;}
+        private static DataClientPresenter Instance {get;set;}
 
-        public DataFournisseurPresenter(IDataFournisseurView view,Fournisseur models,RestApiService service)
+        public DataClientPresenter(IDataClientView view,Client models,RestApiService service)
         {
             View = view;
             Models = models;
@@ -27,8 +27,8 @@ namespace MotherStoreBusiness.Presenters.Tiers
 
             WireEvents();
 
-           // View.TopMost = true;
-           // View.BringToFront();
+            View.TopMost = true;
+            View.BringToFront();
           
             View.Show();
            
@@ -52,9 +52,9 @@ namespace MotherStoreBusiness.Presenters.Tiers
         {
             try
             {
-                var fournisseur = await Service.GetAllDataAsync<Fournisseur>("fournisseur");
+                var Client = await Service.GetAllDataAsync<Client>("Client");
 
-                View.LoadListView(fournisseur);
+                View.LoadListView(Client);
             }
             catch (HttpRequestException httpEx)
             {
@@ -76,8 +76,8 @@ namespace MotherStoreBusiness.Presenters.Tiers
 
 
 
-            FournisseurEntryView frm = new FournisseurEntryView();
-            FournisseurEntryPresenter.GetInstance(frm, null, Service);
+            ClientEntryView frm = new ClientEntryView();
+            ClientEntryPresenter.GetInstance(frm, null, Service);
         }
 
         private void EditEvent(object? sender, EventArgs e)
@@ -85,8 +85,8 @@ namespace MotherStoreBusiness.Presenters.Tiers
 
 
 
-            FournisseurEntryView frm = new FournisseurEntryView();
-            FournisseurEntryPresenter.GetInstance(frm, View.Fournisseur, Service);
+            ClientEntryView frm = new ClientEntryView();
+            ClientEntryPresenter.GetInstance(frm, View.Client, Service);
         }
 
         private void lv_DoubleClick(object? sender, EventArgs e)
@@ -94,12 +94,12 @@ namespace MotherStoreBusiness.Presenters.Tiers
 
 
 
-            FournisseurEntryView frm = new FournisseurEntryView();
-            FournisseurEntryPresenter.GetInstance(frm, View.Fournisseur, Service);
+            ClientEntryView frm = new ClientEntryView();
+            ClientEntryPresenter.GetInstance(frm, View.Client, Service);
         }
-        public static DataFournisseurPresenter GetInstance(IDataFournisseurView view, Fournisseur models, RestApiService service)
+        public static DataClientPresenter GetInstance(IDataClientView view, Client models, RestApiService service)
         {
-           Instance = new DataFournisseurPresenter(view, models, service);
+           Instance = new DataClientPresenter(view, models, service);
             return Instance;
         }
 

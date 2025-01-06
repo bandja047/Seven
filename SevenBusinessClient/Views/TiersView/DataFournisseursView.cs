@@ -63,8 +63,7 @@ namespace MotherStoreBusiness.Views.TiersView
         public void AssociatedAndRaiseEvent()
         {
           
-            this.Load += delegate { FormLoadEvent?.Invoke(this, EventArgs.Empty); };
-
+         
             LvFournisseur.Click += delegate {
 
                 BtnModifier.Enabled = true;
@@ -79,14 +78,17 @@ namespace MotherStoreBusiness.Views.TiersView
                 ListViewDoubleClick?.Invoke(this, EventArgs.Empty);
             };
 
-            Load += delegate { FormLoadEvent?.Invoke(this, EventArgs.Empty); };
+            
             BtnAjouter.Click += delegate { AddEvent?.Invoke(this, EventArgs.Empty); };
             BtnModifier.Click += delegate { DeleteEvent?.Invoke(this, EventArgs.Empty); };
            
-            BtnSupprimer.Click += delegate { DeleteEvent?.Invoke(this, EventArgs.Empty); };
+            BtnSupprimer.Click += delegate { EditEvent?.Invoke(this, EventArgs.Empty); };
+
+            this.Load += delegate { FormLoadEvent?.Invoke(this, EventArgs.Empty); };
+
         }
 
-      
+
         public void LoadListView(List<Fournisseur> source)
         {
             LvFournisseur.BeginUpdate();
