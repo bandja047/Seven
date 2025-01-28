@@ -10,6 +10,10 @@ namespace MotherStoreApi.ORM.Repositories
         public readonly MotherStoreContext _context;
         public readonly DbSet<TEntity> _dbSet;
 
+        public async Task<int> SaveChangesAsync()
+        {
+            return await _context.SaveChangesAsync();
+        }
         public GenericRepository(MotherStoreContext context)
         {
              _context = context?? throw new ArgumentNullException(nameof(context));   

@@ -4,17 +4,73 @@ using MotherStoreApi.Helpers;
 using MotherStoreBO.Models;
 using MotherStoreApi.NewFolder;
 using System.Security.Cryptography.Xml;
+using Microsoft.AspNetCore.Mvc;
+using MotherStoreBO.DataTransfertObject;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace MotherStoreApi.ORM.Repositories
 {
     public class ArticleRepositorie : GenericRepository<Article>
     {
+        public DatabaseFacade Database { get; set; }
         public ArticleRepositorie(MotherStoreContext context) : base(context)
         {
+            Database = context.Database;
         }
 
+        public async Task PostArticle(Article article)
+        {
+            
+            await using var transaction = await _context.Database.BeginTransactionAsync();
+
+            try
+            {
+
+                // Vérifier et générer une référence pour l'article
+                var latestArticleId = await MaxAsync(c => (int?)c.Id);
+                var _categorieRepos = new CategorieRepositorie(_context);
+
+                // Rechercher la catégorie
+                var categorie = (await _categorieRepos.FindOneAsync(c => c.Id == article.Categories.Id));
+
+                if (categorie == null)
+                {
+                    // Créer une nouvelle catégorie si elle n'existe pas
+
+
+                    var newCategorie = Mapper.Map<Categorie, Categorie>(article.Categories);
+                    await _categorieRepos.AddAsync(newCategorie);
+                    await _context.SaveChangesAsync(); // Sauvegarder pour générer l'ID
+
+                    categorie = newCategorie; // Mettre à jour la référence
+                }
+
+                // Créer un nouvel article
+                var newArticle = Mapper.Map<Article, Article>(article);
+                newArticle.CategorieId = categorie.Id;
+
+
+
+                await  AddAsync(newArticle);
+                await _context.SaveChangesAsync(); // Sauvegarder pour persister l'article
+
+                // Commit de la transaction
+                await transaction.CommitAsync();
+
+                // Retourner l'article créé
+               
+            }
+            catch (Exception )
+            {
+                // Rollback de la transaction en cas d'erreur
+                await transaction.RollbackAsync();
+                throw ;
+            }
+        }
         public override async Task AddAsync(Article entity)
         {
+            await PostArticle(entity);
 
             var latestCategorieId = await MaxAsync(c => (int?)c.Id);
 

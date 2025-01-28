@@ -19,14 +19,14 @@ namespace MotherStore.Controllers
     [ApiController]
     public class ArticlesController : ControllerBase
     {
-        private readonly MotherStoreContext _context;
+        
 
         ArticleRepositorie _articleRepos;
         CategorieRepositorie _categorieRepos;
 
-        public ArticlesController(MotherStoreContext context, ArticleRepositorie article, CategorieRepositorie categorieR)
+        public ArticlesController( ArticleRepositorie article, CategorieRepositorie categorieR)
         {
-            _context = context;
+            ;
             _articleRepos = article;
             _categorieRepos = categorieR;
         }
@@ -137,7 +137,7 @@ namespace MotherStore.Controllers
                 return BadRequest(new { message = "Invalid article or category data." });
             }
 
-            await using var transaction = await _context.Database.BeginTransactionAsync();
+            await using var transaction = await _articleRepos.Database.BeginTransactionAsync();
 
             try
             {
@@ -155,7 +155,7 @@ namespace MotherStore.Controllers
 
                     var newCategorie = Mapper.Map<CategorieUpdateDto, Categorie>(article.Categorie);
                     await _categorieRepos.AddAsync(newCategorie);
-                    await _context.SaveChangesAsync(); // Sauvegarder pour générer l'ID
+                    await _articleRepos.SaveChangesAsync(); // Sauvegarder pour générer l'ID
 
                     categorie = newCategorie; // Mettre à jour la référence
                 }
@@ -167,7 +167,7 @@ namespace MotherStore.Controllers
 
 
                 await _articleRepos.AddAsync(newArticle);
-                await _context.SaveChangesAsync(); // Sauvegarder pour persister l'article
+                await _articleRepos.SaveChangesAsync(); // Sauvegarder pour persister l'article
 
                 // Commit de la transaction
                 await transaction.CommitAsync();
@@ -210,7 +210,7 @@ namespace MotherStore.Controllers
 
         private bool ArticleExists(int id)
         {
-            return _context.Articles.Any(e => e.Id == id);
+            return _articleRepos.Exists(e => e.Id == id);
         }
     }
 }
